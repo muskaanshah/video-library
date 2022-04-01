@@ -1,0 +1,63 @@
+.iframe-video {
+	aspect-ratio: 1.777;
+}
+
+.singlevideo-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: left;
+	width: 75%;
+}
+
+.singlevideo-viewcount-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.singlevideo-viewcount {
+	flex-grow: 1;
+}
+
+.singlevideo-icon-wrapper {
+	display: flex;
+}
+
+.singlevideo-icon-wrapper button {
+	background-color: transparent;
+	color: var(--white);
+}
+
+.btn-action {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+}
+
+.divider-black {
+	width: 100%;
+}
+
+.channel-details {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.5rem;
+}
+
+.singlevideo-icon-wrapper > div {
+	display: none;
+}
+
+.btn-more-singleproduct {
+	color: var(--white);
+}
+
+@media only screen and (min-width: 650px) {
+	.singlevideo-icon-wrapper > div {
+		display: flex;
+	}
+	.btn-more-singleproduct {
+		display: none;
+	}
+}

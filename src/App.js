@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { Drawer } from "./components/Drawer/Drawer";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Home, Explore } from "./pages";
+import { Home, Explore, SingleVideo } from "./pages";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/singlevideo" element={<SingleVideo />} />
         </Routes>
       </header>
     </div>

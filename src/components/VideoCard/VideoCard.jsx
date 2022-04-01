@@ -1,5 +1,4 @@
 import "./videocard.css";
-import { VideoCardModal } from "./VideoCardModal";
 
 function VideoCard() {
 	return (
@@ -19,7 +18,7 @@ function VideoCard() {
 						className="borderradius-full avatar avatar-sm"
 						alt="dp"
 					/>
-					<div className="video-details-info">
+					<div>
 						<p className="fw-500 my-0 video-details-header">
 							How to play Splendor within 10 minutes | By Kaylie Advani
 						</p>

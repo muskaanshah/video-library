@@ -1,9 +1,12 @@
 .img-banner {
 	width: 100%;
+	object-fit: cover;
+	height: 100%;
 }
 
 .banner-wrapper {
 	position: relative;
+	height: 25rem;
 }
 
 .btn.bg-primary:hover {
@@ -17,10 +20,7 @@
 
 .banner-overlay {
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	inset: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 	padding-left: 5rem;
 	padding-top: 3rem;
@@ -29,10 +29,6 @@
 .banner-overlay > h2,
 .banner-overlay > p {
 	width: 70%;
-}
-
-.display-inlineblock {
-	display: inline-block;
 }
 
 .btn-banner-watchnow {
@@ -44,22 +40,13 @@
 }
 
 @media only screen and (max-width: 400px) {
-	.banner-overlay {
-		padding-top: 2rem;
-	}
 	.banner-overlay > h2,
 	.banner-overlay > p {
 		width: 90%;
 	}
-	.btn-banner-watchnow {
-		margin-top: 0;
-	}
 }
 
 @media only screen and (min-width: 700px) {
-	.banner-overlay {
-		padding-top: 3rem;
-	}
 	.banner-overlay > h2,
 	.banner-overlay > p {
 		width: 50%;

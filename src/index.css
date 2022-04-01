@@ -3,9 +3,10 @@
 
 :root {
 	--grey-dark: #373837;
-	--grey-dark-opacity: rgba(121, 121, 121, 0.3);
+	--grey-dark-opacity: #4b4c4b;
 	--black: #242423;
 	--primary: #f5cb5c;
+	--primary-light: #ffe499;
 	--white: #e8eddf;
 	--navbar-height: 4rem;
 	--drawer-width: 15rem;
@@ -25,6 +26,10 @@ body {
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.display-inlineblock {
+	display: inline-block;
 }
 
 @media only screen and (min-width: 750px) {

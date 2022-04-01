@@ -8,7 +8,7 @@ function Drawer() {
 				<span className="material-icons-round">home</span>
 				Home
 			</NavLink>
-			<NavLink to="/" className="drawer-link">
+			<NavLink to="/explore" className="drawer-link">
 				<span className="material-icons-round">explore</span>
 				Explore
 			</NavLink>

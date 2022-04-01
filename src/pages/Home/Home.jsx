@@ -9,20 +9,18 @@ function Home() {
 					<source media="(min-width: 700px)" srcset={bannerimgdesktop} />
 					<img src={bannerimg} class="img-responsive img-banner" alt="banner" />
 				</picture>
-				<div className="banner-info">
-					<div className="banner-overlay">
-						<h2 className="banner-info-heading color-white my-0">
-							The rebirth of board games and the new social revolution | Drew
-							Blas | TEDxTopeka
-						</h2>
-						<p className="color-white fw-300 fs-0-8 mt-0-5">
-							13 mins | 6 years ago
-						</p>
-						<button className="btn bg-primary borderradius-0-5 color-black fw-500 centered p-0-5 btn-banner-watchnow">
-							<span className="material-icons-round">play_arrow</span>
-							<span className="fs-0-9">Watch now</span>
-						</button>
-					</div>
+				<div className="banner-overlay">
+					<h2 className="banner-info-heading color-white my-0">
+						The rebirth of board games and the new social revolution | Drew Blas
+						| TEDxTopeka
+					</h2>
+					<p className="color-white fw-300 fs-0-8 mt-0-5">
+						13 mins | 6 years ago
+					</p>
+					<button className="btn bg-primary borderradius-0-5 color-black fw-500 centered p-0-5 btn-banner-watchnow">
+						<span className="material-icons-round">play_arrow</span>
+						<span className="fs-0-9">Watch now</span>
+					</button>
 				</div>
 			</div>
 			<div className="color-white px-1">

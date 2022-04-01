@@ -5,6 +5,7 @@ function FilterSection() {
 		<>
 			<div className="category-section">
 				<span className="category-name">Category: </span>
+				{/* All of this is dummy data, will make proper data structures when adding logic */}
 				{[
 					"All",
 					"Game Play",

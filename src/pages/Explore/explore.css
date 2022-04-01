@@ -31,3 +31,9 @@
 	padding-bottom: 4px;
 	border-bottom: 1px solid var(--primary);
 }
+
+.videocard-display {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}

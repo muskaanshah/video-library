@@ -6,7 +6,22 @@ function Explore() {
 	return (
 		<div className="container-body color-white p-1">
 			<FilterSection />
-			<VideoCard />
+			<div className="videocard-display">
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+			</div>
 		</div>
 	);
 }

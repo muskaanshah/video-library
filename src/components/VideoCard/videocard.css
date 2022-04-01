@@ -50,3 +50,19 @@
 	padding-right: 6px;
 	border-radius: 4px;
 }
+
+.videocard-modal {
+	width: 15rem;
+	border-radius: 4px;
+}
+
+.videocard-modal-action {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+	gap: 5px;
+}
+
+.videocard-modal-action:hover {
+	background-color: var(--grey-dark-opacity);
+}

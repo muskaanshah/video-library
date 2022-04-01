@@ -1,0 +1,72 @@
+.img-banner {
+	width: 100%;
+}
+
+.banner-wrapper {
+	position: relative;
+}
+
+.btn.bg-primary:hover {
+	background-color: var(--primary);
+	filter: brightness(96%);
+}
+
+.banner-wrapper .centered {
+	gap: 4px;
+}
+
+.banner-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding-left: 5rem;
+	padding-top: 3rem;
+}
+
+.banner-overlay > h2,
+.banner-overlay > p {
+	width: 70%;
+}
+
+.display-inlineblock {
+	display: inline-block;
+}
+
+.btn-banner-watchnow {
+	margin-top: 2rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+@media only screen and (max-width: 400px) {
+	.banner-overlay {
+		padding-top: 2rem;
+	}
+	.banner-overlay > h2,
+	.banner-overlay > p {
+		width: 90%;
+	}
+	.btn-banner-watchnow {
+		margin-top: 0;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.banner-overlay {
+		padding-top: 3rem;
+	}
+	.banner-overlay > h2,
+	.banner-overlay > p {
+		width: 50%;
+	}
+	.about-body {
+		width: 85%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

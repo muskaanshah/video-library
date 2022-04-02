@@ -1,4 +1,4 @@
-import "./videocard.css";
+import "../videocard.css";
 
 function VideoCard() {
 	return (

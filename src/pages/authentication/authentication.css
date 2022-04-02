@@ -1,0 +1,35 @@
+.card-authentication {
+	width: 16rem;
+	padding: 1rem 2rem;
+}
+
+.input-box {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+}
+
+.input-text.input-authentication {
+	width: 100%;
+	font-weight: 400;
+	color: var(--white);
+	background-color: var(--grey-dark-opacity);
+	border: none;
+}
+
+.input-authentication::placeholder {
+	color: var(--grey-light);
+}
+
+.input-authentication:focus {
+	border: none;
+	outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s;
+	-webkit-text-fill-color: var(--white);
+}

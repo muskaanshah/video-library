@@ -23,6 +23,12 @@ body {
 	padding-bottom: 4rem;
 }
 
+.videocard-display {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.2rem;
+}
+
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -46,6 +52,23 @@ body {
 
 .btn:hover {
 	cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	background-color: var(--black);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	background-color: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: var(--primary);
 }
 
 @media only screen and (min-width: 750px) {

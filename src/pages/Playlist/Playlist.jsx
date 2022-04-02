@@ -3,8 +3,8 @@ import "./playlist.css";
 
 function Playlist() {
 	return (
-		<div className="container-body">
-			<div className="p-1">
+		<div className="container-body p-1">
+			<div className="videocard-display mt-1-5">
 				<PlaylistTile />
 			</div>
 		</div>

@@ -32,7 +32,7 @@ function Drawer() {
 				Playlists
 			</NavLink>
 			<NavLink
-				to="/"
+				to="/liked"
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
@@ -41,7 +41,7 @@ function Drawer() {
 				Liked Videos
 			</NavLink>
 			<NavLink
-				to="/"
+				to="/history"
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
@@ -50,7 +50,7 @@ function Drawer() {
 				History
 			</NavLink>
 			<NavLink
-				to="/"
+				to="/watchlater"
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}

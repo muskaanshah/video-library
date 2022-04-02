@@ -23,7 +23,7 @@ function Drawer() {
 				Explore
 			</NavLink>
 			<NavLink
-				to="/"
+				to="/playlist"
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}

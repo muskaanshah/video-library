@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./navbar.css";
 
 function Navbar() {
@@ -15,9 +16,12 @@ function Navbar() {
 					placeholder="Search"
 				/>
 			</span>
-			<span className="avatar-default-sm borderradius-full bg-primary color-black fw-500 mx-1">
+			<Link
+				to="/login"
+				className="avatar-default-sm borderradius-full bg-primary color-black mx-1 text-none"
+			>
 				AT
-			</span>
+			</Link>
 		</div>
 	);
 }

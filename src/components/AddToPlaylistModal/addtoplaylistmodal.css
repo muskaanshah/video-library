@@ -1,0 +1,5 @@
+.addtoplaylist-modal {
+	width: 15rem;
+	border-radius: 0.5rem;
+	background-color: var(--grey-dark);
+}

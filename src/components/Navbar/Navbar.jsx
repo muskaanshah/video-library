@@ -15,7 +15,7 @@ function Navbar() {
 					placeholder="Search"
 				/>
 			</span>
-			<span class="avatar-default-sm borderradius-full bg-primary color-black fw-500 mx-1">
+			<span className="avatar-default-sm borderradius-full bg-primary color-black fw-500 mx-1">
 				AT
 			</span>
 		</div>

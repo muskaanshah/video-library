@@ -6,6 +6,8 @@
 	top: 0;
 	overflow: auto;
 	transform: translateX(-100%);
+	padding-left: 0;
+	align-items: stretch;
 }
 
 .drawer > .drawer-link {
@@ -19,6 +21,17 @@
 	justify-content: flex-start;
 	align-items: center;
 	gap: 1rem;
+	padding-left: 1rem;
+	border-radius: 0;
+	width: 100%;
+}
+
+.drawer-link:hover {
+	background-color: var(--grey-dark-opacity);
+}
+
+.active-link {
+	border-left: 4px solid var(--primary);
 }
 
 @media only screen and (min-width: 750px) {

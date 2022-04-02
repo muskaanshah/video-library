@@ -7,7 +7,11 @@ function Home() {
 			<div className="banner-wrapper">
 				<picture>
 					<source media="(min-width: 700px)" srcset={bannerimgdesktop} />
-					<img src={bannerimg} class="img-responsive img-banner" alt="banner" />
+					<img
+						src={bannerimg}
+						className="img-responsive img-banner"
+						alt="banner"
+					/>
 				</picture>
 				<div className="banner-overlay">
 					<h2 className="banner-info-heading color-white my-0">

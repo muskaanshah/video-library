@@ -6,7 +6,6 @@ function SingleVideo() {
 			<div className="pt-2 text-center">
 				<iframe
 					width="75%"
-					// height="480"
 					src="https://www.youtube.com/embed/R9I85RhI7Cg"
 					title="YouTube video player"
 					frameborder="0"

@@ -1,0 +1,68 @@
+.video-card {
+	width: 17rem;
+}
+
+.video-details {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 5px;
+	max-width: 17rem;
+}
+
+.btn-more {
+	color: var(--white);
+	padding: 5px;
+	border-radius: 50%;
+	background-color: transparent;
+	visibility: hidden;
+}
+
+.video-card:hover .btn-more {
+	visibility: visible;
+}
+
+.video-details-header {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
+
+.videotile-wrapper {
+	position: relative;
+}
+
+.video-tile {
+	object-fit: cover;
+}
+
+.video-time {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: var(--white);
+	position: absolute;
+	bottom: 8px;
+	right: 8px;
+	display: inline-block;
+	padding-left: 6px;
+	padding-right: 6px;
+	border-radius: 4px;
+}
+
+.videocard-modal {
+	width: 15rem;
+	border-radius: 4px;
+}
+
+.videocard-modal-action {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+	gap: 5px;
+}
+
+.videocard-modal-action:hover {
+	background-color: var(--grey-dark-opacity);
+}

@@ -1,0 +1,45 @@
+.navbar {
+	height: var(--navbar-height);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	margin: 0;
+}
+
+.avatar-default-sm {
+	width: max(2.5rem, 24px);
+	height: auto;
+	aspect-ratio: 1;
+	font-size: 0.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-search {
+	width: 15rem;
+	margin-bottom: 0;
+	padding: 0.5rem 1rem;
+	background-color: var(--grey-dark-opacity);
+	outline: none;
+	border: none;
+	color: var(--white);
+	border-radius: 0.25rem;
+	font-family: inherit;
+}
+
+.input-search::placeholder {
+	color: var(--white);
+	font-size: 1rem;
+}
+
+@media only screen and (min-width: 650px) {
+	.input-search {
+		width: 25rem;
+	}
+}

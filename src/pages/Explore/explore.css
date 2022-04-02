@@ -1,0 +1,39 @@
+.category-section {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	flex-wrap: wrap;
+}
+
+.btn-category {
+	background-color: var(--grey-dark-opacity);
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.btn-category:hover {
+	background-color: var(--primary);
+	color: var(--black);
+}
+
+.btn-category * {
+	cursor: pointer;
+}
+
+.input-wrapper label input {
+	position: absolute;
+	display: none;
+}
+
+.category-name {
+	padding-bottom: 4px;
+	border-bottom: 1px solid var(--primary);
+}
+
+.videocard-display {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.2rem;
+}

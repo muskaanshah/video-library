@@ -1,0 +1,59 @@
+.img-banner {
+	width: 100%;
+	object-fit: cover;
+	height: 100%;
+}
+
+.banner-wrapper {
+	position: relative;
+	height: 25rem;
+}
+
+.btn.bg-primary:hover {
+	background-color: var(--primary);
+	filter: brightness(96%);
+}
+
+.banner-wrapper .centered {
+	gap: 4px;
+}
+
+.banner-overlay {
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding-left: 5rem;
+	padding-top: 3rem;
+}
+
+.banner-overlay > h2,
+.banner-overlay > p {
+	width: 70%;
+}
+
+.btn-banner-watchnow {
+	margin-top: 2rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+@media only screen and (max-width: 400px) {
+	.banner-overlay > h2,
+	.banner-overlay > p {
+		width: 90%;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.banner-overlay > h2,
+	.banner-overlay > p {
+		width: 50%;
+	}
+	.about-body {
+		width: 85%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

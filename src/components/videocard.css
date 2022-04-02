@@ -1,13 +1,19 @@
-.video-card {
+.video-card,
+.video-card-horizontal {
 	width: 17rem;
 }
 
-.video-details {
+.video-details,
+.video-details-horizontal {
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
 	gap: 5px;
+}
+
+.video-details-horizontal-wrapper {
 	max-width: 17rem;
+	padding-left: 0.5rem;
 }
 
 .btn-more {
@@ -29,6 +35,16 @@
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	white-space: normal;
+}
+
+.video-desc {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	white-space: normal;
+	line-height: 1.4;
 }
 
 .videotile-wrapper {
@@ -61,8 +77,28 @@
 	align-items: center;
 	padding: 0.5rem;
 	gap: 5px;
+	font-size: 0.9rem;
+	letter-spacing: 1.1;
 }
 
 .videocard-modal-action:hover {
 	background-color: var(--grey-dark-opacity);
+}
+
+.video-card:hover,
+.video-card-horizontal:hover {
+	cursor: pointer;
+}
+
+@media only screen and (min-width: 750px) {
+	.video-card-horizontal {
+		display: flex;
+		flex-direction: row;
+		width: 35rem;
+		height: 100%;
+	}
+	.video-details-horizontal {
+		display: flex;
+		align-items: flex-start;
+	}
 }

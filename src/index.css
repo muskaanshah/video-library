@@ -10,6 +10,7 @@
 	--white: #e8eddf;
 	--navbar-height: 4rem;
 	--drawer-width: 15rem;
+	--videotile-width: 17rem;
 }
 
 body {
@@ -33,6 +34,10 @@ body {
 
 .width-80 {
 	width: 80%;
+}
+
+.bg-transparent {
+	background-color: transparent;
 }
 
 @media only screen and (min-width: 750px) {

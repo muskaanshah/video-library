@@ -1,14 +1,15 @@
 import { NavLink } from "react-router-dom";
 import "./drawer.css";
 
-function Drawer() {
+function Drawer({drawer, setDrawer}) {
 	return (
-		<div className="drawer bg-grey-dark color-white">
+		<div className={`drawer bg-grey-dark color-white ${drawer && "drawer-active"}`}>
 			<NavLink
 				to="/"
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">home</span>
 				Home
@@ -18,6 +19,7 @@ function Drawer() {
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">explore</span>
 				Explore
@@ -27,6 +29,7 @@ function Drawer() {
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">playlist_add</span>
 				Playlists
@@ -36,6 +39,7 @@ function Drawer() {
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">thumb_up</span>
 				Liked Videos
@@ -45,6 +49,7 @@ function Drawer() {
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">history</span>
 				History
@@ -54,6 +59,7 @@ function Drawer() {
 				className={({ isActive }) =>
 					isActive ? "active-link drawer-link" : "drawer-link"
 				}
+				onClick={() => setDrawer(false)}
 			>
 				<span className="material-icons-round">watch_later</span>
 				Watch Later

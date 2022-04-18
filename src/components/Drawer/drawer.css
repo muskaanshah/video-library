@@ -8,6 +8,8 @@
 	transform: translateX(-100%);
 	padding-left: 0;
 	align-items: stretch;
+	z-index: 2;
+	transition: transform 1s;
 }
 
 .drawer > .drawer-link {
@@ -25,6 +27,11 @@
 	border-radius: 0;
 	width: 100%;
 	box-sizing: border-box;
+}
+
+.drawer-active {
+	transform: translateX(0%);
+	transition: transform 1s;
 }
 
 .drawer-link:hover {

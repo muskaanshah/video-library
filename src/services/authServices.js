@@ -9,7 +9,7 @@ const loginUser = async (
     navigate,
     location
 ) => {
-    let from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
     try {
         const res = await axios.post("/api/auth/login", {
             email,
@@ -39,7 +39,7 @@ const signUpUser = async (
     navigate,
     location
 ) => {
-    let from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
     try {
         const res = await axios.post("/api/auth/signup", {
             email,

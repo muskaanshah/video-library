@@ -8,7 +8,7 @@ import "./navbar.css";
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
-    const { token } = useAuth();
+    const token  = localStorage.getItem("encodedToken");
     return (
         <>
             <div className={`navbar bg-grey-dark`}>

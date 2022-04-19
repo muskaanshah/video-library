@@ -27,54 +27,16 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/singlevideo" element={<SingleVideo />} />
-                    <Route
-                        path="/login"
-                        element={
-                            <NotRequiresAuth>
-                                <Login />
-                            </NotRequiresAuth>
-                        }
-                    />
-                    <Route
-                        path="/signup"
-                        element={
-                            <NotRequiresAuth>
-                                <Signup />
-                            </NotRequiresAuth>
-                        }
-                    />
-                    <Route
-                        path="/playlist"
-                        element={
-                            <RequiresAuth>
-                                <Playlist />
-                            </RequiresAuth>
-                        }
-                    />
-                    <Route
-                        path="/history"
-                        element={
-                            <RequiresAuth>
-                                <History />
-                            </RequiresAuth>
-                        }
-                    />
-                    <Route
-                        path="/liked"
-                        element={
-                            <RequiresAuth>
-                                <Liked />
-                            </RequiresAuth>
-                        }
-                    />
-                    <Route
-                        path="/watchlater"
-                        element={
-                            <RequiresAuth>
-                                <WatchLater />
-                            </RequiresAuth>
-                        }
-                    />
+                    <Route element={<NotRequiresAuth />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                    </Route>
+                    <Route element={<RequiresAuth />}>
+                        <Route path="/playlist" element={<Playlist />} />
+                        <Route path="/history" element={<History />} />
+                        <Route path="/liked" element={<Liked />} />
+                        <Route path="/watchlater" element={<WatchLater />} />
+                    </Route>
                 </Routes>
             </header>
         </div>

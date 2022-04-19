@@ -18,7 +18,7 @@
 }
 
 .input-authentication::placeholder {
-	color: var(--grey-light);
+	color: var(--grey);
 }
 
 .input-authentication:focus {
@@ -32,4 +32,12 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
 	transition: background-color 5000s ease-in-out 0s;
 	-webkit-text-fill-color: var(--white);
+}
+
+#termscheckbox {
+	accent-color: var(--primary);
+}
+
+#termscheckbox {
+	background-color: var(--black);
 }

@@ -7,7 +7,7 @@ function PlaylistTile() {
 					className="img-responsive playlist-img"
 					alt="playlist-tile"
 				/>
-				<p className="playlist-number my-0">
+				<p className="playlist-number my-0 default-theme">
 					<span>3</span>
 					<span className="material-icons-outlined">playlist_play</span>
 				</p>

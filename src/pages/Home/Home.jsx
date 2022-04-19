@@ -4,9 +4,9 @@ import "./home.css";
 function Home() {
 	return (
 		<div className="container-body bg-black">
-			<div className="banner-wrapper">
+			<div className="banner-wrapper default-theme">
 				<picture>
-					<source media="(min-width: 700px)" srcset={bannerimgdesktop} />
+					<source media="(min-width: 700px)" srcSet={bannerimgdesktop} />
 					<img
 						src={bannerimg}
 						className="img-responsive img-banner"

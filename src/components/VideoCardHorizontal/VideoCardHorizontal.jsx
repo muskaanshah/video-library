@@ -10,7 +10,7 @@ function VideoCardHorizontal() {
 						className="img-responsive video-tile"
 						alt="video-tile"
 					/>
-					<span className="video-time">4:10</span>
+					<span className="video-time default-theme">4:10</span>
 				</div>
 				<div className="video-details-horizontal-wrapper">
 					<div className="video-details-horizontal">

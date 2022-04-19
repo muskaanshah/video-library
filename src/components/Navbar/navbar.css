@@ -71,6 +71,11 @@
 	transform: translateY(-7px) rotate(-45deg);
 }
 
+.navbar > .centered .material-icons-outlined {
+	font-size: 2rem;
+	color: var(--white);
+}
+
 @media only screen and (min-width: 350px) {
 	.input-search {
 		width: 15rem;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth, useTheme } from "../../context";
+import { useTheme } from "../../context";
 import { Drawer } from "../Drawer/Drawer";
 import { avatar } from "../../assets";
 import "./navbar.css";

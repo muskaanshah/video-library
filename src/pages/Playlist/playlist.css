@@ -25,6 +25,7 @@
 	right: 0;
 	background-color: rgba(0, 0, 0, 0.7);
 	height: 100%;
+	color: var(--white);
 }
 
 .playlistinfo {

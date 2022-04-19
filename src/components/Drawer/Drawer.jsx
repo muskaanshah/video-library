@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./drawer.css";
 
 function Drawer({drawer, setDrawer}) {
+	// const {theme} = useTheme();
 	return (
 		<div className={`drawer bg-grey-dark color-white ${drawer && "drawer-active"}`}>
 			<NavLink

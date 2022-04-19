@@ -14,15 +14,12 @@ import {
     Liked,
     WatchLater,
 } from "./pages";
+import { NotRequiresAuth, RequiresAuth } from "./utils";
 
 function App() {
     const { theme } = useTheme();
     return (
-        <div
-            className={`App ${
-                theme === "dark" ? "default-theme" : "light-theme"
-            }`}
-        >
+        <div className={`App ${theme === "dark" ? "default-theme" : "light-theme"}`}>
             <header className="App-header">
                 <Navbar />
                 <Drawer />
@@ -30,12 +27,54 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/singlevideo" element={<SingleVideo />} />
-                    <Route path="/playlist" element={<Playlist />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/liked" element={<Liked />} />
-                    <Route path="/watchlater" element={<WatchLater />} />
+                    <Route
+                        path="/login"
+                        element={
+                            <NotRequiresAuth>
+                                <Login />
+                            </NotRequiresAuth>
+                        }
+                    />
+                    <Route
+                        path="/signup"
+                        element={
+                            <NotRequiresAuth>
+                                <Signup />
+                            </NotRequiresAuth>
+                        }
+                    />
+                    <Route
+                        path="/playlist"
+                        element={
+                            <RequiresAuth>
+                                <Playlist />
+                            </RequiresAuth>
+                        }
+                    />
+                    <Route
+                        path="/history"
+                        element={
+                            <RequiresAuth>
+                                <History />
+                            </RequiresAuth>
+                        }
+                    />
+                    <Route
+                        path="/liked"
+                        element={
+                            <RequiresAuth>
+                                <Liked />
+                            </RequiresAuth>
+                        }
+                    />
+                    <Route
+                        path="/watchlater"
+                        element={
+                            <RequiresAuth>
+                                <WatchLater />
+                            </RequiresAuth>
+                        }
+                    />
                 </Routes>
             </header>
         </div>

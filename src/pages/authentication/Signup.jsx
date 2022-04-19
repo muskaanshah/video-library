@@ -1,5 +1,5 @@
 import {useState} from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context";
 import { signUpUser } from "../../services";
 import "./authentication.css";
@@ -17,6 +17,8 @@ function Signup() {
     const [formInput, setFormInput] = useState(form);
 	const [termsCheckbox, setTermsCheckbox] = useState(false);
 	const [error, setError] = useState("");
+	const navigate = useNavigate();
+	const location = useLocation();
 
     const formInputHandler = (field, value) => {
         setFormInput({ ...formInput, [field]: value });
@@ -24,7 +26,7 @@ function Signup() {
 
     const submitFormHandler = (e) => {
         e.preventDefault();
-        signUpUser(formInput.email, formInput.password, formInput.firstName, formInput.lastName, setToken, setUser, setError );
+        signUpUser(formInput.email, formInput.password, formInput.firstName, formInput.lastName, setToken, setUser, setError, navigate, location );
     };
     return (
         <div className="container-body color-white centered">

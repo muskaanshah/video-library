@@ -1,6 +1,15 @@
 import axios from "axios";
 
-const loginUser = async (email, password, setToken, setUser, setError) => {
+const loginUser = async (
+    email,
+    password,
+    setToken,
+    setUser,
+    setError,
+    navigate,
+    location
+) => {
+    let from = location.state?.from?.pathname || "/";
     try {
         const res = await axios.post("/api/auth/login", {
             email,
@@ -11,7 +20,8 @@ const loginUser = async (email, password, setToken, setUser, setError) => {
             setToken(res.data.encodedToken);
             localStorage.setItem("encodedToken", res.data.encodedToken);
             setUser(res.data.foundUser);
-            localStorage.setItem("user", res.data.foundUser);
+            localStorage.setItem("user", JSON.stringify(res.data.foundUser));
+            navigate(from, { replace: true });
         }
     } catch (err) {
         setError("The credentials you entered are invalid.");
@@ -25,8 +35,11 @@ const signUpUser = async (
     lastName,
     setToken,
     setUser,
-    setError
+    setError,
+    navigate,
+    location
 ) => {
+    let from = location.state?.from?.pathname || "/";
     try {
         const res = await axios.post("/api/auth/signup", {
             email,
@@ -39,7 +52,8 @@ const signUpUser = async (
             setToken(res.data.encodedToken);
             localStorage.setItem("encodedToken", res.data.encodedToken);
             setUser(res.data.createdUser);
-            localStorage.setItem("user", res.data.createdUser);
+            localStorage.setItem("user", JSON.stringify(res.data.createdUser));
+            navigate(from, { replace: true });
         }
     } catch (err) {
         setError("Email already exists");

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import { Drawer } from "../Drawer/Drawer";
+import { avatar } from "../../assets";
 import "./navbar.css";
 
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
-	const {theme, toggleThemeHandler} = useTheme()
+    const { theme, toggleThemeHandler } = useTheme();
+    const { token } = useAuth();
     return (
         <>
             <div className={`navbar bg-grey-dark`}>
@@ -33,17 +35,22 @@ function Navbar() {
                     />
                 </span>
                 <div className="centered">
-                    <button className="btn bg-transparent m-0 p-0" onClick={() => toggleThemeHandler()}>
+                    <button
+                        className="btn bg-transparent m-0 p-0"
+                        onClick={() => toggleThemeHandler()}
+                    >
                         <span className="material-icons-outlined">
-							{`${theme === "dark" ? "light_mode" :
-                            "nightlight"}`}
+                            {`${theme === "dark" ? "light_mode" : "nightlight"}`}
                         </span>
                     </button>
-                    <Link
-                        to="/login"
-                        className="avatar-default-sm borderradius-full bg-primary color-black mx-1 text-none"
-                    >
-                        AT
+                    <Link to="/login" className="text-none">
+                        {token ? (
+                            <span className="avatar-default-sm borderradius-full bg-primary color-black mx-1 ">
+                                AT
+                            </span>
+                        ) : (
+                            <img src={avatar} style={{maxWidth: "2.5rem", maxHeight: "2.5rem"}} alt="login" />
+                        )}
                     </Link>
                 </div>
             </div>

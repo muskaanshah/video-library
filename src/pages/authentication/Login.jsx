@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate, useLocation} from "react-router-dom";
 import { useAuth } from "../../context";
 import { loginUser } from "../../services";
 import "./authentication.css";
@@ -12,6 +12,8 @@ function Login() {
     };
     const [formInput, setFormInput] = useState(form);
 	const [error, setError] = useState("");
+	const navigate = useNavigate();
+	const location = useLocation();
 
     const formInputHandler = (field, value) => {
         setFormInput({ ...formInput, [field]: value });
@@ -19,7 +21,7 @@ function Login() {
 
     const submitFormHandler = (e) => {
         e.preventDefault();
-        loginUser(formInput.email, formInput.password, setToken, setUser, setError);
+        loginUser(formInput.email, formInput.password, setToken, setUser, setError, navigate, location);
     };
 
     return (

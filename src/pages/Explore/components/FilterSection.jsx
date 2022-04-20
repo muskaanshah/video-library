@@ -26,13 +26,13 @@ function FilterSection() {
             <div className="category-section my-0-5">
                 <span className="category-name">Based on upload time: </span>
                 {["Newest First", "Oldest First"].map((item) => (
-                    <UploadTime item={item} />
+                    <UploadTime key={item} item={item} />
                 ))}
             </div>
             <div className="category-section my-0-5">
                 <span className="category-name">Sort: </span>
                 {["Most viewed", "Most Liked"].map((item) => (
-                    <LikesViews item={item} />
+                    <LikesViews key={item} item={item} />
                 ))}
             </div>
         </>

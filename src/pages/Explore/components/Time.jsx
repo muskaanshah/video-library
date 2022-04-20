@@ -4,12 +4,20 @@ import { ACTION_TYPE } from "../../../utils";
 function Time({ item }) {
     const { videoDispatch } = useVideo();
     return (
-        <div className="input-wrapper color-white btn-category">
+        <div
+            className="input-wrapper color-white btn-category"
+            onClick={() =>
+                videoDispatch({
+                    type: ACTION_TYPE.TIME,
+                    payload: { value: item },
+                })
+            }
+        >
             <label>
                 <input
                     type="checkbox"
                     value={item}
-                    onChange={() =>
+                    onClick={() =>
                         videoDispatch({
                             type: ACTION_TYPE.TIME,
                             payload: { value: item },

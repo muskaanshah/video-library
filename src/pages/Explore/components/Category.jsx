@@ -2,7 +2,7 @@ import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 
 function Category({ item }) {
-    const { videoDispatch } = useVideo();
+    const { videoState, videoDispatch } = useVideo();
     const dispatchFunction = () =>
         videoDispatch({
             type: ACTION_TYPE.CATEGORIES,
@@ -17,6 +17,8 @@ function Category({ item }) {
                 <input
                     type="checkbox"
                     value={item.categoryName}
+                    className="btn-tab-input"
+                    checked={videoState.categories.includes(item.categoryName)}
                     onClick={dispatchFunction}
                 />
                 <span>{item.categoryName}</span>

@@ -3,6 +3,7 @@ const ACTION_TYPE = {
     CATEGORIES: "CATEGORIES",
     TIME: "TIME",
     SORT_WAY: "SORT_WAY",
+    CLEAR_ALL: "CLEAR_ALL",
 };
 
 export { ACTION_TYPE };

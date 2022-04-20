@@ -2,7 +2,7 @@ import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 
 function Time({ item }) {
-    const { videoDispatch } = useVideo();
+    const { videoState, videoDispatch } = useVideo();
     const dispatchFunction = () =>
         videoDispatch({
             type: ACTION_TYPE.TIME,
@@ -14,7 +14,12 @@ function Time({ item }) {
             onClick={dispatchFunction}
         >
             <label>
-                <input type="checkbox" value={item} onClick={dispatchFunction} />
+                <input
+                    type="checkbox"
+                    value={item}
+                    onClick={dispatchFunction}
+                    checked={videoState.time.includes(item)}
+                />
                 <span>{item}</span>
             </label>
         </div>

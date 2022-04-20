@@ -21,16 +21,19 @@ const videoReducer = (state, action) => {
                 videos: action.payload.value,
             };
         case ACTION_TYPE.CATEGORIES:
-            const temp = setCategories(state, action.payload.value);
-            console.log(temp);
-            return temp;
+            return setCategories(state, action.payload.value);
         case ACTION_TYPE.TIME:
-            const temp1 = setTime(state, action.payload.value);
-            console.log(temp1);
-            return temp1;
+            return setTime(state, action.payload.value);
         case ACTION_TYPE.SORT_WAY:
-            const temp2 = setTimeSort(state, action.payload.value);
-            return temp2;
+            return setTimeSort(state, action.payload.value);
+        case ACTION_TYPE.CLEAR_ALL:
+            return {
+                ...state,
+                videos: [...state.default],
+                categories: [],
+                time: [],
+                sortWay: "",
+            };
         default:
             return state;
     }

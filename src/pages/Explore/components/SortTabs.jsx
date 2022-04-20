@@ -2,7 +2,7 @@ import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 
 function SortTabs({ item }) {
-    const { videoDispatch } = useVideo();
+    const { videoState, videoDispatch } = useVideo();
     const dispatchFunction = () =>
         videoDispatch({
             type: ACTION_TYPE.SORT_WAY,
@@ -19,6 +19,7 @@ function SortTabs({ item }) {
                     name="upload-time"
                     value={item}
                     onClick={dispatchFunction}
+                    checked={videoState.sortWay === item}
                 />
                 <span>{item}</span>
             </label>

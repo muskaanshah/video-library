@@ -53,6 +53,10 @@
 	cursor: pointer;
 }
 
+.videocard-display > .centered {
+	height: calc(60vh - var(--navbar-height));
+}
+
 @media only screen and (min-width: 550px) {
 	.filter-section {
 		width: 80%;

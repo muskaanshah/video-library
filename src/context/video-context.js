@@ -1,12 +1,16 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { getVideo } from "../services";
-import { ACTION_TYPE } from "../utils";
+import { ACTION_TYPE, setCategories, setTime, setTimeSort, setViewsSort } from "../utils";
 
 const VideoContext = createContext();
 
 const initialState = {
     default: [],
     videos: [],
+    categories: [],
+    time: [],
+    sortByUploadTime: "",
+    sortByViews: "",
 };
 
 const videoReducer = (state, action) => {
@@ -17,6 +21,20 @@ const videoReducer = (state, action) => {
                 default: action.payload.value,
                 videos: action.payload.value,
             };
+        case ACTION_TYPE.CATEGORIES:
+            const temp = setCategories(state, action.payload.value);
+            console.log(temp);
+            return temp;
+        case ACTION_TYPE.TIME:
+            const temp1 = setTime(state, action.payload.value);
+            console.log(temp1);
+            return temp1;
+        case ACTION_TYPE.SORT_TIME:
+            const temp2 = setTimeSort(state, action.payload.value);
+            return temp2;
+        case ACTION_TYPE.VIEWSLIKES:
+            const temp3 = setViewsSort(state, action.payload.value);
+            return temp3;
         default:
             return state;
     }
@@ -24,7 +42,6 @@ const videoReducer = (state, action) => {
 
 const VideoProvider = ({ children }) => {
     const [videoState, videoDispatch] = useReducer(videoReducer, initialState);
-    console.log(videoState);
     useEffect(() => {
         getVideo(videoDispatch);
     }, []);

@@ -1,16 +1,25 @@
+import { useVideo } from "../../../context";
+import { ACTION_TYPE } from "../../../utils";
+
 function Time({ item }) {
-	return (
-		<div className="input-wrapper color-white btn-category">
-			<label>
-				<input
-					type="checkbox"
-					value={item}
-					onChange={() => console.log("ticked")}
-				/>
-				<span>{item}</span>
-			</label>
-		</div>
-	);
+    const { videoDispatch } = useVideo();
+    return (
+        <div className="input-wrapper color-white btn-category">
+            <label>
+                <input
+                    type="checkbox"
+                    value={item}
+                    onChange={() =>
+                        videoDispatch({
+                            type: ACTION_TYPE.TIME,
+                            payload: { value: item },
+                        })
+                    }
+                />
+                <span>{item}</span>
+            </label>
+        </div>
+    );
 }
 
 export { Time };

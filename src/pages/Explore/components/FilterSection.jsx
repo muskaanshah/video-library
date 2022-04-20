@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCategory } from "../../../services";
-import { Category, LikesViews, Time, UploadTime } from "./";
+import { Category, Time, SortTabs } from "./";
 
 function FilterSection() {
     const [categories, setCategories] = useState([]);
@@ -24,16 +24,12 @@ function FilterSection() {
                 )}
             </div>
             <div className="category-section my-0-5">
-                <span className="category-name">Based on upload time: </span>
-                {["Newest First", "Oldest First"].map((item) => (
-                    <UploadTime key={item} item={item} />
-                ))}
-            </div>
-            <div className="category-section my-0-5">
                 <span className="category-name">Sort: </span>
-                {["Most viewed", "Most Liked"].map((item) => (
-                    <LikesViews key={item} item={item} />
-                ))}
+                {["Newest First", "Oldest First", "Most viewed", "Most liked"].map(
+                    (item) => (
+                        <SortTabs key={item} item={item} />
+                    )
+                )}
             </div>
         </>
     );

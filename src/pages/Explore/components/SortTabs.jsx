@@ -1,11 +1,11 @@
 import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 
-function UploadTime({ item }) {
+function SortTabs({ item }) {
     const { videoDispatch } = useVideo();
     const dispatchFunction = () =>
         videoDispatch({
-            type: ACTION_TYPE.SORT_TIME,
+            type: ACTION_TYPE.SORT_WAY,
             payload: { value: item },
         });
     return (
@@ -26,4 +26,4 @@ function UploadTime({ item }) {
     );
 }
 
-export { UploadTime };
+export { SortTabs };

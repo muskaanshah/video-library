@@ -20,17 +20,12 @@ const setTime = (state, value) => {
 };
 
 const setTimeSort = (state, value) => {
-    const temp = { ...state, sortByUploadTime: value };
-    return temp;
-};
-
-const setViewsSort = (state, value) => {
-    const temp = { ...state, sortByViews: value };
-    return temp;
+    const temp = { ...state, sortWay: value };
+    return setFiltering(temp);
 };
 
 const setFiltering = (state) => {
-    const filteredState = {
+    const tempFilter = {
         ...state,
         videos: state.default.filter((curItem) => {
             let includesTime = false;
@@ -62,7 +57,21 @@ const setFiltering = (state) => {
             );
         }),
     };
-    return filteredState;
+    const tempSort = {
+        ...tempFilter,
+        videos: tempFilter.videos.sort((vidOne, vidTwo) => {
+            if (tempFilter.sortWay === "Oldest First") {
+                return new Date(vidOne.dateOfUpload) - new Date(vidTwo.dateOfUpload);
+            } else if (tempFilter.sortWay === "Newest First")
+                return new Date(vidTwo.dateOfUpload) - new Date(vidOne.dateOfUpload);
+            else if (tempFilter.sortWay === "Most viewed") {
+                return vidTwo.views - vidOne.views;
+            } else if (tempFilter.sortWay === "Most liked")
+                return vidTwo.likes - vidOne.likes;
+            else return tempFilter.videos;
+        }),
+    };
+    return tempSort;
 };
 
 const convertToSeconds = (time) => {
@@ -75,4 +84,4 @@ const convertToSeconds = (time) => {
     return seconds;
 };
 
-export { setCategories, setTime, setTimeSort, setViewsSort };
+export { setCategories, setTime, setTimeSort };

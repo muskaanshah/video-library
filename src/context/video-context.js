@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { getVideo } from "../services";
-import { ACTION_TYPE, setCategories, setTime, setTimeSort, setViewsSort } from "../utils";
+import { ACTION_TYPE, setCategories, setTime, setTimeSort } from "../utils";
 
 const VideoContext = createContext();
 
@@ -9,8 +9,7 @@ const initialState = {
     videos: [],
     categories: [],
     time: [],
-    sortByUploadTime: "",
-    sortByViews: "",
+    sortWay: "",
 };
 
 const videoReducer = (state, action) => {
@@ -29,12 +28,9 @@ const videoReducer = (state, action) => {
             const temp1 = setTime(state, action.payload.value);
             console.log(temp1);
             return temp1;
-        case ACTION_TYPE.SORT_TIME:
+        case ACTION_TYPE.SORT_WAY:
             const temp2 = setTimeSort(state, action.payload.value);
             return temp2;
-        case ACTION_TYPE.VIEWSLIKES:
-            const temp3 = setViewsSort(state, action.payload.value);
-            return temp3;
         default:
             return state;
     }

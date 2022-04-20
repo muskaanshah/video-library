@@ -1,6 +1,6 @@
 .video-card,
 .video-card-horizontal {
-	width: 17rem;
+	width: var(--videotile-width);
 }
 
 .video-details,
@@ -12,7 +12,7 @@
 }
 
 .video-details-horizontal-wrapper {
-	max-width: 17rem;
+	max-width: var(--videotile-width);
 	padding-left: 0.5rem;
 }
 
@@ -53,6 +53,8 @@
 
 .video-tile {
 	object-fit: cover;
+	width: var(--videotile-width);
+	height: 9.5rem;
 }
 
 .video-time {

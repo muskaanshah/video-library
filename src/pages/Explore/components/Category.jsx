@@ -4,10 +4,10 @@ function Category({ item }) {
 			<label>
 				<input
 					type="checkbox"
-					value={item}
+					value={item.categoryName}
 					onChange={() => console.log("ticked")}
 				/>
-				<span>{item}</span>
+				<span>{item.categoryName}</span>
 			</label>
 		</div>
 	);

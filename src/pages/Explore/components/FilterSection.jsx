@@ -1,20 +1,18 @@
+import { useState, useEffect } from "react";
+import { getCategory } from "../../../services";
 import { Category, LikesViews, Time, UploadTime } from "./";
 
 function FilterSection() {
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		getCategory(setCategories);
+	}, [])
 	return (
 		<>
 			<div className="category-section">
 				<span className="category-name">Category: </span>
-				{/* All of this is dummy data, will make proper data structures when adding logic */}
-				{[
-					"All",
-					"Game Play",
-					"Strategy",
-					"Diy",
-					"Unboxing",
-					"All time favourites",
-				].map((item) => (
-					<Category item={item} />
+				{categories.map((item) => (
+					<Category key={item._id} item={item} />
 				))}
 			</div>
 			<div className="category-section my-0-5">

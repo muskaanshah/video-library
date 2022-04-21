@@ -18,7 +18,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLTlCQyNzlI-dn-gr9YC4qMSnzte0OugC2I5lP7r=s88-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCGK9n7svoIjuaQfRIBJXkqQ",
         subscribers: "276K",
-        date: "Apr 15, 2015",
+        dateOfUpload: "Apr 15, 2015",
         description:
             "In this video we're going to learn how to play Splendor! If you have any comments or questions, please do not hesitate to post them in the YouTube comments below, ensuring you abide by our Code of Conduct: https://watchitplayed.tv/code-of-conduct.",
     },
@@ -36,27 +36,9 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLSqIHRzL-wgI1oWE0GQ-8ILvunZD7we-P1UTrqe=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCkaY1WTL4vtJHJDxY4KqAVQ",
         subscribers: "10.6K",
-        date: "Oct 27, 2016",
+        dateOfUpload: "Oct 27, 2016",
         description:
             "A tutorial on how to make game boards for your print & play board games, including a number of little tips and tricks to make the process easier. Everything from simple taped-together paper boards to vinyl-wrapped boards to rival commercial products is covered.",
-    },
-    {
-        _id: "4JhFhyvGdik&t",
-        title: "Ticket to Ride - How To Play",
-        youtubeID: "4JhFhyvGdik",
-        videoLength: "10:44",
-        videoThumbnail: "http://i3.ytimg.com/vi/4JhFhyvGdik/hqdefault.jpg",
-        likes: 5493,
-        views: 597702,
-        category: "Game Play",
-        channelName: "Watch It Played",
-        channelThumbnail:
-            "https://yt3.ggpht.com/ytc/AKedOLTlCQyNzlI-dn-gr9YC4qMSnzte0OugC2I5lP7r=s88-c-k-c0x00ffffff-no-rj",
-        channelLink: "https://www.youtube.com/channel/UCGK9n7svoIjuaQfRIBJXkqQ",
-        subscribers: "276K",
-        date: "Jan 24, 2018",
-        description:
-            "In this video we're going to learn how to play Ticket To Ride! If you have any comments or questions, please do not hesitate to post them in the YouTube comments below, ensuring you abide by our Code of Conduct: https://watchitplayed.tv/code-of-conduct.",
     },
     {
         _id: "oAtbEi38njY",
@@ -72,7 +54,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLQK6Sca7kCQxWDqVHc6lcTZoW3U9aZHV8Cc2uUG=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCHv62yMzLn92_pevWlQo09g",
         subscribers: "3.3K",
-        date: "Aug 2, 2021",
+        dateOfUpload: "Aug 2, 2021",
         description:
             "Randy and Ellen from We Game Together open stuff on this unboxing of a bunch of games! Buy Merch Here!! wegametogether.redbubble.com",
     },
@@ -90,9 +72,27 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLSy_dGDmlRs1dXTnw0Wsyk4zUZitBkxLp1x6Uc3VA=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UC1WByNzqXBEGwgXNa05rpYQ",
         subscribers: "13.3K",
-        date: "Jan 3, 2022",
+        dateOfUpload: "Jan 3, 2022",
         description:
             "Here are the TOP 10 board games as we head full force into 2022! These games consist of favorites that I played in 2021-just didn't have a chance to film them during the holidays! Join me as I share really awesome games that I absolutely love!",
+    },
+    {
+        _id: "4JhFhyvGdik&t",
+        title: "Ticket to Ride - How To Play",
+        youtubeID: "4JhFhyvGdik",
+        videoLength: "10:44",
+        videoThumbnail: "http://i3.ytimg.com/vi/4JhFhyvGdik/hqdefault.jpg",
+        likes: 5493,
+        views: 597702,
+        category: "Game Play",
+        channelName: "Watch It Played",
+        channelThumbnail:
+            "https://yt3.ggpht.com/ytc/AKedOLTlCQyNzlI-dn-gr9YC4qMSnzte0OugC2I5lP7r=s88-c-k-c0x00ffffff-no-rj",
+        channelLink: "https://www.youtube.com/channel/UCGK9n7svoIjuaQfRIBJXkqQ",
+        subscribers: "276K",
+        dateOfUpload: "Jan 24, 2018",
+        description:
+            "In this video we're going to learn how to play Ticket To Ride! If you have any comments or questions, please do not hesitate to post them in the YouTube comments below, ensuring you abide by our Code of Conduct: https://watchitplayed.tv/code-of-conduct.",
     },
     {
         _id: "PwylKBlrhrM",
@@ -108,7 +108,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLQrg9wkE9tlWhQA4GKOyIK92ozbUJV73pKZAm8h=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCSWqfAneMiVYailJRaordkQ",
         subscribers: "860",
-        date: "Oct 15, 2020",
+        dateOfUpload: "Oct 15, 2020",
         description:
             "In this video, I walk you through how to set-up the strategies, what actions you need to take for full advantage of the strategy, and when to use the strategy.",
     },
@@ -126,7 +126,7 @@ export const videos = [
             "https://yt3.ggpht.com/iKIojWJ8yIS1A-2TLBJDc03794K3SSj7H3f3wZnRGehm6oKE6wYBW-YEIy3rQHEH_Fwk3qkVbQ=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UC8EUL0E_Y0rDEOibJmQd0Fw",
         subscribers: "607",
-        date: "Apr 8, 2022",
+        dateOfUpload: "Apr 8, 2022",
         description:
             "Follow me on IG @danicha.plays https://www.instagram.com/danicha.plays/",
     },
@@ -144,7 +144,7 @@ export const videos = [
             "https://yt3.ggpht.com/HXJGH3va5c7Ue_1C336AQCeKNw-HJFKzHle899SD-tFtGdrcvhtv6haCUeV9m5waj6DANufR5Q=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCqN6SP-ITcYhO1SiWfLgLRQ",
         subscribers: "37.2K",
-        date: "Mar 5, 2021",
+        dateOfUpload: "Mar 5, 2021",
         description: "Rule of this game https://youtu.be/Ef8TM2kLbfg",
     },
     {
@@ -161,7 +161,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLSQS2-_JRj1MIDwMRKnPYtCHd21w-TzeHHeaKA4_g=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCRarNme4iUanPLflogg-Ntg",
         subscribers: "9.03K",
-        date: "Jan 26, 2021",
+        dateOfUpload: "Jan 26, 2021",
         description:
             "This video will succinctly share our favourite board games of all time. We'll each give you our top 10 games X 3. We'll put timestamps down in the comment section so you can get to the good bits quickly, and please be sure to let us know whose list is the best because we are perennially trying to beat each other at everything we do. Coming up are our favourite 30 board games. Let us know in the comments, whose list is the best and please share your lists with us too.",
     },
@@ -179,7 +179,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLQZ-QlCRF-RiHG-ybHJLOCc1qmL7Fp7LUFwkbDy=s88-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCU-HLafvwDgWrfGTCy2P4Ew",
         subscribers: "1.9K",
-        date: "Feb 28, 2019",
+        dateOfUpload: "Feb 28, 2019",
         description:
             "I have never lost a game of Splendor, and that's not a good thing. There are very few board games that we actually dislike. There are, however, many games that come down to only a single strategy, even when they present many paths to victory. Join us for another Game Breaker.",
     },
@@ -197,7 +197,7 @@ export const videos = [
             "https://yt3.ggpht.com/_cuH3n-SJJ8Hlw2Ayei_acMAHWzl6QhSOkVr2hEi68dGnVbWd79OhBEVj9x914bWVsytFZdqnw=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCoea2MYUGi1qK_82OZF8BkA",
         subscribers: "11.1K",
-        date: "Dec 30, 2021",
+        dateOfUpload: "Dec 30, 2021",
         description:
             "For the first time ever, we're counting down our top 50 games of all-time! As of the filming of these videos, we've each played somewhere around ~300 games, so our top 50 represents approximately the best 17% of the games we've played.",
     },
@@ -215,7 +215,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLTrTZk0HMgXXmCtfk-5R2PL2ejxqkYMni53zlA6=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCV_nOXaNjfVViN-NI1nb1Ig",
         subscribers: "192K",
-        date: "Dec 24, 2019",
+        dateOfUpload: "Dec 24, 2019",
         description:
             "In this final video of my homemade holiday series, I'll show you how to build your own hardwood board games for your friends and family that can last for years! Thanks to my friends at Carhartt for sponsoring this special Holiday series and make sure you watch the full series for more ideas! Happy Holidays!",
     },
@@ -233,7 +233,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLRwsITxvvtmrTn7dLrLvw8ubAgiiidnWtWt63-c3w=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCbz9V1I0cZ2IOMJFJFBIFZQ",
         subscribers: "3.52K",
-        date: "Jul 8, 2020",
+        dateOfUpload: "Jul 8, 2020",
         description:
             "Here's a video that captures the trend of the most popular board games since 2014 using the traffic data from Board Game Atlas and Board Game Prices. You can find more information on how I created the video here: https://www.boardgameatlas.com/forum/...",
     },
@@ -251,7 +251,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLTlCQyNzlI-dn-gr9YC4qMSnzte0OugC2I5lP7r=s88-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCGK9n7svoIjuaQfRIBJXkqQ",
         subscribers: "276K",
-        date: "Feb 20, 2017",
+        dateOfUpload: "Feb 20, 2017",
         description:
             "In this video, we're going to learn how to play Coup! If you have any comments or questions, please do not hesitate to post them in the YouTube comments below.",
     },
@@ -269,7 +269,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLRBmBeRVYIdCxZtFzm7KF0PRf7n1xj2-Ew6SibLKg=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCBZVN0IP1Zj1ggW1gSkZECQ",
         subscribers: "2.96K",
-        date: "Apr 20, 2019",
+        dateOfUpload: "Apr 20, 2019",
         description:
             "The Settlers of Catan tips and tricks you'll learn in this video can be applied in every single game you play. These are actionable rules of thumb and strategies I use to have a 1200+ ELO on Catan Universe and to beat my friends and family consistently in a game of Catan.",
     },
@@ -287,7 +287,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLTxM5t5KMiJMjjLS8RZ-BjLpmlnr-g_bc_lxyX1AA=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCkTgmZRylFmywin3sjPrdwQ",
         subscribers: "17.2K",
-        date: "Dec 29, 2019",
+        dateOfUpload: "Dec 29, 2019",
         description:
             "Bought my christmas gift the super duper exiting game of LIFE, so wanted to share with you all how this game is assembled, and how it looks from inside by unboxing",
     },
@@ -305,7 +305,7 @@ export const videos = [
             "https://yt3.ggpht.com/8B_0gK_GM6W196I6es8uMPm0rlh9AgzyzwOmhpBnMgk9AaD_045K1mdN-eQlirSUDJueWESLJD8=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCZhRyzRgXdM8aXyn7FPJUuA",
         subscribers: "2.5K",
-        date: "Apr 1, 2016",
+        dateOfUpload: "Apr 1, 2016",
         description:
             "Danny McKinley from ZiaComics.com teaches us how to play Dragonwood by Gamewright.	Dare to enter Dragonwood! Deep in the heart of this mythical forest lurk angry ogres, giggling goblins, and even the famed and fearsome fire-breathers themselves! In Dragonwood, you collect sets of adventurer cards to earn dice, which you then use to roll against your foes. Stomp on some fire ants, scream at a grumpy troll, or strike the menacing orange dragon with a magical silver sword. Choose your strategy carefully because the landscape of Dragonwood is ever-changing. Only the bravest will overcome the odds to emerge victorious!",
     },
@@ -323,7 +323,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLSkqyyeVsdxeKb8TKIrFwjaZrzX41RHmZWnZ0XQ=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UC3kCMqa1tEnlPyt0fvFUS0A",
         subscribers: "136K",
-        date: "May 4, 2017",
+        dateOfUpload: "May 4, 2017",
         description:
             "Intro: 0:00, Game play: 7:10, End Game Discussion: 59:00, Tonight on GameNight! Nikki, Dave, Stephanie, Aaron & Lincoln teach and show you how to play Century: Spice Road designed by Emerson Matsuuchi and published by Plan B Games.",
     },
@@ -341,7 +341,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLRAJOqAHTUyYGw8S8cbv3spmLa1cgtTnq5FzaETeg=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCdlK2PUqXgN8XBGnrsJnX8g",
         subscribers: "5K",
-        date: "Mar 11, 2015",
+        dateOfUpload: "Mar 11, 2015",
         description:
             "More commonly known as the quadrifold game board, the true tri-fold's secrets are released in this tutorial on how to make game boards!",
     },
@@ -359,7 +359,7 @@ export const videos = [
             "https://yt3.ggpht.com/ytc/AKedOLTqIb44t-1_b_8iSn6NRssSkzS9KEBxs1Xqa_C3Gg=s48-c-k-c0x00ffffff-no-rj",
         channelLink: "https://www.youtube.com/channel/UCgvT6ZJTJ_n73aeise8BOiQ",
         subscribers: "107K",
-        date: "Feb 17, 2021",
+        dateOfUpload: "Feb 17, 2021",
         description: "TWITCH: http://twitch.tv/dicecheck UNFOLD FOR MORE GOODIES!",
     },
 ];

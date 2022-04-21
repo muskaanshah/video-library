@@ -1,12 +1,12 @@
 import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 
-function Category({ item }) {
+function SortTabs({ item }) {
     const { videoState, videoDispatch } = useVideo();
     const dispatchFunction = () =>
         videoDispatch({
-            type: ACTION_TYPE.CATEGORIES,
-            payload: { value: item.categoryName },
+            type: ACTION_TYPE.SORT_WAY,
+            payload: { value: item },
         });
     return (
         <div
@@ -15,16 +15,16 @@ function Category({ item }) {
         >
             <label>
                 <input
-                    type="checkbox"
-                    value={item.categoryName}
-                    className="btn-tab-input"
-                    checked={videoState.categories.includes(item.categoryName)}
+                    type="radio"
+                    name="upload-time"
+                    value={item}
                     onClick={dispatchFunction}
+                    checked={videoState.sortWay === item}
                 />
-                <span>{item.categoryName}</span>
+                <span>{item}</span>
             </label>
         </div>
     );
 }
 
-export { Category };
+export { SortTabs };

@@ -8,12 +8,19 @@
 .btn-category {
 	background-color: var(--grey-dark-opacity);
 	border-radius: 0.5rem;
-	padding: 0.5rem;
 	display: inline-block;
 	cursor: pointer;
 }
 
-.btn-category:hover {
+.btn-category label span {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+}
+
+.btn-category:hover, .btn-category input:checked + span {
 	background-color: var(--primary);
 	color: var(--black);
 }
@@ -30,4 +37,28 @@
 .category-name {
 	padding-bottom: 4px;
 	border-bottom: 1px solid var(--primary);
+}
+
+.filter-section {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+}
+
+.filter-section > div {
+	flex-grow: 1;
+}
+
+.filter-section > span {
+	cursor: pointer;
+}
+
+.videocard-display > .centered {
+	height: calc(60vh - var(--navbar-height));
+}
+
+@media only screen and (min-width: 550px) {
+	.filter-section {
+		width: 80%;
+	}
 }

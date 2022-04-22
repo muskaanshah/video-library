@@ -1,13 +1,21 @@
-function roundToTwo(num) {
-    return +(Math.round(num + "e+2") + "e-2");
+function roundTo(num, roundNumber) {
+    return +(Math.round(num + `e+${roundNumber}`) + `e-${roundNumber}`);
 }
 
 const calculateViews = (views) => {
     let viewsInDesiredFormat;
-    if (views / 1000000 > 1) viewsInDesiredFormat = `${roundToTwo(views / 1000000)}M`;
-    else if (views / 1000 > 1) viewsInDesiredFormat = `${roundToTwo(views / 1000)}K`;
+    if (views / 1000000 > 1) viewsInDesiredFormat = `${roundTo(views / 1000000, 2)}M`;
+    else if (views / 1000 > 1) viewsInDesiredFormat = `${roundTo(views / 1000, 2)}K`;
     else viewsInDesiredFormat = views;
     return viewsInDesiredFormat;
+};
+
+const calculateLikes = (likes) => {
+    let likesInDesiredFormat;
+    if (likes / 1000000 > 1) likesInDesiredFormat = `${roundTo(likes / 1000000, 1)}M`;
+    else if (likes / 1000 > 1) likesInDesiredFormat = `${roundTo(likes / 1000, 1)}K`;
+    else likesInDesiredFormat = likes;
+    return likesInDesiredFormat;
 };
 
 const calculateDate = (dateOfUpload) => {
@@ -34,4 +42,4 @@ const calculateDate = (dateOfUpload) => {
     return timeInDesiredFormat;
 };
 
-export { calculateViews, calculateDate };
+export { calculateViews, calculateDate, calculateLikes };

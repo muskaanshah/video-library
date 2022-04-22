@@ -77,7 +77,7 @@ export const videos = [
             "Here are the TOP 10 board games as we head full force into 2022! These games consist of favorites that I played in 2021-just didn't have a chance to film them during the holidays! Join me as I share really awesome games that I absolutely love!",
     },
     {
-        _id: "4JhFhyvGdik&t",
+        _id: "4JhFhyvGdik",
         title: "Ticket to Ride - How To Play",
         youtubeID: "4JhFhyvGdik",
         videoLength: "10:44",

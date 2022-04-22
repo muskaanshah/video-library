@@ -26,7 +26,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
-                    <Route path="/singlevideo" element={<SingleVideo />} />
+                    <Route path="/explore/:videoId" element={<SingleVideo />} />
                     <Route element={<NotRequiresAuth />}>
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />

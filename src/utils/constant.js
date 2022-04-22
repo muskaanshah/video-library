@@ -4,6 +4,7 @@ const ACTION_TYPE = {
     TIME: "TIME",
     SORT_WAY: "SORT_WAY",
     CLEAR_ALL: "CLEAR_ALL",
+    ADD_WATCH_LATER: "ADD_WATCH_LATER",
 };
 
 export { ACTION_TYPE };

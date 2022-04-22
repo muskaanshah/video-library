@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateDate, calculateViews } from "../../utils";
 import "../videocard.css";
+import { VideoCardModal } from "./VideoCardModal";
 
 function VideoCard({ video }) {
     const {
@@ -13,6 +15,7 @@ function VideoCard({ video }) {
         views,
         dateOfUpload,
     } = video;
+    const [openModal, setOpenModal] = useState(false);
     const navigate = useNavigate();
     return (
         <>
@@ -39,9 +42,16 @@ function VideoCard({ video }) {
                             ago
                         </p>
                     </div>
-                    <button className="btn btn-more">
+                    <button
+                        className="btn btn-more"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenModal((prev) => !prev);
+                        }}
+                    >
                         <span className="material-icons-round">more_vert</span>
                     </button>
+                    {openModal && <VideoCardModal />}
                 </div>
             </div>
         </>

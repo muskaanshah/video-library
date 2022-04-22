@@ -10,6 +10,9 @@ const initialState = {
     categories: [],
     time: [],
     sortWay: "",
+    history: [],
+    likedVideos: [],
+    watchLater: [],
 };
 
 const videoReducer = (state, action) => {

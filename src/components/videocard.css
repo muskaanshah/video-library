@@ -1,6 +1,7 @@
 .video-card,
 .video-card-horizontal {
 	width: var(--videotile-width);
+	position: relative;
 }
 
 .video-details,
@@ -72,6 +73,10 @@
 .videocard-modal {
 	width: 15rem;
 	border-radius: 4px;
+	position: absolute;
+	top: 12.5rem;
+	left: 1rem;
+	z-index: 5;
 }
 
 .videocard-modal-action {

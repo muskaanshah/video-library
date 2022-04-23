@@ -21,7 +21,7 @@ const addToWatchLater = async (video, videoDispatch) => {
             });
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 
@@ -37,7 +37,7 @@ const getWatchLater = async (videoDispatch) => {
             payload: { value: res.data.watchlater },
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 
@@ -55,7 +55,7 @@ const removeFromWatchLater = async (video, videoDispatch) => {
             });
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 

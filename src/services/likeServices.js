@@ -21,7 +21,7 @@ const addToLikes = async (video, videoDispatch) => {
             });
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 
@@ -37,7 +37,7 @@ const getLikes = async (videoDispatch) => {
             payload: { value: res.data.likes },
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 
@@ -55,7 +55,7 @@ const removeLikes = async (video, videoDispatch) => {
             });
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 };
 

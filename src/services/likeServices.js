@@ -14,7 +14,6 @@ const addToLikes = async (video, videoDispatch) => {
                 },
             }
         );
-        console.log(res);
         if (res.status === 201) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_LIKES,
@@ -33,7 +32,6 @@ const getLikes = async (videoDispatch) => {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
-        console.log(res);
         videoDispatch({
             type: ACTION_TYPE.ADD_LIKES,
             payload: { value: res.data.likes },
@@ -50,7 +48,6 @@ const removeLikes = async (video, videoDispatch) => {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
-        console.log(res);
         if (res.status === 200) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_LIKES,

@@ -1,13 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
+import { addToWatchLater, addToLikes, removeLikes } from "../../services";
 import "./singlevideo.css";
 
 function SingleVideo() {
     const { videoId } = useParams();
-    const { videoState } = useVideo();
+    const { videoState, videoDispatch } = useVideo();
+    const token = localStorage.getItem("encodedToken");
+    const navigate = useNavigate();
     const video = videoState.default.find((item) => item._id === videoId);
-    console.log(videoId);
     const {
         _id,
         channelThumbnail,
@@ -19,6 +22,21 @@ function SingleVideo() {
         subscribers,
         description,
     } = video;
+    const watchLaterHandler = () => {
+        addToWatchLater(video, videoState);
+    };
+    const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
+    const likeHandler = () => {
+        if (token) {
+            if (isInLikes) {
+                removeLikes(video, videoDispatch);
+            } else {
+                addToLikes(video, videoDispatch);
+            }
+            setIsLiked((prev) => !prev);
+        } else navigate("/login");
+    };
+    const [isLiked, setIsLiked] = useState(isInLikes ? true : false);
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">
@@ -39,12 +57,26 @@ function SingleVideo() {
                             ago
                         </p>
                         <p className="singlevideo-icon-wrapper my-0">
-                            <button className="btn btn-action">
-                                <span className="material-icons-outlined">thumb_up</span>
-                                {calculateLikes(likes)}
+                            <button className="btn btn-action" onClick={likeHandler}>
+                                {isLiked ? (
+                                    <>
+                                        <span class="material-icons">thumb_up</span>
+                                        Liked
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="material-icons-outlined">
+                                            thumb_up
+                                        </span>
+                                        {calculateLikes(likes)}
+                                    </>
+                                )}
                             </button>
                             <div>
-                                <button className="btn btn-action">
+                                <button
+                                    className="btn btn-action"
+                                    onClick={watchLaterHandler}
+                                >
                                     <span className="material-icons-outlined">
                                         watch_later
                                     </span>

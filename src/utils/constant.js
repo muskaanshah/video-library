@@ -5,6 +5,7 @@ const ACTION_TYPE = {
     SORT_WAY: "SORT_WAY",
     CLEAR_ALL: "CLEAR_ALL",
     ADD_WATCH_LATER: "ADD_WATCH_LATER",
+    ADD_LIKES: "ADD_LIKES",
 };
 
 export { ACTION_TYPE };

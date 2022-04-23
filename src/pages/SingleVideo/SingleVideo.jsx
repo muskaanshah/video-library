@@ -1,13 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
+import {
+    addToWatchLater,
+    addToLikes,
+    removeLikes,
+    removeFromWatchLater,
+} from "../../services";
 import "./singlevideo.css";
 
 function SingleVideo() {
     const { videoId } = useParams();
-    const { videoState } = useVideo();
+    const { videoState, videoDispatch } = useVideo();
+    const token = localStorage.getItem("encodedToken");
+    const navigate = useNavigate();
     const video = videoState.default.find((item) => item._id === videoId);
-    console.log(videoId);
     const {
         _id,
         channelThumbnail,
@@ -19,6 +26,27 @@ function SingleVideo() {
         subscribers,
         description,
     } = video;
+
+    const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
+    const likeHandler = () => {
+        if (token) {
+            if (isInLikes) {
+                removeLikes(video, videoDispatch);
+            } else {
+                addToLikes(video, videoDispatch);
+            }
+        } else navigate("/login");
+    };
+    const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
+    const watchLaterHandler = () => {
+        if (token) {
+            if (isInWatchLater) {
+                removeFromWatchLater(video, videoDispatch);
+            } else {
+                addToWatchLater(video, videoDispatch);
+            }
+        } else navigate("/login");
+    };
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">
@@ -38,17 +66,35 @@ function SingleVideo() {
                             {calculateViews(views)} views • {calculateDate(dateOfUpload)}{" "}
                             ago
                         </p>
-                        <p className="singlevideo-icon-wrapper my-0">
-                            <button className="btn btn-action">
-                                <span className="material-icons-outlined">thumb_up</span>
-                                {calculateLikes(likes)}
+                        <div className="singlevideo-icon-wrapper my-0">
+                            <button className="btn btn-action" onClick={likeHandler}>
+                                {isInLikes ? (
+                                    <>
+                                        <span class="material-icons">thumb_up</span>
+                                        Liked
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="material-icons-outlined">
+                                            thumb_up
+                                        </span>
+                                        {calculateLikes(likes)}
+                                    </>
+                                )}
                             </button>
                             <div>
-                                <button className="btn btn-action">
+                                <button
+                                    className="btn btn-action"
+                                    onClick={watchLaterHandler}
+                                >
                                     <span className="material-icons-outlined">
                                         watch_later
                                     </span>
-                                    WATCH LATER
+                                    {isInWatchLater ? (
+                                        <span>REMOVE FROM WATCH LATER</span>
+                                    ) : (
+                                        <span>WATCH LATER</span>
+                                    )}
                                 </button>
                                 <button className="btn btn-action">
                                     <span className="material-icons-outlined">
@@ -56,15 +102,15 @@ function SingleVideo() {
                                     </span>
                                     SAVE
                                 </button>
-                                <button className="btn btn-action">
+                                {/* <button className="btn btn-action">
                                     <span className="material-icons-outlined">share</span>
                                     SHARE
-                                </button>
+                                </button> */}
                             </div>
                             <button className="btn btn-more-singleproduct">
                                 <span className="material-icons-round">more_vert</span>
                             </button>
-                        </p>
+                        </div>
                     </div>
                     <div className="divider-black bg-white mt-1"></div>
                     <div className="channel-details mt-1">

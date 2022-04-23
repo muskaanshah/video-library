@@ -12,7 +12,7 @@
 	transition: transform 1s;
 }
 
-.drawer > .drawer-link {
+.drawer .drawer-link {
 	text-align: left;
 	color: inherit;
 	text-decoration: inherit;

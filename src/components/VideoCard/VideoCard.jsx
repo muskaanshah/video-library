@@ -51,7 +51,9 @@ function VideoCard({ video }) {
                     >
                         <span className="material-icons-round">more_vert</span>
                     </button>
-                    {openModal && <VideoCardModal />}
+                    {openModal && (
+                        <VideoCardModal video={video} setOpenModal={setOpenModal} />
+                    )}
                 </div>
             </div>
         </>

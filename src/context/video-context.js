@@ -29,6 +29,10 @@ const videoReducer = (state, action) => {
             return setTime(state, action.payload.value);
         case ACTION_TYPE.SORT_WAY:
             return setTimeSort(state, action.payload.value);
+        case ACTION_TYPE.ADD_WATCH_LATER:
+            return { ...state, watchLater: action.payload.value };
+        case ACTION_TYPE.ADD_LIKES:
+            return { ...state, likedVideos: action.payload.value };
         case ACTION_TYPE.CLEAR_ALL:
             return {
                 ...state,

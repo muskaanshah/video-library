@@ -51,7 +51,7 @@ const removeLikes = async (video, videoDispatch) => {
             },
         });
         console.log(res);
-        if (res.status === 201) {
+        if (res.status === 200) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_LIKES,
                 payload: { value: res.data.likes },

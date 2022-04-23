@@ -7,3 +7,4 @@ export {
     removeFromWatchLater,
 } from "./watchLaterServices";
 export { addToLikes, getLikes, removeLikes } from "./likeServices";
+export { addToHistory, getHistory, removeVideoFromHistory } from "./historyServices";

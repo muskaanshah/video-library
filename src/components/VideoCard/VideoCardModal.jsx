@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../context";
-import { addToWatchLater, removeFromWatchLater } from "../../services";
+import { addToWatchLater, removeFromWatchLater, removeLikes } from "../../services";
 
 function VideoCardModal({ video, setOpenModal }) {
     const { videoState, videoDispatch } = useVideo();
@@ -34,7 +34,14 @@ function VideoCardModal({ video, setOpenModal }) {
                 <span>SAVE TO PLAYLIST</span>
             </p>
             {isInLikes && (
-                <p className="videocard-modal-action my-0">
+                <p
+                    className="videocard-modal-action my-0"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        removeLikes(video, videoDispatch);
+                        setOpenModal(false);
+                    }}
+                >
                     <span className="material-icons-outlined">thumb_up</span>
                     <span>REMOVE FROM LIKED</span>
                 </p>

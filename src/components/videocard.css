@@ -12,6 +12,10 @@
 	gap: 5px;
 }
 
+.video-details-horizontal > :first-child {
+	flex-grow: 1;
+}
+
 .video-details-horizontal-wrapper {
 	max-width: var(--videotile-width);
 	padding-left: 0.5rem;
@@ -25,7 +29,7 @@
 	visibility: hidden;
 }
 
-.video-card:hover .btn-more {
+.video-card:hover .btn-more, .video-card-horizontal .btn-more  {
 	visibility: visible;
 }
 
@@ -108,5 +112,9 @@
 	.video-details-horizontal {
 		display: flex;
 		align-items: flex-start;
+	}
+	.videocard-modal-horizontal {
+		top: 2.5rem;
+		left: 34rem;
 	}
 }

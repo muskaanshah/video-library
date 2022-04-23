@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
@@ -6,6 +7,7 @@ import {
     addToLikes,
     removeLikes,
     removeFromWatchLater,
+    addToHistory,
 } from "../../services";
 import "./singlevideo.css";
 
@@ -47,6 +49,10 @@ function SingleVideo() {
             }
         } else navigate("/login");
     };
+
+    useEffect(() => {
+        if (token) addToHistory(video, videoDispatch);
+    }, [token, video, videoDispatch]);
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">

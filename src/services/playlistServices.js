@@ -54,7 +54,6 @@ const addToPlaylist = async (video, playlistId, videoDispatch) => {
                 },
             }
         );
-        console.log(res);
         if (res.status === 201) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_PLAYLIST,
@@ -66,4 +65,65 @@ const addToPlaylist = async (video, playlistId, videoDispatch) => {
     }
 };
 
-export { createPlaylist, getPlaylists, addToPlaylist };
+const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
+    try {
+        const res = await axios.delete(`/api/user/playlists/${playlistId}/${video._id}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            videoDispatch({
+                type: ACTION_TYPE.ADD_PLAYLIST,
+                payload: { value: res.data.playlists },
+            });
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const deletePlaylist = async (playlistId, videoDispatch) => {
+    try {
+        const res = await axios.delete(`/api/user/playlists/${playlistId}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            videoDispatch({
+                type: ACTION_TYPE.ADD_PLAYLIST,
+                payload: { value: res.data.playlists },
+            });
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getIndividualPlaylist = async (playlistId, videoDispatch) => {
+    try {
+        const res = await axios.get(`/api/user/playlists/${playlistId}`, {
+            headers: {
+                authorization: localStorage.getItem("encodedToken"),
+            },
+        });
+        if (res.status === 200) {
+            videoDispatch({
+                type: ACTION_TYPE.ADD_PLAYLIST,
+                payload: { value: res.data.playlists },
+            });
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export {
+    createPlaylist,
+    getPlaylists,
+    addToPlaylist,
+    removeFromPlaylist,
+    deletePlaylist,
+    getIndividualPlaylist,
+};

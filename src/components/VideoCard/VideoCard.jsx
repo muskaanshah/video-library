@@ -5,7 +5,7 @@ import "../videocard.css";
 import { VideoCardModal } from "./VideoCardModal";
 import { AddToPlaylistModal } from "../AddToPlaylistModal/AddToPlaylistModal";
 
-function VideoCard({ video }) {
+function VideoCard({ video, playlistId = "", isPlaylist = false }) {
     const {
         _id,
         videoThumbnail,
@@ -58,6 +58,8 @@ function VideoCard({ video }) {
                             video={video}
                             setOpenModal={setOpenModal}
                             setPlaylistModal={setPlaylistModal}
+                            isPlaylist={isPlaylist}
+                            playlistId={playlistId}
                         />
                     )}
                     {playlistModal && (

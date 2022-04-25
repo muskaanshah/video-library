@@ -46,7 +46,6 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
                         type="text"
                         placeholder="Playlist Name"
                         className="add-playist-input"
-                        autoFocus
                         value={playlistName}
                         onChange={(e) => {
                             e.stopPropagation();
@@ -55,6 +54,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
                         onKeyPress={(e) => {
                             if (e.key === "Enter") createPlaylistHandler();
                         }}
+                        autoFocus
                     />
                 )}
                 <p

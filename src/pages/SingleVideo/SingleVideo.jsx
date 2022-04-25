@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
@@ -10,8 +10,10 @@ import {
     addToHistory,
 } from "../../services";
 import "./singlevideo.css";
+import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 
 function SingleVideo() {
+    const [playlistModal, setPlaylistModal] = useState(false);
     const { videoId } = useParams();
     const { videoState, videoDispatch } = useVideo();
     const token = localStorage.getItem("encodedToken");
@@ -102,7 +104,10 @@ function SingleVideo() {
                                         <span>WATCH LATER</span>
                                     )}
                                 </button>
-                                <button className="btn btn-action">
+                                <button
+                                    className="btn btn-action"
+                                    onClick={() => setPlaylistModal(true)}
+                                >
                                     <span className="material-icons-outlined">
                                         playlist_add
                                     </span>
@@ -135,6 +140,9 @@ function SingleVideo() {
                     </div>
                 </div>
             </div>
+            {playlistModal && (
+                <AddToPlaylistModal setPlaylistModal={setPlaylistModal} video={video} />
+            )}
         </div>
     );
 }

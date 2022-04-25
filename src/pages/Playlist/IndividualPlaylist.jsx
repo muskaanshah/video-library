@@ -10,7 +10,12 @@ function IndividualPlaylist() {
         <div className="container-body color-white p-1">
             <div className="videocard-display mt-1-5">
                 {playlist.videos?.map((video) => (
-                    <VideoCard key={video._id} video={video} />
+                    <VideoCard
+                        key={video._id}
+                        video={video}
+                        playlistId={playlist._id}
+                        isPlaylist={true}
+                    />
                 ))}
             </div>
         </div>

@@ -1,8 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../context";
-import { addToWatchLater, removeFromWatchLater, removeLikes } from "../../services";
+import {
+    addToWatchLater,
+    removeFromPlaylist,
+    removeFromWatchLater,
+    removeLikes,
+} from "../../services";
 
-function VideoCardModal({ video, setOpenModal, setPlaylistModal }) {
+function VideoCardModal({
+    video,
+    setOpenModal,
+    setPlaylistModal,
+    isPlaylist,
+    playlistId,
+}) {
+    console.log(isPlaylist);
     const { videoState, videoDispatch } = useVideo();
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
@@ -31,16 +43,26 @@ function VideoCardModal({ video, setOpenModal, setPlaylistModal }) {
                     <span>WATCH LATER</span>
                 )}
             </p>
-            <p
-                className="videocard-modal-action my-0"
-                onClick={(e) => {
-                    setPlaylistModal(true);
-                    setOpenModal(false);
-                }}
-            >
-                <span className="material-icons-outlined">playlist_add</span>
-                <span>SAVE TO PLAYLIST</span>
-            </p>
+            {isPlaylist ? (
+                <p
+                    className="videocard-modal-action my-0"
+                    onClick={(e) => removeFromPlaylist(video, playlistId, videoDispatch)}
+                >
+                    <span className="material-icons-outlined">playlist_add</span>
+                    <span>REMOVE FROM PLAYLIST</span>
+                </p>
+            ) : (
+                <p
+                    className="videocard-modal-action my-0"
+                    onClick={(e) => {
+                        setPlaylistModal(true);
+                        setOpenModal(false);
+                    }}
+                >
+                    <span className="material-icons-outlined">playlist_add</span>
+                    <span>SAVE TO PLAYLIST</span>
+                </p>
+            )}
             {isInLikes && (
                 <p
                     className="videocard-modal-action my-0"

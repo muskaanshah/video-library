@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PlaylistModal } from "./PlaylistModal";
 
 function PlaylistTile({ playlist }) {
+    const [playlistModal, setPlaylistModal] = useState(false);
     const navigate = useNavigate();
     return (
         <div
@@ -22,10 +25,17 @@ function PlaylistTile({ playlist }) {
             </div>
             <div className="playlistinfo">
                 <p>{playlist.title}</p>
-                <button className="btn btn-more-playlist bg-transparent color-white">
+                <button
+                    className="btn btn-more-playlist bg-transparent color-white"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setPlaylistModal((prev) => !prev);
+                    }}
+                >
                     <span className="material-icons-round">more_vert</span>
                 </button>
             </div>
+            {playlistModal && <PlaylistModal playlist={playlist} />}
         </div>
     );
 }

@@ -13,6 +13,7 @@ import {
     Liked,
     WatchLater,
     IndividualPlaylist,
+    PageNotFound,
 } from "./pages";
 import { NotRequiresAuth, RequiresAuth } from "./utils";
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/explore/:videoId" element={<SingleVideo />} />
                     <Route path="/Mockman" element={<Mockman />} />
+                    <Route path="*" element={<PageNotFound />} />
                     <Route element={<NotRequiresAuth />}>
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />

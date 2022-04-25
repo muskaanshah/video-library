@@ -14,7 +14,7 @@
 
 .drawer .drawer-link {
 	text-align: left;
-	color: inherit;
+	color: var(--white);
 	text-decoration: inherit;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
@@ -40,6 +40,10 @@
 
 .active-link {
 	border-left: 4px solid var(--primary);
+}
+
+.color-white-new {
+	color: var(--white);
 }
 
 @media only screen and (min-width: 750px) {

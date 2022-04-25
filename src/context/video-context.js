@@ -15,6 +15,7 @@ const initialState = {
     watchLater: [],
     playlists: [],
     playlist: {},
+    singleVideo: {},
 };
 
 const videoReducer = (state, action) => {
@@ -41,6 +42,8 @@ const videoReducer = (state, action) => {
             return { ...state, playlists: action.payload.value };
         case ACTION_TYPE.ADD_SINGLE_PLAYLIST:
             return { ...state, playlist: action.payload.value };
+        case ACTION_TYPE.SINGLE_VIDEO:
+            return { ...state, singleVideo: action.payload.value };
         case ACTION_TYPE.CLEAR_ALL:
             return {
                 ...state,

@@ -8,6 +8,7 @@ import {
     removeLikes,
     removeFromWatchLater,
     addToHistory,
+    getIndividualVideo,
 } from "../../services";
 import "./singlevideo.css";
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
@@ -18,7 +19,7 @@ function SingleVideo() {
     const { videoState, videoDispatch } = useVideo();
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
-    const video = videoState.default.find((item) => item._id === videoId);
+    const video = videoState.singleVideo;
     const {
         _id,
         channelThumbnail,
@@ -55,6 +56,10 @@ function SingleVideo() {
     useEffect(() => {
         if (token) addToHistory(video, videoDispatch);
     }, [token, video, videoDispatch]);
+
+    useEffect(() => {
+        getIndividualVideo(videoId, videoDispatch);
+    }, [videoId, videoDispatch]);
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">

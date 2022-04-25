@@ -14,7 +14,11 @@ function PlaylistTile({ playlist }) {
         >
             <div className="playlist-img-wrapper">
                 <img
-                    src="https://picsum.photos/270/150"
+                    src={`${
+                        playlist.videos.length > 0
+                            ? playlist.videos[0].videoThumbnail
+                            : "https://picsum.photos/270/150"
+                    }`}
                     className="img-responsive playlist-img"
                     alt="playlist-tile"
                 />

@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useVideo } from "../../context";
-import "../Explore/explore.css";
 
 function IndividualPlaylist() {
     const { videoState } = useVideo();

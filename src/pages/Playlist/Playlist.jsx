@@ -6,7 +6,6 @@ import "./playlist.css";
 
 function Playlist() {
     const { videoState, videoDispatch } = useVideo();
-    console.log({ videoState });
     useEffect(() => {
         getPlaylists(videoDispatch);
     }, [videoDispatch]);

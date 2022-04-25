@@ -70,6 +70,17 @@ function Drawer({ drawer, setDrawer }) {
                     Watch Later
                 </NavLink>
             </span>
+            <span onClick={() => setDrawer(false)}>
+                <NavLink
+                    to="/Mockman"
+                    className={({ isActive }) =>
+                        isActive ? "active-link drawer-link" : "drawer-link"
+                    }
+                >
+                    <span className="material-icons-round">watch_later</span>
+                    Mockman
+                </NavLink>
+            </span>
         </div>
     );
 }

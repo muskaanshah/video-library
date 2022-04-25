@@ -56,8 +56,8 @@ const addToPlaylist = async (video, playlistId, videoDispatch) => {
         );
         if (res.status === 201) {
             videoDispatch({
-                type: ACTION_TYPE.ADD_PLAYLIST,
-                payload: { value: res.data.playlists },
+                type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
+                payload: { value: res.data.playlist },
             });
         }
     } catch (err) {
@@ -74,8 +74,8 @@ const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
         });
         if (res.status === 200) {
             videoDispatch({
-                type: ACTION_TYPE.ADD_PLAYLIST,
-                payload: { value: res.data.playlists },
+                type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
+                payload: { value: res.data.playlist },
             });
         }
     } catch (err) {
@@ -110,8 +110,8 @@ const getIndividualPlaylist = async (playlistId, videoDispatch) => {
         });
         if (res.status === 200) {
             videoDispatch({
-                type: ACTION_TYPE.ADD_PLAYLIST,
-                payload: { value: res.data.playlists },
+                type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
+                payload: { value: res.data.playlist },
             });
         }
     } catch (err) {

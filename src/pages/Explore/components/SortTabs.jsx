@@ -18,7 +18,7 @@ function SortTabs({ item }) {
                     type="radio"
                     name="upload-time"
                     value={item}
-                    onClick={dispatchFunction}
+                    onChange={dispatchFunction}
                     checked={videoState.sortWay === item}
                 />
                 <span>{item}</span>

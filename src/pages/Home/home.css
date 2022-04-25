@@ -39,6 +39,10 @@
 	text-align: center;
 }
 
+.about-body + .btn {
+	width: auto;
+} 
+
 @media only screen and (max-width: 400px) {
 	.banner-overlay > h2,
 	.banner-overlay > p {

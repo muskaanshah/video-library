@@ -17,7 +17,7 @@ function Time({ item }) {
                 <input
                     type="checkbox"
                     value={item}
-                    onClick={dispatchFunction}
+                    onChange={dispatchFunction}
                     checked={videoState.time.includes(item)}
                 />
                 <span>{item}</span>

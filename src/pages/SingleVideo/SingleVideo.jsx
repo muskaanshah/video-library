@@ -30,6 +30,7 @@ function SingleVideo() {
         likes,
         subscribers,
         description,
+        channelLink,
     } = video;
 
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
@@ -136,7 +137,16 @@ function SingleVideo() {
                             alt="dp"
                         />
                         <div>
-                            <h3 className="my-0">{channelName}</h3>
+                            <h3 className="my-0">
+                                <a
+                                    href={channelLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="color-white"
+                                >
+                                    {channelName}
+                                </a>
+                            </h3>
                             <p className="text-light fs-0-9 my-0">
                                 {subscribers} subscribers
                             </p>

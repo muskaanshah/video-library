@@ -3,9 +3,7 @@ import "./drawer.css";
 
 function Drawer({ drawer, setDrawer }) {
     return (
-        <div
-            className={`drawer bg-grey-dark color-white-new ${drawer && "drawer-active"}`}
-        >
+        <div className={`drawer bg-grey-dark color-white ${drawer && "drawer-active"}`}>
             <span onClick={() => setDrawer(false)}>
                 <NavLink
                     to="/"

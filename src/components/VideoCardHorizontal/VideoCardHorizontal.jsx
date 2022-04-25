@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HistoryVideoModal } from "../../pages/History/components/HistoryVideoModal";
 import { calculateDate, calculateViews } from "../../utils";
+import { AddToPlaylistModal } from "../AddToPlaylistModal/AddToPlaylistModal";
 import "../videocard.css";
 
 function VideoCardHorizontal({ video }) {
@@ -16,6 +17,7 @@ function VideoCardHorizontal({ video }) {
         description,
     } = video;
     const [openModal, setOpenModal] = useState(false);
+    const [playlistModal, setPlaylistModal] = useState(false);
     const navigate = useNavigate();
     return (
         <>
@@ -53,7 +55,19 @@ function VideoCardHorizontal({ video }) {
                     </div>
                     <p className="video-desc fs-0-8">{description}</p>
                 </div>
-                {openModal && <HistoryVideoModal video={video} />}
+                {openModal && (
+                    <HistoryVideoModal
+                        video={video}
+                        setOpenModal={setOpenModal}
+                        setPlaylistModal={setPlaylistModal}
+                    />
+                )}
+                {playlistModal && (
+                    <AddToPlaylistModal
+                        setPlaylistModal={setPlaylistModal}
+                        video={video}
+                    />
+                )}
             </div>
         </>
     );

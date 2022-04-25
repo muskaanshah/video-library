@@ -5,6 +5,7 @@ import { getHistory } from "../../services";
 
 function History() {
     const { videoState, videoDispatch } = useVideo();
+    console.log(videoState.history);
     useEffect(() => {
         getHistory(videoDispatch);
     }, [videoDispatch]);

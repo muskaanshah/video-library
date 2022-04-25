@@ -67,10 +67,10 @@ function SingleVideo() {
                     width="75%"
                     src={`https://www.youtube.com/embed/${_id}`}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     className="iframe-video mx-auto"
-                    allowfullscreen
+                    allowFullScreen
                 ></iframe>
                 <div className="singlevideo-info mx-auto">
                     <h2>{title}</h2>

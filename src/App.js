@@ -13,6 +13,7 @@ import {
     History,
     Liked,
     WatchLater,
+    IndividualPlaylist,
 } from "./pages";
 import { NotRequiresAuth, RequiresAuth } from "./utils";
 
@@ -36,6 +37,10 @@ function App() {
                         <Route path="/history" element={<History />} />
                         <Route path="/liked" element={<Liked />} />
                         <Route path="/watchlater" element={<WatchLater />} />
+                        <Route
+                            path="/playlist/:playlistId"
+                            element={<IndividualPlaylist />}
+                        />
                     </Route>
                 </Routes>
             </header>

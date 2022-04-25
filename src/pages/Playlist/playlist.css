@@ -2,6 +2,10 @@
 	width: var(--videotile-width);
 }
 
+.playlist-tile:hover {
+	cursor: pointer;
+}
+
 .playlist-img {
 	object-fit: cover;
 	width: 100%;

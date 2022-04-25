@@ -8,3 +8,4 @@ export {
 } from "./watchLaterServices";
 export { addToLikes, getLikes, removeLikes } from "./likeServices";
 export { addToHistory, getHistory, removeVideoFromHistory } from "./historyServices";
+export { createPlaylist, getPlaylists, addToPlaylist } from "./playlistServices";

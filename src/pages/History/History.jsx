@@ -32,7 +32,7 @@ function History() {
                                     Clear
                                 </span>
                             </div>
-                            <div className="videocard-display mt-1-5">
+                            <div className="videocard-display videocard-display-history mt-1-5">
                                 {videoState.history.map((video) => (
                                     <VideoCardHorizontal video={video} />
                                 ))}

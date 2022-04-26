@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { Alert } from "./components/Alert/Alert";
 import { Navbar } from "./components/Navbar/Navbar";
 import { useTheme } from "./context";
 import {
@@ -28,6 +29,7 @@ function App() {
         <div className={`App ${theme === "dark" ? "default-theme" : "light-theme"}`}>
             <header className="App-header">
                 <Navbar />
+                <Alert />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />

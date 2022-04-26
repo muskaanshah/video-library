@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth, useVideo } from "../../context";
+import { useAuth, useTheme, useVideo } from "../../context";
 import { ACTION_TYPE } from "../../utils";
 import "./userprofile.css";
 
 function UserProfile() {
     const { user, setToken, setUser } = useAuth();
     const { videoDispatch, videoState } = useVideo();
+    const { alertDispatch } = useTheme();
     const navigate = useNavigate();
     const userLogoutHandler = () => {
         videoDispatch({ type: ACTION_TYPE.USER_LOGOUT });
@@ -15,6 +16,13 @@ function UserProfile() {
         setToken("");
         setUser({});
         navigate("/");
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "success",
+                alertMsg: "You have been logged out",
+            },
+        });
     };
     return (
         <div className="container-body centered">

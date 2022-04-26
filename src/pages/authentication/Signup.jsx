@@ -1,24 +1,25 @@
-import {useState} from "react"
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import { signUpUser } from "../../services";
 import "./authentication.css";
 
 function Signup() {
-	const {setToken, setUser} = useAuth();
+    const { setToken, setUser } = useAuth();
 
-	const form = {
-		firstName: "",
-		lastName: "",
+    const form = {
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
-		reEnterPassword: ""
+        reEnterPassword: "",
     };
     const [formInput, setFormInput] = useState(form);
-	const [termsCheckbox, setTermsCheckbox] = useState(false);
-	const [error, setError] = useState("");
-	const navigate = useNavigate();
-	const location = useLocation();
+    const [termsCheckbox, setTermsCheckbox] = useState(false);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { alertDispatch } = useTheme();
 
     const formInputHandler = (field, value) => {
         setFormInput({ ...formInput, [field]: value });
@@ -26,7 +27,18 @@ function Signup() {
 
     const submitFormHandler = (e) => {
         e.preventDefault();
-        signUpUser(formInput.email, formInput.password, formInput.firstName, formInput.lastName, setToken, setUser, setError, navigate, location );
+        signUpUser(
+            formInput.email,
+            formInput.password,
+            formInput.firstName,
+            formInput.lastName,
+            setToken,
+            setUser,
+            setError,
+            navigate,
+            location,
+            alertDispatch
+        );
     };
     return (
         <div className="container-body color-white centered">
@@ -39,7 +51,7 @@ function Signup() {
                             id="first-name"
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="First Name *"
-							value={formInput.firstName}
+                            value={formInput.firstName}
                             onChange={(e) =>
                                 formInputHandler("firstName", e.target.value)
                             }
@@ -52,10 +64,8 @@ function Signup() {
                             id="last-name"
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="Last Name *"
-							value={formInput.lastName}
-                            onChange={(e) =>
-                                formInputHandler("lastName", e.target.value)
-                            }
+                            value={formInput.lastName}
+                            onChange={(e) => formInputHandler("lastName", e.target.value)}
                             required
                         />
                     </span>
@@ -65,10 +75,8 @@ function Signup() {
                             id="email-address"
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="Email Address *"
-							value={formInput.email}
-                            onChange={(e) =>
-                                formInputHandler("email", e.target.value)
-                            }
+                            value={formInput.email}
+                            onChange={(e) => formInputHandler("email", e.target.value)}
                             required
                         />
                     </span>
@@ -78,35 +86,33 @@ function Signup() {
                             id="Password"
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="Password *"
-							value={formInput.password}
-                            onChange={(e) =>
-                                formInputHandler("password", e.target.value)
-                            }
+                            value={formInput.password}
+                            onChange={(e) => formInputHandler("password", e.target.value)}
                             required
                         />
                     </span>
-					<div className="login-space-between mb-1">
-						<label htmlFor="termscheckbox" className="fs-0-9">
-							<input
-								id="termscheckbox"
-								type="checkbox"
-								name="checkbox"
-								value="remember-me"
-								checked={termsCheckbox}
-								onChange={() =>
-									setTermsCheckbox((termsCheckbox) => !termsCheckbox)
-								}
-								required
-							/>
-							I accept all{" "}
-							<Link to="/signup" className="color-white">
-								Terms and conditions
-							</Link>
-						</label>
-					</div>
-					{error.length > 0 && (
-						<div className="fs-0-9 color-danger my-0-5">{error}</div>
-					)}
+                    <div className="login-space-between mb-1">
+                        <label htmlFor="termscheckbox" className="fs-0-9">
+                            <input
+                                id="termscheckbox"
+                                type="checkbox"
+                                name="checkbox"
+                                value="remember-me"
+                                checked={termsCheckbox}
+                                onChange={() =>
+                                    setTermsCheckbox((termsCheckbox) => !termsCheckbox)
+                                }
+                                required
+                            />
+                            I accept all{" "}
+                            <Link to="/signup" className="color-white">
+                                Terms and conditions
+                            </Link>
+                        </label>
+                    </div>
+                    {error.length > 0 && (
+                        <div className="fs-0-9 color-danger my-0-5">{error}</div>
+                    )}
                     <input
                         type="submit"
                         value="Sign up"
@@ -114,15 +120,9 @@ function Signup() {
                     />
                 </form>
                 <div className="centered">
-                    <Link
-                        to="/login"
-                        className="fs-0-9 color-white text-none centered"
-                    >
+                    <Link to="/login" className="fs-0-9 color-white text-none centered">
                         Already have an account
-                        <span className="material-icons-outlined">
-                            {" "}
-                            navigate_next{" "}
-                        </span>
+                        <span className="material-icons-outlined"> navigate_next </span>
                     </Link>
                 </div>
             </div>

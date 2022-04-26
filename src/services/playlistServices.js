@@ -43,7 +43,7 @@ const getPlaylists = async (videoDispatch, setLoader) => {
     }
 };
 
-const addToPlaylist = async (video, playlistId, videoDispatch) => {
+const addToPlaylist = async (video, playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.post(
             `/api/user/playlists/${playlistId}`,
@@ -61,13 +61,26 @@ const addToPlaylist = async (video, playlistId, videoDispatch) => {
                 type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
                 payload: { value: res.data.playlist },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Added to playlist",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
+const removeFromPlaylist = async (video, playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/playlists/${playlistId}/${video._id}`, {
             headers: {
@@ -80,12 +93,25 @@ const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
                 payload: { value: res.data.playlist },
             });
         }
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "success",
+                alertMsg: "Removed from playlist",
+            },
+        });
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const deletePlaylist = async (playlistId, videoDispatch) => {
+const deletePlaylist = async (playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/playlists/${playlistId}`, {
             headers: {
@@ -97,9 +123,22 @@ const deletePlaylist = async (playlistId, videoDispatch) => {
                 type: ACTION_TYPE.ADD_PLAYLIST,
                 payload: { value: res.data.playlists },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Playlist deleted",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 

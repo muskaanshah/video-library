@@ -19,7 +19,7 @@ function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
     const { videoId } = useParams();
     const { videoState, videoDispatch } = useVideo();
-    const { loader, setLoader } = useTheme();
+    const { loader, setLoader, alertDispatch } = useTheme();
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
     const video = videoState.singleVideo;
@@ -40,9 +40,9 @@ function SingleVideo() {
     const likeHandler = () => {
         if (token) {
             if (isInLikes) {
-                removeLikes(video, videoDispatch);
+                removeLikes(video, videoDispatch, alertDispatch);
             } else {
-                addToLikes(video, videoDispatch);
+                addToLikes(video, videoDispatch, alertDispatch);
             }
         } else navigate("/login");
     };
@@ -50,9 +50,9 @@ function SingleVideo() {
     const watchLaterHandler = () => {
         if (token) {
             if (isInWatchLater) {
-                removeFromWatchLater(video, videoDispatch);
+                removeFromWatchLater(video, videoDispatch, alertDispatch);
             } else {
-                addToWatchLater(video, videoDispatch);
+                addToWatchLater(video, videoDispatch, alertDispatch);
             }
         } else navigate("/login");
     };

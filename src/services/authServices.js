@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ACTION_TYPE } from "../utils";
 
 const loginUser = async (
     email,
@@ -7,7 +8,8 @@ const loginUser = async (
     setUser,
     setError,
     navigate,
-    location
+    location,
+    alertDispatch
 ) => {
     const from = location.state?.from?.pathname || "/";
     try {
@@ -22,6 +24,13 @@ const loginUser = async (
             setUser(res.data.foundUser);
             localStorage.setItem("user", JSON.stringify(res.data.foundUser));
             navigate(from, { replace: true });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Logged in succesfully",
+                },
+            });
         }
     } catch (err) {
         setError("The credentials you entered are invalid.");
@@ -37,7 +46,8 @@ const signUpUser = async (
     setUser,
     setError,
     navigate,
-    location
+    location,
+    alertDispatch
 ) => {
     const from = location.state?.from?.pathname || "/";
     try {
@@ -54,6 +64,13 @@ const signUpUser = async (
             setUser(res.data.createdUser);
             localStorage.setItem("user", JSON.stringify(res.data.createdUser));
             navigate(from, { replace: true });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Signed up successfully",
+                },
+            });
         }
     } catch (err) {
         setError("Email already exists");

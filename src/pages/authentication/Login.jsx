@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link , useNavigate, useLocation} from "react-router-dom";
-import { useAuth } from "../../context";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth, useTheme } from "../../context";
 import { loginUser } from "../../services";
 import "./authentication.css";
 
@@ -11,9 +11,10 @@ function Login() {
         password: "",
     };
     const [formInput, setFormInput] = useState(form);
-	const [error, setError] = useState("");
-	const navigate = useNavigate();
-	const location = useLocation();
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { alertDispatch } = useTheme();
 
     const formInputHandler = (field, value) => {
         setFormInput({ ...formInput, [field]: value });
@@ -21,7 +22,16 @@ function Login() {
 
     const submitFormHandler = (e) => {
         e.preventDefault();
-        loginUser(formInput.email, formInput.password, setToken, setUser, setError, navigate, location);
+        loginUser(
+            formInput.email,
+            formInput.password,
+            setToken,
+            setUser,
+            setError,
+            navigate,
+            location,
+            alertDispatch
+        );
     };
 
     return (
@@ -36,9 +46,7 @@ function Login() {
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="Email Address *"
                             value={formInput.email}
-                            onChange={(e) =>
-                                formInputHandler("email", e.target.value)
-                            }
+                            onChange={(e) => formInputHandler("email", e.target.value)}
                             required
                         />
                     </span>
@@ -49,39 +57,34 @@ function Login() {
                             className="input-text input-authentication p-0-5 fs-0-9 mb-1"
                             placeholder="Password *"
                             value={formInput.password}
-                            onChange={(e) =>
-                                formInputHandler("password", e.target.value)
-                            }
+                            onChange={(e) => formInputHandler("password", e.target.value)}
                             required
                         />
                     </span>
-					{error.length > 0 && (
-						<div className="fs-0-9 color-danger my-0-5">{error}</div>
-					)}
+                    {error.length > 0 && (
+                        <div className="fs-0-9 color-danger my-0-5">{error}</div>
+                    )}
                     <input
                         type="submit"
                         value="Login"
                         className="btn bg-primary fw-500 fs-0-9 mb-1 width-100 color-black"
                     />
-					<input
-						type="submit"
-						value="Login with Test credentials"
-						className="btn bg-primary fw-500 fs-0-9 mb-1 width-100 color-black"
-						onClick={() => {
-							setFormInput({email: "test@gmail.com", password: "test123"});
-						}}
-					/>
+                    <input
+                        type="submit"
+                        value="Login with Test credentials"
+                        className="btn bg-primary fw-500 fs-0-9 mb-1 width-100 color-black"
+                        onClick={() => {
+                            setFormInput({
+                                email: "test@gmail.com",
+                                password: "test123",
+                            });
+                        }}
+                    />
                 </form>
                 <div className="centered">
-                    <Link
-                        to="/signup"
-                        className="fs-0-9 color-white text-none centered"
-                    >
+                    <Link to="/signup" className="fs-0-9 color-white text-none centered">
                         Create new account
-                        <span className="material-icons-outlined">
-                            {" "}
-                            navigate_next{" "}
-                        </span>
+                        <span className="material-icons-outlined"> navigate_next </span>
                     </Link>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../utils";
 
-const addToLikes = async (video, videoDispatch) => {
+const addToLikes = async (video, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.post(
             "/api/user/likes",
@@ -20,8 +20,21 @@ const addToLikes = async (video, videoDispatch) => {
                 payload: { value: res.data.likes },
             });
         }
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "success",
+                alertMsg: "Added to liked videos",
+            },
+        });
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
@@ -43,7 +56,7 @@ const getLikes = async (videoDispatch, setLoader) => {
     }
 };
 
-const removeLikes = async (video, videoDispatch) => {
+const removeLikes = async (video, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/likes/${video._id}`, {
             headers: {
@@ -56,8 +69,21 @@ const removeLikes = async (video, videoDispatch) => {
                 payload: { value: res.data.likes },
             });
         }
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "success",
+                alertMsg: "Removed from liked videos",
+            },
+        });
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 

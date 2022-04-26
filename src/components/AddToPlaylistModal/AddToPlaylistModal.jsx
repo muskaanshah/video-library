@@ -16,6 +16,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
             createPlaylist(playlistName, videoDispatch);
         } else navigate("/login");
         setPlaylistName("");
+        setAddPlaylist(false);
     };
 
     const addToPlaylistHandler = (id) => {
@@ -52,21 +53,37 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
                             setPlaylistName(e.target.value);
                         }}
                         onKeyPress={(e) => {
-                            if (e.key === "Enter") createPlaylistHandler();
+                            if (e.key === "Enter" && playlistName)
+                                createPlaylistHandler();
                         }}
                         autoFocus
                     />
                 )}
-                <p
-                    className="videocard-modal-action my-0"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setAddPlaylist(true);
+                {playlistName ? (
+                    <p
+                        className="videocard-modal-action my-0"
+                        onClick={createPlaylistHandler}
+                    >
+                        <span className="material-icons-outlined">done</span> DONE
+                    </p>
+                ) : (
+                    <p
+                        className="videocard-modal-action my-0"
+                        onClick={(e) => setAddPlaylist(true)}
+                    >
+                        <span className="material-icons-outlined">add</span> CREATE NEW
+                        PLAYLIST
+                    </p>
+                )}
+                <button
+                    className="btn bg-transparent playlist-modal-close color-white p-0-5"
+                    onClick={() => {
+                        setPlaylistModal(false);
+                        setPlaylistName("");
                     }}
                 >
-                    <span className="material-icons-outlined">add</span> CREATE NEW
-                    PLAYLIST
-                </p>
+                    <span className="material-icons-outlined">close</span>
+                </button>
             </div>
         </div>
     );

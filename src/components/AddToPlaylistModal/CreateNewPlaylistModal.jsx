@@ -30,13 +30,30 @@ function CreateNewPlaylistModal({ setPlaylistModal }) {
                         setPlaylistName(e.target.value);
                     }}
                     onKeyPress={(e) => {
-                        if (e.key === "Enter") {
+                        if (e.key === "Enter" && playlistName) {
                             createPlaylistHandler();
                             setPlaylistModal(false);
                         }
                     }}
                     autoFocus
                 />
+                {playlistName && (
+                    <p
+                        className="videocard-modal-action my-0"
+                        onClick={createPlaylistHandler}
+                    >
+                        <span className="material-icons-outlined">done</span> DONE
+                    </p>
+                )}
+                <button
+                    className="btn bg-transparent playlist-modal-close color-white p-0-5"
+                    onClick={() => {
+                        setPlaylistModal(false);
+                        setPlaylistName("");
+                    }}
+                >
+                    <span className="material-icons-outlined">close</span>
+                </button>
             </div>
         </div>
     );

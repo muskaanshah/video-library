@@ -8,7 +8,6 @@ import { clearHistory, getHistory } from "../../services";
 function History() {
     const { videoState, videoDispatch } = useVideo();
     const { loader, setLoader } = useTheme();
-    console.log(videoState.history.reverse());
 
     const clearHistoryHandler = () => {
         clearHistory(videoState, videoDispatch, setLoader);

@@ -51,9 +51,13 @@ const setFiltering = (state) => {
                 includesTime = true;
             }
             return (
+                (state.searchText.length > 0
+                    ? curItem.title.toLowerCase().includes(state.searchText.toLowerCase())
+                    : true) &&
                 ([...state.categories].length > 0 && !state.categories.includes("All")
                     ? [...state.categories].includes(curItem.category)
-                    : true) && (state.time.length > 0 ? includesTime : true)
+                    : true) &&
+                (state.time.length > 0 ? includesTime : true)
             );
         }),
     };

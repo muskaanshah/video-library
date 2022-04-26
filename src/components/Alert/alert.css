@@ -1,0 +1,25 @@
+.alert {
+	width: min(30%, 300px);
+	position: fixed;
+	top: 5rem;
+	right: 1rem;
+	z-index: 10;
+}
+
+.alert-warning {
+	background-color: var(--warning-light);
+	color: var(--warning-dark);
+	border: 0;
+}
+
+.alert-success {
+	background-color: var(--success-light);
+	color: var(--success-dark);
+	border: 0;
+}
+
+.alert-error {
+	background-color: var(--danger-light);
+	color: var(--danger-dark);
+	border: 0;
+}

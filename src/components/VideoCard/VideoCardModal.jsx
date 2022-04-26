@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useVideo } from "../../context";
+import { useTheme, useVideo } from "../../context";
 import {
     addToWatchLater,
     removeFromPlaylist,
@@ -15,6 +15,7 @@ function VideoCardModal({
     playlistId,
 }) {
     const { videoState, videoDispatch } = useVideo();
+    const { alertDispatch } = useTheme();
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
     const token = localStorage.getItem("encodedToken");
@@ -22,9 +23,9 @@ function VideoCardModal({
     const watchLaterHandler = (e) => {
         if (token) {
             if (isInWatchLater) {
-                removeFromWatchLater(video, videoDispatch);
+                removeFromWatchLater(video, videoDispatch, alertDispatch);
             } else {
-                addToWatchLater(video, videoDispatch);
+                addToWatchLater(video, videoDispatch, alertDispatch);
             }
         } else navigate("/login");
         setOpenModal(false);
@@ -45,7 +46,14 @@ function VideoCardModal({
             {isPlaylist ? (
                 <p
                     className="videocard-modal-action my-0"
-                    onClick={(e) => removeFromPlaylist(video, playlistId, videoDispatch)}
+                    onClick={(e) =>
+                        removeFromPlaylist(
+                            video,
+                            playlistId,
+                            videoDispatch,
+                            alertDispatch
+                        )
+                    }
                 >
                     <span className="material-icons-outlined">playlist_add</span>
                     <span>REMOVE FROM PLAYLIST</span>
@@ -66,7 +74,7 @@ function VideoCardModal({
                 <p
                     className="videocard-modal-action my-0"
                     onClick={(e) => {
-                        removeLikes(video, videoDispatch);
+                        removeLikes(video, videoDispatch, alertDispatch);
                         setOpenModal(false);
                     }}
                 >

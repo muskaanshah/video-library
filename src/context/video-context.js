@@ -1,6 +1,7 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { getVideo } from "../services";
 import { ACTION_TYPE, setCategories, setTime, setTimeSort } from "../utils";
+import { useTheme } from "./theme-context";
 
 const VideoContext = createContext();
 
@@ -16,6 +17,7 @@ const initialState = {
     watchLater: [],
     playlists: [],
     playlist: {},
+    searchText: "",
 };
 
 const videoReducer = (state, action) => {
@@ -32,6 +34,19 @@ const videoReducer = (state, action) => {
             return setTime(state, action.payload.value);
         case ACTION_TYPE.SORT_WAY:
             return setTimeSort(state, action.payload.value);
+        case ACTION_TYPE.SEARCH_VIDEOS:
+            return {
+                ...state,
+                searchText: state.searchText,
+                categories: [],
+                time: [],
+                sortWay: "",
+                videos: state.default.filter((curItem) =>
+                    curItem.title.toLowerCase().includes(state.searchText?.toLowerCase())
+                ),
+            };
+        case ACTION_TYPE.SEARCH_TEXT:
+            return { ...state, searchText: action.payload.value };
         case ACTION_TYPE.ADD_WATCH_LATER:
             return { ...state, watchLater: action.payload.value };
         case ACTION_TYPE.ADD_LIKES:
@@ -68,9 +83,10 @@ const videoReducer = (state, action) => {
 
 const VideoProvider = ({ children }) => {
     const [videoState, videoDispatch] = useReducer(videoReducer, initialState);
+    const { setLoader } = useTheme();
     useEffect(() => {
-        getVideo(videoDispatch);
-    }, []);
+        getVideo(videoDispatch, setLoader);
+    }, [setLoader]);
     return (
         <VideoContext.Provider value={{ videoState, videoDispatch }}>
             {children}

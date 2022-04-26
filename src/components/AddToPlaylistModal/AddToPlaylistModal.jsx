@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../context";
 import { useVideo } from "../../context/video-context";
 import { addToPlaylist, createPlaylist, getPlaylists } from "../../services";
 import "./addtoplaylistmodal.css";
@@ -8,6 +9,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
     const [addPlaylist, setAddPlaylist] = useState(false);
     const [playlistName, setPlaylistName] = useState("");
     const { videoState, videoDispatch } = useVideo();
+    const { alertDispatch } = useTheme();
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
 
     const addToPlaylistHandler = (id) => {
         if (token) {
-            addToPlaylist(video, id, videoDispatch);
+            addToPlaylist(video, id, videoDispatch, alertDispatch);
         } else navigate("/login");
         setPlaylistModal(false);
     };

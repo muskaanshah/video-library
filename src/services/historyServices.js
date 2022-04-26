@@ -25,13 +25,15 @@ const addToHistory = async (video, videoDispatch) => {
     }
 };
 
-const getHistory = async (videoDispatch) => {
+const getHistory = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/history", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_HISTORY,
             payload: { value: res.data.history },
@@ -41,7 +43,7 @@ const getHistory = async (videoDispatch) => {
     }
 };
 
-const removeVideoFromHistory = async (video, videoDispatch) => {
+const removeVideoFromHistory = async (video, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/history/${video._id}`, {
             headers: {
@@ -53,14 +55,28 @@ const removeVideoFromHistory = async (video, videoDispatch) => {
                 type: ACTION_TYPE.ADD_HISTORY,
                 payload: { value: res.data.history },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Removed from history",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.DEACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const clearHistory = async (videoState, videoDispatch) => {
+const clearHistory = async (videoState, videoDispatch, setLoader) => {
     let historyData;
+    setLoader(true);
     for await (const video of videoState.history) {
         try {
             const res = await axios.delete(`/api/user/history/${video._id}`, {
@@ -68,6 +84,7 @@ const clearHistory = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) historyData = res.data.history;
         } catch (err) {
             console.error(err);

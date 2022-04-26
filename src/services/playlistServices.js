@@ -25,13 +25,15 @@ const createPlaylist = async (title, videoDispatch) => {
     }
 };
 
-const getPlaylists = async (videoDispatch) => {
+const getPlaylists = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/playlists", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_PLAYLIST,
             payload: { value: res.data.playlists },
@@ -41,7 +43,7 @@ const getPlaylists = async (videoDispatch) => {
     }
 };
 
-const addToPlaylist = async (video, playlistId, videoDispatch) => {
+const addToPlaylist = async (video, playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.post(
             `/api/user/playlists/${playlistId}`,
@@ -59,13 +61,26 @@ const addToPlaylist = async (video, playlistId, videoDispatch) => {
                 type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
                 payload: { value: res.data.playlist },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Added to playlist",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
+const removeFromPlaylist = async (video, playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/playlists/${playlistId}/${video._id}`, {
             headers: {
@@ -78,12 +93,25 @@ const removeFromPlaylist = async (video, playlistId, videoDispatch) => {
                 payload: { value: res.data.playlist },
             });
         }
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "success",
+                alertMsg: "Removed from playlist",
+            },
+        });
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const deletePlaylist = async (playlistId, videoDispatch) => {
+const deletePlaylist = async (playlistId, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/playlists/${playlistId}`, {
             headers: {
@@ -95,19 +123,34 @@ const deletePlaylist = async (playlistId, videoDispatch) => {
                 type: ACTION_TYPE.ADD_PLAYLIST,
                 payload: { value: res.data.playlists },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Playlist deleted",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const getIndividualPlaylist = async (playlistId, videoDispatch) => {
+const getIndividualPlaylist = async (playlistId, videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get(`/api/user/playlists/${playlistId}`, {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         if (res.status === 200) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,
@@ -119,7 +162,8 @@ const getIndividualPlaylist = async (playlistId, videoDispatch) => {
     }
 };
 
-const clearPlaylists = async (videoState, videoDispatch) => {
+const clearPlaylists = async (videoState, videoDispatch, setLoader) => {
+    setLoader(true);
     let playlistData;
     for await (const playlist of videoState.playlists) {
         try {
@@ -128,6 +172,7 @@ const clearPlaylists = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) playlistData = res.data.playlists;
         } catch (err) {
             console.error(err);

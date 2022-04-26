@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
-import { useVideo } from "../../context";
+import { useTheme, useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
 import {
     addToWatchLater,
@@ -13,11 +13,13 @@ import {
 } from "../../services";
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 import "./singlevideo.css";
+import { Loader } from "../../components/Loader/Loader";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
     const { videoId } = useParams();
     const { videoState, videoDispatch } = useVideo();
+    const { loader, setLoader, alertDispatch } = useTheme();
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
     const video = videoState.singleVideo;
@@ -38,9 +40,9 @@ function SingleVideo() {
     const likeHandler = () => {
         if (token) {
             if (isInLikes) {
-                removeLikes(video, videoDispatch);
+                removeLikes(video, videoDispatch, alertDispatch);
             } else {
-                addToLikes(video, videoDispatch);
+                addToLikes(video, videoDispatch, alertDispatch);
             }
         } else navigate("/login");
     };
@@ -48,9 +50,9 @@ function SingleVideo() {
     const watchLaterHandler = () => {
         if (token) {
             if (isInWatchLater) {
-                removeFromWatchLater(video, videoDispatch);
+                removeFromWatchLater(video, videoDispatch, alertDispatch);
             } else {
-                addToWatchLater(video, videoDispatch);
+                addToWatchLater(video, videoDispatch, alertDispatch);
             }
         } else navigate("/login");
     };
@@ -60,106 +62,121 @@ function SingleVideo() {
     };
 
     useEffect(() => {
-        getIndividualVideo(videoId, videoDispatch);
-    }, [videoId, videoDispatch]);
+        getIndividualVideo(videoId, videoDispatch, setLoader);
+    }, [videoId, videoDispatch, setLoader]);
     return (
         <div className="container-body color-white">
-            <div className="pt-2 text-center">
-                <ReactPlayer
-                    playing
-                    width="75%"
-                    controls={true}
-                    url={`https://www.youtube.com/embed/${_id}`}
-                    style={{
-                        aspectRatio: 1.777,
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                    }}
-                    className="iframe-video"
-                    onStart={addToHistoryHandler}
-                />
-                <div className="singlevideo-info mx-auto">
-                    <h2>{title}</h2>
-                    <div className="singlevideo-viewcount-wrapper">
-                        <p className="my-0 text-light singlevideo-viewcount">
-                            {calculateViews(views)} views • {calculateDate(dateOfUpload)}{" "}
-                            ago
-                        </p>
-                        <div className="singlevideo-icon-wrapper my-0">
-                            <button className="btn btn-action" onClick={likeHandler}>
-                                {isInLikes ? (
-                                    <>
-                                        <span class="material-icons">thumb_up</span>
-                                        Liked
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="material-icons-outlined">
-                                            thumb_up
-                                        </span>
-                                        {calculateLikes(likes)}
-                                    </>
-                                )}
-                            </button>
-                            <div>
-                                <button
-                                    className="btn btn-action"
-                                    onClick={watchLaterHandler}
-                                >
-                                    <span className="material-icons-outlined">
-                                        watch_later
-                                    </span>
-                                    {isInWatchLater ? (
-                                        <span>REMOVE FROM WATCH LATER</span>
+            {loader ? (
+                <Loader />
+            ) : (
+                <div className="pt-2 text-center">
+                    <ReactPlayer
+                        playing
+                        width="75%"
+                        controls={true}
+                        url={`https://www.youtube.com/embed/${_id}`}
+                        style={{
+                            aspectRatio: 1.777,
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                        }}
+                        className="iframe-video"
+                        onStart={addToHistoryHandler}
+                    />
+                    <div className="singlevideo-info mx-auto">
+                        <h2>{title}</h2>
+                        <div className="singlevideo-viewcount-wrapper">
+                            <p className="my-0 text-light singlevideo-viewcount">
+                                {calculateViews(views)} views •{" "}
+                                {calculateDate(dateOfUpload)} ago
+                            </p>
+                            <div className="singlevideo-icon-wrapper my-0">
+                                <button className="btn btn-action" onClick={likeHandler}>
+                                    {isInLikes ? (
+                                        <>
+                                            <span className="material-icons">
+                                                thumb_up
+                                            </span>
+                                            {calculateLikes(likes + 1)}
+                                        </>
                                     ) : (
-                                        <span>WATCH LATER</span>
+                                        <>
+                                            <span className="material-icons-outlined">
+                                                thumb_up
+                                            </span>
+                                            {calculateLikes(likes)}
+                                        </>
                                     )}
                                 </button>
-                                <button
-                                    className="btn btn-action"
-                                    onClick={() => setPlaylistModal(true)}
-                                >
-                                    <span className="material-icons-outlined">
-                                        playlist_add
-                                    </span>
-                                    SAVE
-                                </button>
-                                {/* <button className="btn btn-action">
+                                <div>
+                                    <button
+                                        className="btn btn-action"
+                                        onClick={watchLaterHandler}
+                                    >
+                                        {isInWatchLater ? (
+                                            <>
+                                                <span className="material-icons-round">
+                                                    watch_later
+                                                </span>
+                                                <span>REMOVE FROM WATCH LATER</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="material-icons-outlined">
+                                                    watch_later
+                                                </span>
+                                                <span>WATCH LATER</span>
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        className="btn btn-action"
+                                        onClick={() => setPlaylistModal(true)}
+                                    >
+                                        <span className="material-icons-outlined">
+                                            playlist_add
+                                        </span>
+                                        SAVE
+                                    </button>
+                                    {/* <button className="btn btn-action">
                                     <span className="material-icons-outlined">share</span>
                                     SHARE
                                 </button> */}
+                                </div>
+                                <button className="btn btn-more-singleproduct">
+                                    <span className="material-icons-round">
+                                        more_vert
+                                    </span>
+                                </button>
                             </div>
-                            <button className="btn btn-more-singleproduct">
-                                <span className="material-icons-round">more_vert</span>
-                            </button>
                         </div>
-                    </div>
-                    <div className="divider-black bg-white mt-1"></div>
-                    <div className="channel-details mt-1">
-                        <img
-                            src={channelThumbnail}
-                            className="borderradius-full avatar avatar-sm"
-                            alt="dp"
-                        />
-                        <div>
-                            <h3 className="my-0">
-                                <a
-                                    href={channelLink}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="color-white text-none"
-                                >
-                                    {channelName}
-                                </a>
-                            </h3>
-                            <p className="text-light fs-0-9 my-0">
-                                {subscribers} subscribers
-                            </p>
-                            <p className="mt-1-5 width-80">{description}</p>
+                        <div className="divider-black bg-white mt-1"></div>
+                        <div className="channel-details mt-1">
+                            <img
+                                src={channelThumbnail}
+                                className="borderradius-full avatar avatar-sm"
+                                alt="dp"
+                            />
+                            <div>
+                                <h3 className="my-0">
+                                    <a
+                                        href={channelLink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="color-white text-none"
+                                    >
+                                        {channelName}
+                                    </a>
+                                </h3>
+                                <p className="text-light fs-0-9 my-0">
+                                    {subscribers} subscribers
+                                </p>
+                                <p className="mt-1-5 width-80">{description}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
             {playlistModal && (
                 <AddToPlaylistModal setPlaylistModal={setPlaylistModal} video={video} />
             )}

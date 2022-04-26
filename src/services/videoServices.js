@@ -1,9 +1,11 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../utils";
 
-const getVideo = async (videoDispatch) => {
+const getVideo = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/videos");
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_DEFAULT_VIDEOS,
             payload: { value: res.data.videos },
@@ -13,9 +15,11 @@ const getVideo = async (videoDispatch) => {
     }
 };
 
-const getIndividualVideo = async (videoId, videoDispatch) => {
+const getIndividualVideo = async (videoId, videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get(`/api/video/${videoId}`);
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.SINGLE_VIDEO,
             payload: { value: res.data.video },

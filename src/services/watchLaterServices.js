@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../utils";
 
-const addToWatchLater = async (video, videoDispatch) => {
+const addToWatchLater = async (video, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.post(
             "/api/user/watchlater",
@@ -19,19 +19,34 @@ const addToWatchLater = async (video, videoDispatch) => {
                 type: ACTION_TYPE.ADD_WATCH_LATER,
                 payload: { value: res.data.watchlater },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Added to watch later",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const getWatchLater = async (videoDispatch) => {
+const getWatchLater = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/watchlater", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_WATCH_LATER,
             payload: { value: res.data.watchlater },
@@ -41,7 +56,7 @@ const getWatchLater = async (videoDispatch) => {
     }
 };
 
-const removeFromWatchLater = async (video, videoDispatch) => {
+const removeFromWatchLater = async (video, videoDispatch, alertDispatch) => {
     try {
         const res = await axios.delete(`/api/user/watchlater/${video._id}`, {
             headers: {
@@ -53,13 +68,27 @@ const removeFromWatchLater = async (video, videoDispatch) => {
                 type: ACTION_TYPE.ADD_WATCH_LATER,
                 payload: { value: res.data.watchlater },
             });
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "success",
+                    alertMsg: "Removed from watch later",
+                },
+            });
         }
     } catch (err) {
-        console.error(err);
+        alertDispatch({
+            type: ACTION_TYPE.ACTIVATE_ALERT,
+            payload: {
+                alertType: "error",
+                alertMsg: err.message,
+            },
+        });
     }
 };
 
-const clearWatchLater = async (videoState, videoDispatch) => {
+const clearWatchLater = async (videoState, videoDispatch, setLoader) => {
+    setLoader(true);
     let watchLaterData;
     for await (const video of videoState.watchLater) {
         try {
@@ -68,6 +97,7 @@ const clearWatchLater = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) watchLaterData = res.data.watchlater;
         } catch (err) {
             console.error(err);

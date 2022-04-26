@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { bannerimg, bannerimgdesktop } from "../../assets";
-import { useVideo } from "../../context";
+import { useTheme, useVideo } from "../../context";
 import { getIndividualVideo } from "../../services";
 import { calculateDate, getTime } from "../../utils";
 import "./home.css";
@@ -9,10 +9,11 @@ import "./home.css";
 function Home() {
     const videoId = "QE7_Q5klSeA";
     const { videoState, videoDispatch } = useVideo();
+    const { setLoader } = useTheme();
     const video = videoState.singleVideo;
     useEffect(() => {
-        getIndividualVideo(videoId, videoDispatch);
-    }, [videoDispatch]);
+        getIndividualVideo(videoId, videoDispatch, setLoader);
+    }, [videoDispatch, setLoader]);
     return (
         <div className="container-body bg-black">
             <div className="banner-wrapper default-theme">

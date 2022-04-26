@@ -1,4 +1,4 @@
-import { useVideo } from "../../../context";
+import { useTheme, useVideo } from "../../../context";
 import {
     addToWatchLater,
     removeFromWatchLater,
@@ -8,20 +8,21 @@ import {
 
 function HistoryVideoModal({ video, setOpenModal, setPlaylistModal }) {
     const { videoState, videoDispatch } = useVideo();
+    const { alertDispatch } = useTheme();
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const watchLaterHandler = (e) => {
         e.stopPropagation();
         if (isInWatchLater) {
-            removeFromWatchLater(video, videoDispatch);
+            removeFromWatchLater(video, videoDispatch, alertDispatch);
         } else {
-            addToWatchLater(video, videoDispatch);
+            addToWatchLater(video, videoDispatch, alertDispatch);
         }
         setOpenModal(false);
     };
     const removeHistoryHandler = (e) => {
         e.stopPropagation();
-        removeVideoFromHistory(video, videoDispatch);
+        removeVideoFromHistory(video, videoDispatch, alertDispatch);
         setOpenModal(false);
     };
     return (
@@ -55,7 +56,7 @@ function HistoryVideoModal({ video, setOpenModal, setPlaylistModal }) {
                 <p
                     className="videocard-modal-action my-0"
                     onClick={() => {
-                        removeLikes(video, videoDispatch);
+                        removeLikes(video, videoDispatch, alertDispatch);
                         setOpenModal(false);
                     }}
                 >

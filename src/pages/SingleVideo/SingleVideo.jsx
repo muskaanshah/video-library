@@ -97,7 +97,7 @@ function SingleVideo() {
                                             <span className="material-icons">
                                                 thumb_up
                                             </span>
-                                            Liked
+                                            {calculateLikes(likes + 1)}
                                         </>
                                     ) : (
                                         <>
@@ -113,13 +113,20 @@ function SingleVideo() {
                                         className="btn btn-action"
                                         onClick={watchLaterHandler}
                                     >
-                                        <span className="material-icons-outlined">
-                                            watch_later
-                                        </span>
                                         {isInWatchLater ? (
-                                            <span>REMOVE FROM WATCH LATER</span>
+                                            <>
+                                                <span className="material-icons-round">
+                                                    watch_later
+                                                </span>
+                                                <span>REMOVE FROM WATCH LATER</span>
+                                            </>
                                         ) : (
-                                            <span>WATCH LATER</span>
+                                            <>
+                                                <span className="material-icons-outlined">
+                                                    watch_later
+                                                </span>
+                                                <span>WATCH LATER</span>
+                                            </>
                                         )}
                                     </button>
                                     <button

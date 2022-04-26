@@ -3,8 +3,10 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState();
-    const [user, setUser] = useState("");
+    const encodedToken = localStorage.getItem("encodedToken");
+    const [token, setToken] = useState(encodedToken ?? "");
+    const userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+    const [user, setUser] = useState(userFromLocalStorage ?? "");
     return (
         <AuthContext.Provider value={{ token, setToken, user, setUser }}>
             {children}

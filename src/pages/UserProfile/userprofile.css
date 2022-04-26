@@ -1,0 +1,10 @@
+.profile-card {
+	width: 25rem;
+	border-radius: 4px;
+	border: 1px solid var(--primary);
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--primary);
+}
+

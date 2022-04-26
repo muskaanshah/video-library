@@ -1,0 +1,37 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context";
+import "./userprofile.css";
+
+function UserProfile() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const userLogoutHandler = () => {
+        navigate("/");
+        localStorage.removeItem("encodedToken");
+        localStorage.removeItem("user");
+    };
+    return (
+        <div className="container-body centered">
+            <div className="profile-card">
+                <div className="bg-primary color-black p-1 fw-500 text-center">
+                    User Profile
+                </div>
+                <div className="color-white profile-section p-1">
+                    <span className="fw-400 fs-1-1 border-bottom">User Details</span>
+                    <p className="mb-0-5">{`Name: ${user.firstName} ${user.lastName}`}</p>
+                    <p className="mt-0-5">Email: {user.email}</p>
+                    <div className="mt-1">
+                        <span
+                            className="color-primary border-bottom cursor-pointer"
+                            onClick={userLogoutHandler}
+                        >
+                            Logout
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export { UserProfile };

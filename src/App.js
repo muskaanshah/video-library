@@ -1,5 +1,5 @@
-import Mockman from "mockman-js";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 import { useTheme } from "./context";
 import {
@@ -14,11 +14,16 @@ import {
     WatchLater,
     IndividualPlaylist,
     PageNotFound,
+    UserProfile,
 } from "./pages";
 import { NotRequiresAuth, RequiresAuth } from "./utils";
 
 function App() {
     const { theme } = useTheme();
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
     return (
         <div className={`App ${theme === "dark" ? "default-theme" : "light-theme"}`}>
             <header className="App-header">
@@ -27,7 +32,6 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/explore/:videoId" element={<SingleVideo />} />
-                    <Route path="/Mockman" element={<Mockman />} />
                     <Route path="*" element={<PageNotFound />} />
                     <Route element={<NotRequiresAuth />}>
                         <Route path="/login" element={<Login />} />
@@ -42,6 +46,7 @@ function App() {
                             path="/playlist/:playlistId"
                             element={<IndividualPlaylist />}
                         />
+                        <Route path="/user" element={<UserProfile />} />
                     </Route>
                 </Routes>
             </header>

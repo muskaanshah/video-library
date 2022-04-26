@@ -9,3 +9,4 @@ export { History } from "./History/History";
 export { Liked } from "./Liked/Liked";
 export { WatchLater } from "./WatchLater/WatchLater";
 export { PageNotFound } from "./NotFound/PageNotFound";
+export { UserProfile } from "./UserProfile/UserProfile";

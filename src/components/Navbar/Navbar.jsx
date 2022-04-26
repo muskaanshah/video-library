@@ -8,7 +8,7 @@ import "./navbar.css";
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
-    const token  = localStorage.getItem("encodedToken");
+    const token = localStorage.getItem("encodedToken");
     return (
         <>
             <div className={`navbar bg-grey-dark`}>
@@ -43,15 +43,21 @@ function Navbar() {
                             {`${theme === "dark" ? "light_mode" : "nightlight"}`}
                         </span>
                     </button>
-                    <Link to="/login" className="text-none">
-                        {token ? (
+                    {token ? (
+                        <Link to="/user" className="text-none">
                             <span className="avatar-default-sm borderradius-full bg-primary color-black mx-1 ">
                                 AT
                             </span>
-                        ) : (
-                            <img src={avatar} style={{maxWidth: "2.5rem", maxHeight: "2.5rem"}} alt="login" />
-                        )}
-                    </Link>
+                        </Link>
+                    ) : (
+                        <Link to="/login" className="text-none">
+                            <img
+                                src={avatar}
+                                style={{ maxWidth: "2.5rem", maxHeight: "2.5rem" }}
+                                alt="login"
+                            />
+                        </Link>
+                    )}
                 </div>
             </div>
             <Drawer drawer={drawer} setDrawer={setDrawer} />

@@ -12,11 +12,14 @@ function WatchLater() {
     return (
         <div className="container-body color-white p-1">
             {videoState.watchLater.length > 0 ? (
-                <div className="videocard-display mt-1-5">
-                    {videoState.watchLater.map((video) => (
-                        <VideoCard video={video} />
-                    ))}
-                </div>
+                <>
+                    <h2 className="page-heading">Watch Later</h2>
+                    <div className="videocard-display mt-1-5">
+                        {videoState.watchLater.map((video) => (
+                            <VideoCard video={video} />
+                        ))}
+                    </div>
+                </>
             ) : (
                 <NoVideosToShow />
             )}

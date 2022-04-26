@@ -13,11 +13,14 @@ function History() {
     return (
         <div className="container-body color-white p-1">
             {videoState.history.length > 0 ? (
-                <div className="videocard-display mt-1-5">
-                    {videoState.history.map((video) => (
-                        <VideoCardHorizontal video={video} />
-                    ))}
-                </div>
+                <>
+                    <h2 className="page-heading">History</h2>
+                    <div className="videocard-display mt-1-5">
+                        {videoState.history.map((video) => (
+                            <VideoCardHorizontal video={video} />
+                        ))}
+                    </div>
+                </>
             ) : (
                 <NoVideosToShow />
             )}

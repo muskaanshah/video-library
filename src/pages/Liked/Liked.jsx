@@ -12,11 +12,14 @@ function Liked() {
     return (
         <div className="container-body color-white p-1">
             {videoState.likedVideos.length > 0 ? (
-                <div className="videocard-display mt-1-5">
-                    {videoState.likedVideos.map((video) => (
-                        <VideoCard video={video} />
-                    ))}
-                </div>
+                <>
+                    <h2 className="page-heading">Liked videos</h2>
+                    <div className="videocard-display mt-1-5">
+                        {videoState.likedVideos.map((video) => (
+                            <VideoCard video={video} />
+                        ))}
+                    </div>
+                </>
             ) : (
                 <NoVideosToShow />
             )}

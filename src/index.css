@@ -109,6 +109,10 @@ body {
 	cursor: pointer;
 }
 
+.page-heading {
+	color: var(--white);
+}
+
 @media only screen and (min-width: 750px) {
 	.container-body {
 		margin-left: var(--drawer-width);

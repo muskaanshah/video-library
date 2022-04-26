@@ -13,6 +13,7 @@ function Playlist() {
     }, [videoDispatch]);
     return (
         <div className="container-body p-1">
+            <h2 className="page-heading">Playlists</h2>
             <div className="videocard-display mt-1-5">
                 {videoState.playlists?.map((playlist) => (
                     <PlaylistTile playlist={playlist} key={playlist._id} />

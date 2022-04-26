@@ -1,64 +1,112 @@
 .category-section {
-	display: flex;
-	align-items: center;
-	gap: 0.8rem;
-	flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+	position: relative;
 }
 
 .btn-category {
-	background-color: var(--grey-dark-opacity);
-	border-radius: 0.5rem;
-	display: inline-block;
-	cursor: pointer;
+    background-color: var(--grey-dark-opacity);
+    border-radius: 0.5rem;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .btn-category label span {
-	padding: 0.5rem;
-	border-radius: 0.5rem;
-	width: 100%;
-	display: block;
-	box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
 }
 
-.btn-category:hover, .btn-category input:checked + span {
-	background-color: var(--primary);
-	color: var(--black);
+.btn-category:hover,
+.btn-category input:checked + span {
+    background-color: var(--primary);
+    color: var(--black);
 }
 
 .btn-category * {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .input-wrapper label input {
-	position: absolute;
-	display: none;
+    position: absolute;
+    display: none;
 }
 
 .category-name {
-	padding-bottom: 4px;
-	border-bottom: 1px solid var(--primary);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--primary);
 }
 
 .filter-section {
-	width: 100%;
-	display: flex;
-	align-items: flex-end;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
 }
 
 .filter-section > div {
-	flex-grow: 1;
+    flex-grow: 1;
 }
 
 .filter-section > span {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .videocard-display > .centered {
-	height: calc(60vh - var(--navbar-height));
+    height: calc(60vh - var(--navbar-height));
+}
+
+.category-section > .border-white {
+    border: 1px solid var(--white);
+}
+
+.filterbox-wrapper {
+	position: absolute;
+	z-index: 5;
+	top: 3rem;
+}
+
+.filterbox {
+    background-color: rgba(14, 14, 14, 0.95);
+    width: max-content;
+    position: relative;
+}
+
+.filterbox-header {
+    display: flex;
+    align-items: center;
+}
+
+.filterbox-header > h2 {
+    flex-grow: 1;
+}
+
+.filterbox-header > .btn.bg-transparent {
+    position: absolute;
+    top: 0;
+    right: 0;
+	padding: 0.5rem;
+}
+
+.filterbox-header .material-icons-outlined {
+    font-size: 1rem;
+}
+
+.filterbox-filters {
+	display: flex;
+	align-items: flex-start;
+	gap: 3rem;
+}
+
+.filterbox-filters input[type="checkbox"], .filterbox-filters input[type="radio"] {
+	accent-color: var(--primary);
 }
 
 @media only screen and (min-width: 550px) {
-	.filter-section {
-		width: 80%;
-	}
+    .filter-section {
+        width: 80%;
+    }
 }

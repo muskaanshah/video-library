@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useVideo } from "../../../context";
 import { getCategory } from "../../../services";
-import { ACTION_TYPE } from "../../../utils";
-import { Category, Time, SortTabs } from "./";
+import { Category } from "./";
+import { FilterBox } from "./FilterBox";
 
 function FilterSection() {
     const [categories, setCategories] = useState([]);
-    const { videoDispatch } = useVideo();
+    const [filterModal, setFilterModal] = useState(false);
     useEffect(() => {
         getCategory(setCategories);
     }, []);
@@ -14,34 +13,24 @@ function FilterSection() {
         <div className="filter-section">
             <div>
                 <div className="category-section">
-                    <span className="category-name">Category: </span>
+                    <button
+                        className="btn bg-transparent color-white border-white py-0-5"
+                        onClick={() => setFilterModal(true)}
+                    >
+                        <span className="material-icons-outlined">blur_on</span>
+                        <span>Filters</span>
+                    </button>
+                    {filterModal && (
+                        <FilterBox
+                            categories={categories}
+                            setFilterModal={setFilterModal}
+                        />
+                    )}
                     {categories.map((item) => (
                         <Category key={item._id} item={item} />
                     ))}
                 </div>
-                <div className="category-section my-0-5">
-                    <span className="category-name">Time: </span>
-                    {["Under 5 mins", "5-20 mins", "20-40 mins", "Over 40 mins"].map(
-                        (item) => (
-                            <Time key={item} item={item} />
-                        )
-                    )}
-                </div>
-                <div className="category-section my-0-5">
-                    <span className="category-name">Sort: </span>
-                    {["Newest First", "Oldest First", "Most viewed", "Most liked"].map(
-                        (item) => (
-                            <SortTabs key={item} item={item} />
-                        )
-                    )}
-                </div>
             </div>
-            <span
-                className="fs-0-8 color-white text-underline"
-                onClick={() => videoDispatch({ type: ACTION_TYPE.CLEAR_ALL })}
-            >
-                Clear all filters
-            </span>
         </div>
     );
 }

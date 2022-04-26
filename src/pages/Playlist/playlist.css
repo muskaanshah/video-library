@@ -59,7 +59,7 @@
 }
 
 .new-playlist-div {
-	border: 1px var(--white) dashed;
+	border: 1px var(--primary) dashed;
 	width: var(--videotile-width);
 	height: 9rem;
 	display: flex;

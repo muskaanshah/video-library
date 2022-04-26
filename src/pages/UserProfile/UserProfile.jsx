@@ -3,12 +3,14 @@ import { useAuth } from "../../context";
 import "./userprofile.css";
 
 function UserProfile() {
-    const { user } = useAuth();
+    const { user, setToken, setUser } = useAuth();
     const navigate = useNavigate();
     const userLogoutHandler = () => {
-        navigate("/");
         localStorage.removeItem("encodedToken");
         localStorage.removeItem("user");
+        setToken("");
+        setUser({});
+        navigate("/");
     };
     return (
         <div className="container-body centered">

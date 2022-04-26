@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import { Drawer } from "../Drawer/Drawer";
 import { avatar } from "../../assets";
 import "./navbar.css";
@@ -8,7 +8,7 @@ import "./navbar.css";
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
-    const token = localStorage.getItem("encodedToken");
+    const { token } = useAuth();
     return (
         <>
             <div className={`navbar bg-grey-dark`}>

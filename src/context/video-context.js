@@ -86,7 +86,7 @@ const VideoProvider = ({ children }) => {
     const { setLoader } = useTheme();
     useEffect(() => {
         getVideo(videoDispatch, setLoader);
-    }, []);
+    }, [setLoader]);
     return (
         <VideoContext.Provider value={{ videoState, videoDispatch }}>
             {children}

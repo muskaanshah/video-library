@@ -13,7 +13,7 @@ function Home() {
     const video = videoState.singleVideo;
     useEffect(() => {
         getIndividualVideo(videoId, videoDispatch, setLoader);
-    }, [videoDispatch]);
+    }, [videoDispatch, setLoader]);
     return (
         <div className="container-body bg-black">
             <div className="banner-wrapper default-theme">

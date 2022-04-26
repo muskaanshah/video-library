@@ -18,12 +18,14 @@ function Playlist() {
         <div className="container-body p-1 color-white">
             <div className="page-heading-wrapper">
                 <h2 className="page-heading">Playlists</h2>
-                <span
-                    className="text-underline cursor-pointer fs-0-9"
-                    onClick={clearPlaylist}
-                >
-                    Delete all playlists
-                </span>
+                {videoState.playlists.length > 0 && (
+                    <span
+                        className="text-underline cursor-pointer fs-0-9"
+                        onClick={clearPlaylist}
+                    >
+                        Delete all playlists
+                    </span>
+                )}
             </div>
             <div className="videocard-display mt-1-5">
                 {videoState.playlists?.map((playlist) => (

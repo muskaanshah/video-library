@@ -1,14 +1,33 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useAuth, useTheme } from "../../context";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth, useTheme, useVideo } from "../../context";
 import { Drawer } from "../Drawer/Drawer";
 import { avatar } from "../../assets";
 import "./navbar.css";
+import { ACTION_TYPE } from "../../utils";
 
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
     const { token, user } = useAuth();
+    const { videoState, videoDispatch } = useVideo();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchHandler = () => {
+        videoDispatch({ type: ACTION_TYPE.SEARCH_VIDEOS });
+        navigate("/explore");
+    };
+
+    useEffect(() => {
+        if (location.pathname !== "/explore") {
+            //no filters applied when user shifts page
+            videoDispatch({
+                type: ACTION_TYPE.SEARCH_TEXT,
+                payload: { value: "" },
+            });
+            videoDispatch({ type: ACTION_TYPE.SEARCH_VIDEOS });
+        }
+    }, [location.pathname, videoDispatch]);
     return (
         <>
             <div className={`navbar bg-grey-dark`}>
@@ -30,9 +49,29 @@ function Navbar() {
                 <span className="search">
                     <input
                         type="text"
-                        className="input-text input-text-nav input-search mx-1"
+                        className="input-text input-search"
                         placeholder="Search"
+                        value={videoState.searchText}
+                        onChange={(e) =>
+                            videoDispatch({
+                                type: ACTION_TYPE.SEARCH_TEXT,
+                                payload: { value: e.target.value },
+                            })
+                        }
+                        onKeyPress={(e) => {
+                            if (e.key === "Enter") searchHandler();
+                        }}
                     />
+                    <button
+                        className={`btn btn-search bg-transparent cursor-pointer color-white p-0 mr-0-5 ${
+                            videoState.searchText.length > 0
+                                ? "visibility-shown"
+                                : "visibility-hidden"
+                        }`}
+                        onClick={searchHandler}
+                    >
+                        <span className="material-icons-outlined">search</span>
+                    </button>
                 </span>
                 <div className="centered">
                     <button

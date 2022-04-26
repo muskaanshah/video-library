@@ -89,7 +89,7 @@ function SingleVideo() {
                             <button className="btn btn-action" onClick={likeHandler}>
                                 {isInLikes ? (
                                     <>
-                                        <span class="material-icons">thumb_up</span>
+                                        <span className="material-icons">thumb_up</span>
                                         Liked
                                     </>
                                 ) : (

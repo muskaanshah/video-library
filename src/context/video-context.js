@@ -16,6 +16,7 @@ const initialState = {
     watchLater: [],
     playlists: [],
     playlist: {},
+    searchText: "",
 };
 
 const videoReducer = (state, action) => {
@@ -32,6 +33,19 @@ const videoReducer = (state, action) => {
             return setTime(state, action.payload.value);
         case ACTION_TYPE.SORT_WAY:
             return setTimeSort(state, action.payload.value);
+        case ACTION_TYPE.SEARCH_VIDEOS:
+            return {
+                ...state,
+                searchText: state.searchText,
+                categories: [],
+                time: [],
+                sortWay: "",
+                videos: state.default.filter((curItem) =>
+                    curItem.title.toLowerCase().includes(state.searchText?.toLowerCase())
+                ),
+            };
+        case ACTION_TYPE.SEARCH_TEXT:
+            return { ...state, searchText: action.payload.value };
         case ACTION_TYPE.ADD_WATCH_LATER:
             return { ...state, watchLater: action.payload.value };
         case ACTION_TYPE.ADD_LIKES:

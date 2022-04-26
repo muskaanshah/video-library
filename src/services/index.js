@@ -21,4 +21,5 @@ export {
     removeFromPlaylist,
     deletePlaylist,
     getIndividualPlaylist,
+    clearPlaylists,
 } from "./playlistServices";

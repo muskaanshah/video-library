@@ -119,6 +119,26 @@ const getIndividualPlaylist = async (playlistId, videoDispatch) => {
     }
 };
 
+const clearPlaylists = async (videoState, videoDispatch) => {
+    let playlistData;
+    for await (const playlist of videoState.playlists) {
+        try {
+            const res = await axios.delete(`/api/user/playlists/${playlist._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            if (res.status === 200) playlistData = res.data.playlists;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    videoDispatch({
+        type: ACTION_TYPE.ADD_PLAYLIST,
+        payload: { value: playlistData },
+    });
+};
+
 export {
     createPlaylist,
     getPlaylists,
@@ -126,4 +146,5 @@ export {
     removeFromPlaylist,
     deletePlaylist,
     getIndividualPlaylist,
+    clearPlaylists,
 };

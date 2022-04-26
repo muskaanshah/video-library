@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { NoVideosToShow } from "../../components/NoVideosToShow/NoVideosToShow";
 import { VideoCardHorizontal } from "../../components/VideoCardHorizontal/VideoCardHorizontal";
 import { useVideo } from "../../context";
 import { getHistory } from "../../services";
@@ -11,11 +12,15 @@ function History() {
     }, [videoDispatch]);
     return (
         <div className="container-body color-white p-1">
-            <div className="videocard-display mt-1-5">
-                {videoState.history.map((video) => (
-                    <VideoCardHorizontal video={video} />
-                ))}
-            </div>
+            {videoState.history.length > 0 ? (
+                <div className="videocard-display mt-1-5">
+                    {videoState.history.map((video) => (
+                        <VideoCardHorizontal video={video} />
+                    ))}
+                </div>
+            ) : (
+                <NoVideosToShow />
+            )}
         </div>
     );
 }

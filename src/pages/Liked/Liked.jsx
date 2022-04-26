@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { NoVideosToShow } from "../../components/NoVideosToShow/NoVideosToShow";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useVideo } from "../../context";
 import { getLikes } from "../../services";
@@ -10,11 +11,15 @@ function Liked() {
     }, [videoDispatch]);
     return (
         <div className="container-body color-white p-1">
-            <div className="videocard-display mt-1-5">
-                {videoState.likedVideos.map((video) => (
-                    <VideoCard video={video} />
-                ))}
-            </div>
+            {videoState.likedVideos.length > 0 ? (
+                <div className="videocard-display mt-1-5">
+                    {videoState.likedVideos.map((video) => (
+                        <VideoCard video={video} />
+                    ))}
+                </div>
+            ) : (
+                <NoVideosToShow />
+            )}
         </div>
     );
 }

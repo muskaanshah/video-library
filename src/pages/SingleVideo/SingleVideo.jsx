@@ -68,7 +68,6 @@ function SingleVideo() {
                 <ReactPlayer
                     playing
                     width="75%"
-                    height="30rem"
                     controls={true}
                     url={`https://www.youtube.com/embed/${_id}`}
                     style={{
@@ -76,6 +75,7 @@ function SingleVideo() {
                         marginLeft: "auto",
                         marginRight: "auto",
                     }}
+                    className="iframe-video"
                     onStart={addToHistoryHandler}
                 />
                 <div className="singlevideo-info mx-auto">

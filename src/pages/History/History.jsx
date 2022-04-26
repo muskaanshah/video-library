@@ -10,7 +10,6 @@ function History() {
     const clearHistoryHandler = () => {
         clearHistory(videoState, videoDispatch);
     };
-
     useEffect(() => {
         getHistory(videoDispatch);
     }, [videoDispatch]);

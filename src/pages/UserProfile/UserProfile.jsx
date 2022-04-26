@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useVideo } from "../../context";
+import { ACTION_TYPE } from "../../utils";
 import "./userprofile.css";
 
 function UserProfile() {
     const { user, setToken, setUser } = useAuth();
+    const { videoDispatch, videoState } = useVideo();
     const navigate = useNavigate();
     const userLogoutHandler = () => {
+        videoDispatch({ type: ACTION_TYPE.USER_LOGOUT });
+        console.log({ videoState });
         localStorage.removeItem("encodedToken");
         localStorage.removeItem("user");
         setToken("");

@@ -14,7 +14,6 @@ const addToHistory = async (video, videoDispatch) => {
                 },
             }
         );
-        console.log(res);
         if (res.status === 201) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_HISTORY,
@@ -33,7 +32,6 @@ const getHistory = async (videoDispatch) => {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
-        console.log(res);
         videoDispatch({
             type: ACTION_TYPE.ADD_HISTORY,
             payload: { value: res.data.history },

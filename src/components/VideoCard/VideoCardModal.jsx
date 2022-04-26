@@ -14,7 +14,6 @@ function VideoCardModal({
     isPlaylist,
     playlistId,
 }) {
-    console.log(isPlaylist);
     const { videoState, videoDispatch } = useVideo();
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);

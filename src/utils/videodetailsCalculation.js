@@ -43,7 +43,6 @@ const calculateDate = (dateOfUpload) => {
 };
 
 const getTime = (time) => {
-    console.log(time);
     const arr = time === undefined ? [0] : time.split(":");
     let lengthNew = Number(arr[0]);
     if (arr.length === 3) lengthNew += " hour";

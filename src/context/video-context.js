@@ -7,6 +7,7 @@ const VideoContext = createContext();
 const initialState = {
     default: [],
     videos: [],
+    singleVideo: {},
     categories: [],
     time: [],
     sortWay: "",
@@ -15,7 +16,6 @@ const initialState = {
     watchLater: [],
     playlists: [],
     playlist: {},
-    singleVideo: {},
 };
 
 const videoReducer = (state, action) => {
@@ -51,6 +51,15 @@ const videoReducer = (state, action) => {
                 categories: [],
                 time: [],
                 sortWay: "",
+            };
+        case ACTION_TYPE.USER_LOGOUT:
+            return {
+                ...state,
+                history: [],
+                likedVideos: [],
+                watchLater: [],
+                playlists: [],
+                playlist: {},
             };
         default:
             return state;

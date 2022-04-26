@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useVideo } from "../../context";
+import ReactPlayer from "react-player/youtube";
+import { AuthProvider, useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
 import {
     addToWatchLater,
@@ -10,8 +11,8 @@ import {
     addToHistory,
     getIndividualVideo,
 } from "../../services";
-import "./singlevideo.css";
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
+import "./singlevideo.css";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
@@ -54,9 +55,9 @@ function SingleVideo() {
         } else navigate("/login");
     };
 
-    useEffect(() => {
+    const addToHistoryHandler = () => {
         if (token) addToHistory(video, videoDispatch);
-    }, [token, video, videoDispatch]);
+    };
 
     useEffect(() => {
         getIndividualVideo(videoId, videoDispatch);
@@ -64,15 +65,19 @@ function SingleVideo() {
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">
-                <iframe
+                <ReactPlayer
+                    playing
                     width="75%"
-                    src={`https://www.youtube.com/embed/${_id}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    className="iframe-video mx-auto"
-                    allowFullScreen
-                ></iframe>
+                    height="30rem"
+                    controls={true}
+                    url={`https://www.youtube.com/embed/${_id}`}
+                    style={{
+                        aspectRatio: 1.777,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                    }}
+                    onStart={addToHistoryHandler}
+                />
                 <div className="singlevideo-info mx-auto">
                     <h2>{title}</h2>
                     <div className="singlevideo-viewcount-wrapper">
@@ -142,7 +147,7 @@ function SingleVideo() {
                                     href={channelLink}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="color-white"
+                                    className="color-white text-none"
                                 >
                                     {channelName}
                                 </a>

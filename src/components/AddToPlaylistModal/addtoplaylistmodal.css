@@ -1,5 +1,30 @@
 .addtoplaylist-modal {
 	width: 15rem;
-	border-radius: 0.5rem;
+	border-radius: 4px;
 	background-color: var(--grey-dark);
+}
+
+.addtoplaylist-modal-wrapper {
+	height: 100vh;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.295);
+	z-index: 2;
+	top: var(--navbar-height);
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.add-playist-input {
+	width: 100%;
+	background-color: transparent;
+	box-sizing: border-box;
+	padding: 0.5rem 1rem;
+	border: 0;
+	outline: 0;
+	font-size: 1rem;
+	color: var(--white);
 }

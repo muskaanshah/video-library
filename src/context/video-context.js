@@ -13,6 +13,9 @@ const initialState = {
     history: [],
     likedVideos: [],
     watchLater: [],
+    playlists: [],
+    playlist: {},
+    singleVideo: {},
 };
 
 const videoReducer = (state, action) => {
@@ -35,6 +38,12 @@ const videoReducer = (state, action) => {
             return { ...state, likedVideos: action.payload.value };
         case ACTION_TYPE.ADD_HISTORY:
             return { ...state, history: action.payload.value };
+        case ACTION_TYPE.ADD_PLAYLIST:
+            return { ...state, playlists: action.payload.value };
+        case ACTION_TYPE.ADD_SINGLE_PLAYLIST:
+            return { ...state, playlist: action.payload.value };
+        case ACTION_TYPE.SINGLE_VIDEO:
+            return { ...state, singleVideo: action.payload.value };
         case ACTION_TYPE.CLEAR_ALL:
             return {
                 ...state,

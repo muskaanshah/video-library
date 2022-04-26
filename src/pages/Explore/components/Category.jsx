@@ -19,7 +19,7 @@ function Category({ item }) {
                     value={item.categoryName}
                     className="btn-tab-input"
                     checked={videoState.categories.includes(item.categoryName)}
-                    onClick={dispatchFunction}
+                    onChange={dispatchFunction}
                 />
                 <span>{item.categoryName}</span>
             </label>

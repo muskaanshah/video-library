@@ -1,15 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../context";
-import { addToWatchLater, removeFromWatchLater, removeLikes } from "../../services";
+import {
+    addToWatchLater,
+    removeFromPlaylist,
+    removeFromWatchLater,
+    removeLikes,
+} from "../../services";
 
-function VideoCardModal({ video, setOpenModal }) {
+function VideoCardModal({
+    video,
+    setOpenModal,
+    setPlaylistModal,
+    isPlaylist,
+    playlistId,
+}) {
+    console.log(isPlaylist);
     const { videoState, videoDispatch } = useVideo();
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
     const watchLaterHandler = (e) => {
-        e.stopPropagation();
         if (token) {
             if (isInWatchLater) {
                 removeFromWatchLater(video, videoDispatch);
@@ -20,7 +31,10 @@ function VideoCardModal({ video, setOpenModal }) {
         setOpenModal(false);
     };
     return (
-        <div className="bg-grey-dark videocard-modal py-0-5">
+        <div
+            className="bg-grey-dark videocard-modal py-0-5"
+            onClick={(e) => e.stopPropagation()}
+        >
             <p className="videocard-modal-action my-0" onClick={watchLaterHandler}>
                 <span className="material-icons-outlined">watch_later</span>
                 {isInWatchLater ? (
@@ -29,15 +43,30 @@ function VideoCardModal({ video, setOpenModal }) {
                     <span>WATCH LATER</span>
                 )}
             </p>
-            <p className="videocard-modal-action my-0">
-                <span className="material-icons-outlined">playlist_add</span>
-                <span>SAVE TO PLAYLIST</span>
-            </p>
+            {isPlaylist ? (
+                <p
+                    className="videocard-modal-action my-0"
+                    onClick={(e) => removeFromPlaylist(video, playlistId, videoDispatch)}
+                >
+                    <span className="material-icons-outlined">playlist_add</span>
+                    <span>REMOVE FROM PLAYLIST</span>
+                </p>
+            ) : (
+                <p
+                    className="videocard-modal-action my-0"
+                    onClick={(e) => {
+                        setPlaylistModal(true);
+                        setOpenModal(false);
+                    }}
+                >
+                    <span className="material-icons-outlined">playlist_add</span>
+                    <span>SAVE TO PLAYLIST</span>
+                </p>
+            )}
             {isInLikes && (
                 <p
                     className="videocard-modal-action my-0"
                     onClick={(e) => {
-                        e.stopPropagation();
                         removeLikes(video, videoDispatch);
                         setOpenModal(false);
                     }}

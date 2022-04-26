@@ -1,5 +1,10 @@
 .playlist-tile {
 	width: var(--videotile-width);
+	position: relative;
+}
+
+.playlist-tile:hover {
+	cursor: pointer;
 }
 
 .playlist-img {
@@ -36,6 +41,10 @@
 
 .playlist-modal {
 	width: 10rem;
+	border-radius: 4px;
+	position: absolute;
+	right: 2rem;
+	top: 11.5rem;
 }
 
 .playlist-modal > p {

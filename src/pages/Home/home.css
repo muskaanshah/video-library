@@ -31,13 +31,13 @@
 	width: 70%;
 }
 
-.btn-banner-watchnow {
-	margin-top: 2rem;
-}
-
 .text-center {
 	text-align: center;
 }
+
+.about-body + .btn {
+	width: auto;
+} 
 
 @media only screen and (max-width: 400px) {
 	.banner-overlay > h2,

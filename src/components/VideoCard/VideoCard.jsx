@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { calculateDate, calculateViews } from "../../utils";
 import "../videocard.css";
 import { VideoCardModal } from "./VideoCardModal";
+import { AddToPlaylistModal } from "../AddToPlaylistModal/AddToPlaylistModal";
 
-function VideoCard({ video }) {
+function VideoCard({ video, playlistId = "", isPlaylist = false }) {
     const {
         _id,
         videoThumbnail,
@@ -16,6 +17,7 @@ function VideoCard({ video }) {
         dateOfUpload,
     } = video;
     const [openModal, setOpenModal] = useState(false);
+    const [playlistModal, setPlaylistModal] = useState(false);
     const navigate = useNavigate();
     return (
         <>
@@ -52,7 +54,19 @@ function VideoCard({ video }) {
                         <span className="material-icons-round">more_vert</span>
                     </button>
                     {openModal && (
-                        <VideoCardModal video={video} setOpenModal={setOpenModal} />
+                        <VideoCardModal
+                            video={video}
+                            setOpenModal={setOpenModal}
+                            setPlaylistModal={setPlaylistModal}
+                            isPlaylist={isPlaylist}
+                            playlistId={playlistId}
+                        />
+                    )}
+                    {playlistModal && (
+                        <AddToPlaylistModal
+                            setPlaylistModal={setPlaylistModal}
+                            video={video}
+                        />
                     )}
                 </div>
             </div>

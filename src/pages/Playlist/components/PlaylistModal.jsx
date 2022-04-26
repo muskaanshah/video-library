@@ -1,14 +1,21 @@
-function PlaylistModal() {
-	return (
-		<div className="playlist-modal color-white bg-grey-dark">
-			<p className="my-0 p-0-5">
-				<span className="material-icons-outlined">edit</span>Edit
-			</p>
-			<p className="my-0 p-0-5 color-danger">
-				<span className="material-icons-outlined">delete</span>Delete
-			</p>
-		</div>
-	);
+import { useVideo } from "../../../context";
+import { deletePlaylist } from "../../../services";
+
+function PlaylistModal({ playlist }) {
+    const { videoDispatch } = useVideo();
+    return (
+        <div
+            className="playlist-modal color-white bg-grey-dark"
+            onClick={(e) => e.stopPropagation()}
+        >
+            <p
+                className="my-0 p-0-5 color-danger"
+                onClick={() => deletePlaylist(playlist._id, videoDispatch)}
+            >
+                <span className="material-icons-outlined">delete</span>Delete
+            </p>
+        </div>
+    );
 }
 
 export { PlaylistModal };

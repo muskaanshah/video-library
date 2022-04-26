@@ -113,6 +113,24 @@ export const videos = [
             "In this video, I walk you through how to set-up the strategies, what actions you need to take for full advantage of the strategy, and when to use the strategy.",
     },
     {
+        _id: "QE7_Q5klSeA",
+        title: "The rebirth of board games and the new social revolution | Drew Blas | TEDxTopeka",
+        youtubeID: "QE7_Q5klSeA",
+        videoLength: "13:46",
+        videoThumbnail: "http://i3.ytimg.com/vi/QE7_Q5klSeA/hqdefault.jpg",
+        likes: 373,
+        views: 31079,
+        category: "All time favourites",
+        channelName: "TEDx Talks",
+        channelThumbnail:
+            "https://yt3.ggpht.com/ytc/AKedOLQGnY6McntoY-eWaRDI047FWFqj7pVlw2nBfkwz7w=s48-c-k-c0x00ffffff-no-rj",
+        channelLink: "https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q",
+        subscribers: "34.6M",
+        dateOfUpload: "Apr 7, 2015",
+        description:
+            "Technology has powered a whole new paradigm of virtual “social” interaction and Facebook and its ilk are common household names that pervade our culture. But at dinner tables, coffee houses, and bars all across the world, a completely different social revolution is taking place: Board gaming.",
+    },
+    {
         _id: "d8aJrYu5_60",
         title: "Creature Comforts Board Game Unboxing | Danicha",
         youtubeID: "d8aJrYu5_60",

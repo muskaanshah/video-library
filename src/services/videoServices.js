@@ -13,4 +13,16 @@ const getVideo = async (videoDispatch) => {
     }
 };
 
-export { getVideo };
+const getIndividualVideo = async (videoId, videoDispatch) => {
+    try {
+        const res = await axios.get(`/api/video/${videoId}`);
+        videoDispatch({
+            type: ACTION_TYPE.SINGLE_VIDEO,
+            payload: { value: res.data.video },
+        });
+    } catch (err) {
+        console.error(err.message);
+    }
+};
+
+export { getVideo, getIndividualVideo };

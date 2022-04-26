@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
@@ -8,15 +8,18 @@ import {
     removeLikes,
     removeFromWatchLater,
     addToHistory,
+    getIndividualVideo,
 } from "../../services";
 import "./singlevideo.css";
+import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 
 function SingleVideo() {
+    const [playlistModal, setPlaylistModal] = useState(false);
     const { videoId } = useParams();
     const { videoState, videoDispatch } = useVideo();
     const token = localStorage.getItem("encodedToken");
     const navigate = useNavigate();
-    const video = videoState.default.find((item) => item._id === videoId);
+    const video = videoState.singleVideo;
     const {
         _id,
         channelThumbnail,
@@ -27,6 +30,7 @@ function SingleVideo() {
         likes,
         subscribers,
         description,
+        channelLink,
     } = video;
 
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
@@ -53,6 +57,10 @@ function SingleVideo() {
     useEffect(() => {
         if (token) addToHistory(video, videoDispatch);
     }, [token, video, videoDispatch]);
+
+    useEffect(() => {
+        getIndividualVideo(videoId, videoDispatch);
+    }, [videoId, videoDispatch]);
     return (
         <div className="container-body color-white">
             <div className="pt-2 text-center">
@@ -60,10 +68,10 @@ function SingleVideo() {
                     width="75%"
                     src={`https://www.youtube.com/embed/${_id}`}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     className="iframe-video mx-auto"
-                    allowfullscreen
+                    allowFullScreen
                 ></iframe>
                 <div className="singlevideo-info mx-auto">
                     <h2>{title}</h2>
@@ -102,7 +110,10 @@ function SingleVideo() {
                                         <span>WATCH LATER</span>
                                     )}
                                 </button>
-                                <button className="btn btn-action">
+                                <button
+                                    className="btn btn-action"
+                                    onClick={() => setPlaylistModal(true)}
+                                >
                                     <span className="material-icons-outlined">
                                         playlist_add
                                     </span>
@@ -126,7 +137,16 @@ function SingleVideo() {
                             alt="dp"
                         />
                         <div>
-                            <h3 className="my-0">{channelName}</h3>
+                            <h3 className="my-0">
+                                <a
+                                    href={channelLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="color-white"
+                                >
+                                    {channelName}
+                                </a>
+                            </h3>
                             <p className="text-light fs-0-9 my-0">
                                 {subscribers} subscribers
                             </p>
@@ -135,6 +155,9 @@ function SingleVideo() {
                     </div>
                 </div>
             </div>
+            {playlistModal && (
+                <AddToPlaylistModal setPlaylistModal={setPlaylistModal} video={video} />
+            )}
         </div>
     );
 }

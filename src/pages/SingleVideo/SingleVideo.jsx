@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
-import { AuthProvider, useVideo } from "../../context";
+import { useVideo } from "../../context";
 import { calculateDate, calculateLikes, calculateViews } from "../../utils";
 import {
     addToWatchLater,

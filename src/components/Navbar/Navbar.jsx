@@ -8,7 +8,7 @@ import "./navbar.css";
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
-    const { token } = useAuth();
+    const { token, user } = useAuth();
     return (
         <>
             <div className={`navbar bg-grey-dark`}>
@@ -46,7 +46,8 @@ function Navbar() {
                     {token ? (
                         <Link to="/user" className="text-none">
                             <span className="avatar-default-sm borderradius-full bg-primary color-black mx-1 ">
-                                AT
+                                {user.firstName[0]}
+                                {user.lastName[0]}
                             </span>
                         </Link>
                     ) : (

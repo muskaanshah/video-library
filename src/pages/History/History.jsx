@@ -8,6 +8,7 @@ import { clearHistory, getHistory } from "../../services";
 function History() {
     const { videoState, videoDispatch } = useVideo();
     const { loader, setLoader } = useTheme();
+    console.log(videoState.history.reverse());
 
     const clearHistoryHandler = () => {
         clearHistory(videoState, videoDispatch, setLoader);
@@ -29,7 +30,7 @@ function History() {
                                     className="text-underline cursor-pointer fs-0-9"
                                     onClick={clearHistoryHandler}
                                 >
-                                    Clear history
+                                    Clear
                                 </span>
                             </div>
                             <div className="videocard-display mt-1-5">

@@ -28,7 +28,7 @@ function Liked() {
                                     className="text-underline cursor-pointer fs-0-9"
                                     onClick={clearLikedVideosHandler}
                                 >
-                                    Clear liked videos
+                                    Clear
                                 </span>
                             </div>
                             <div className="videocard-display mt-1-5">

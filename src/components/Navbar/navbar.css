@@ -30,6 +30,11 @@
 	border-radius: 0.25rem;
 	display: flex;
 	align-items: center;
+	position: absolute;
+	left:0;
+	right:0;
+	margin: auto;
+	width: 400px;
 }
 
 .btn-search > .material-icons-outlined {
@@ -37,7 +42,6 @@
 }
 
 .input-search {
-	width: 110px;
 	margin-bottom: 0;
 	padding: 0.5rem 1rem;
 	outline: none;
@@ -99,6 +103,10 @@
 	color: var(--white);
 }
 
+.nav-logo-wrapper > span {
+	display: none;
+}
+
 @media only screen and (min-width: 350px) {
 	.input-search {
 		width: 12rem;
@@ -117,5 +125,8 @@
 @media only screen and (min-width: 750px) {
 	.hamburger {
 		display: none;
+	}
+	.nav-logo-wrapper > span {
+		display: inline;
 	}
 }

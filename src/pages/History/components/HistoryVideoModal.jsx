@@ -35,11 +35,16 @@ function HistoryVideoModal({ video, setOpenModal, setPlaylistModal }) {
                 <span>REMOVE FROM HISTORY</span>
             </p>
             <p className="videocard-modal-action my-0" onClick={watchLaterHandler}>
-                <span className="material-icons-outlined">watch_later</span>
                 {isInWatchLater ? (
-                    <span>REMOVE FROM WATCH LATER</span>
+                    <>
+                        <span className="material-icons-round">watch_later</span>
+                        <span>REMOVE FROM WATCH LATER</span>
+                    </>
                 ) : (
-                    <span>WATCH LATER</span>
+                    <>
+                        <span className="material-icons-outlined">watch_later</span>
+                        <span>WATCH LATER</span>
+                    </>
                 )}
             </p>
             <p

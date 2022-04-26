@@ -38,7 +38,7 @@ function VideoCardHorizontal({ video }) {
                         <div>
                             <p className="fw-500 my-0 video-details-header">{title}</p>
                             <p className="text-light fs-0-8 mb-0 mt-0-5">{channelName}</p>
-                            <p className="text-light fs-0-8 my-0">
+                            <p className="text-light fs-0-7 my-0">
                                 {calculateViews(views)} views •{" "}
                                 {calculateDate(dateOfUpload)} ago
                             </p>

@@ -30,8 +30,8 @@ function Navbar() {
     }, [location.pathname, videoDispatch]);
     return (
         <>
-            <div className={`navbar bg-grey-dark`}>
-                <div>
+            <div className="navbar bg-grey-dark">
+                <div className="nav-logo-wrapper cursor-pointer">
                     <button
                         className={`hamburger ${drawer && "active"}`}
                         onClick={() => setDrawer((prev) => !prev)}
@@ -45,6 +45,7 @@ function Navbar() {
                         alt="logo"
                         src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png"
                     />
+                    <span className="ls-2 color-primary fw-700 fs-2">BOARDFLIX</span>
                 </div>
                 <span className="search">
                     <input

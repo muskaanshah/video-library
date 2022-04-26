@@ -84,6 +84,10 @@ body {
 	width: max(300px, 35%);
 }
 
+.fs-0-7 {
+	font-size: 0.7rem;
+}
+
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	border-radius: 5px;

@@ -84,7 +84,7 @@ function SingleVideo() {
                         onStart={addToHistoryHandler}
                     />
                     <div className="singlevideo-info mx-auto">
-                        <h2>{title}</h2>
+                        <h2 className="mb-0">{title}</h2>
                         <div className="singlevideo-viewcount-wrapper">
                             <p className="my-0 text-light singlevideo-viewcount">
                                 {calculateViews(views)} views •{" "}
@@ -171,7 +171,7 @@ function SingleVideo() {
                                 <p className="text-light fs-0-9 my-0">
                                     {subscribers} subscribers
                                 </p>
-                                <p className="mt-1-5 width-80">{description}</p>
+                                <p className="mt-1 width-80">{description}</p>
                             </div>
                         </div>
                     </div>

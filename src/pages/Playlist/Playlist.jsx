@@ -41,7 +41,7 @@ function Playlist() {
                             className="new-playlist-div"
                             onClick={() => setPlaylistModal(true)}
                         >
-                            + new playlist
+                            + New playlist
                         </div>
                         {playlistModal && (
                             <CreateNewPlaylistModal setPlaylistModal={setPlaylistModal} />

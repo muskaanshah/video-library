@@ -44,7 +44,7 @@ function Home() {
             </div>
             <div className="color-white centered flex-column px-1">
                 <h2 className="text-center pt-2">About BoardFlix</h2>
-                <p className="about-body mx-1">
+                <p className="about-body mx-1 text-center my-0">
                     BoardFlix is a video streaming platform which is used to understand
                     the gameplay of board games. It offers tutorials, live streaming of
                     games, different strategies, different approaches, the uses and other

@@ -36,7 +36,7 @@ const getHistory = async (videoDispatch, setLoader) => {
         setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_HISTORY,
-            payload: { value: res.data.history },
+            payload: { value: res.data.history.reverse() },
         });
     } catch (err) {
         console.error(err);

@@ -28,7 +28,7 @@ function WatchLater() {
                                     className="text-underline cursor-pointer fs-0-9"
                                     onClick={clearWatchLaterHandler}
                                 >
-                                    Clear watch later
+                                    Clear
                                 </span>
                             </div>
                             <div className="videocard-display mt-1-5">

@@ -1,6 +1,7 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import { getVideo } from "../services";
 import { ACTION_TYPE, setCategories, setTime, setTimeSort } from "../utils";
+import { useTheme } from "./theme-context";
 
 const VideoContext = createContext();
 
@@ -82,8 +83,9 @@ const videoReducer = (state, action) => {
 
 const VideoProvider = ({ children }) => {
     const [videoState, videoDispatch] = useReducer(videoReducer, initialState);
+    const { setLoader } = useTheme();
     useEffect(() => {
-        getVideo(videoDispatch);
+        getVideo(videoDispatch, setLoader);
     }, []);
     return (
         <VideoContext.Provider value={{ videoState, videoDispatch }}>

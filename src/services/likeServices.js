@@ -25,13 +25,15 @@ const addToLikes = async (video, videoDispatch) => {
     }
 };
 
-const getLikes = async (videoDispatch) => {
+const getLikes = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/likes", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_LIKES,
             payload: { value: res.data.likes },
@@ -59,8 +61,9 @@ const removeLikes = async (video, videoDispatch) => {
     }
 };
 
-const clearLikedVideos = async (videoState, videoDispatch) => {
+const clearLikedVideos = async (videoState, videoDispatch, setLoader) => {
     let likedVideosData;
+    setLoader(true);
     for await (const video of videoState.likedVideos) {
         try {
             const res = await axios.delete(`/api/user/likes/${video._id}`, {
@@ -68,6 +71,7 @@ const clearLikedVideos = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) likedVideosData = res.data.likes;
         } catch (err) {
             console.error(err);

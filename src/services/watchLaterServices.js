@@ -25,13 +25,15 @@ const addToWatchLater = async (video, videoDispatch) => {
     }
 };
 
-const getWatchLater = async (videoDispatch) => {
+const getWatchLater = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/watchlater", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_WATCH_LATER,
             payload: { value: res.data.watchlater },
@@ -59,7 +61,8 @@ const removeFromWatchLater = async (video, videoDispatch) => {
     }
 };
 
-const clearWatchLater = async (videoState, videoDispatch) => {
+const clearWatchLater = async (videoState, videoDispatch, setLoader) => {
+    setLoader(true);
     let watchLaterData;
     for await (const video of videoState.watchLater) {
         try {
@@ -68,6 +71,7 @@ const clearWatchLater = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) watchLaterData = res.data.watchlater;
         } catch (err) {
             console.error(err);

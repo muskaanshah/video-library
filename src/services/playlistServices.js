@@ -25,13 +25,15 @@ const createPlaylist = async (title, videoDispatch) => {
     }
 };
 
-const getPlaylists = async (videoDispatch) => {
+const getPlaylists = async (videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get("/api/user/playlists", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_PLAYLIST,
             payload: { value: res.data.playlists },
@@ -119,7 +121,8 @@ const getIndividualPlaylist = async (playlistId, videoDispatch) => {
     }
 };
 
-const clearPlaylists = async (videoState, videoDispatch) => {
+const clearPlaylists = async (videoState, videoDispatch, setLoader) => {
+    setLoader(true);
     let playlistData;
     for await (const playlist of videoState.playlists) {
         try {
@@ -128,6 +131,7 @@ const clearPlaylists = async (videoState, videoDispatch) => {
                     authorization: localStorage.getItem("encodedToken"),
                 },
             });
+            setLoader(false);
             if (res.status === 200) playlistData = res.data.playlists;
         } catch (err) {
             console.error(err);

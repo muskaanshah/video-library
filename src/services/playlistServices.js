@@ -142,13 +142,15 @@ const deletePlaylist = async (playlistId, videoDispatch, alertDispatch) => {
     }
 };
 
-const getIndividualPlaylist = async (playlistId, videoDispatch) => {
+const getIndividualPlaylist = async (playlistId, videoDispatch, setLoader) => {
+    setLoader(true);
     try {
         const res = await axios.get(`/api/user/playlists/${playlistId}`, {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
+        setLoader(false);
         if (res.status === 200) {
             videoDispatch({
                 type: ACTION_TYPE.ADD_SINGLE_PLAYLIST,

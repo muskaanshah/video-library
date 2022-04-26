@@ -5,7 +5,7 @@ import { useVideo } from "../../context/video-context";
 import { addToPlaylist, createPlaylist, getPlaylists } from "../../services";
 import "./addtoplaylistmodal.css";
 
-function AddToPlaylistModal({ setPlaylistModal, video }) {
+function AddToPlaylistModal({ setPlaylistModal, video, playlistRef }) {
     const [addPlaylist, setAddPlaylist] = useState(false);
     const [playlistName, setPlaylistName] = useState("");
     const { videoState, videoDispatch } = useVideo();
@@ -33,7 +33,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
     }, [videoDispatch]);
     return (
         <div className="addtoplaylist-modal-wrapper" onClick={(e) => e.stopPropagation()}>
-            <div className="addtoplaylist-modal py-0-5 color-white">
+            <div className="addtoplaylist-modal py-0-5 color-white" ref={playlistRef}>
                 {videoState.playlists?.map((playlist) => (
                     <p
                         className="videocard-modal-action my-0"

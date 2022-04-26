@@ -13,6 +13,7 @@ function VideoCardModal({
     setPlaylistModal,
     isPlaylist,
     playlistId,
+    modalRef,
 }) {
     const { videoState, videoDispatch } = useVideo();
     const { alertDispatch } = useTheme();
@@ -34,6 +35,7 @@ function VideoCardModal({
         <div
             className="bg-grey-dark videocard-modal py-0-5"
             onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
         >
             <p className="videocard-modal-action my-0" onClick={watchLaterHandler}>
                 {isInWatchLater ? (

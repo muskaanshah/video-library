@@ -31,7 +31,10 @@ function Navbar() {
     return (
         <>
             <div className="navbar bg-grey-dark">
-                <div className="nav-logo-wrapper cursor-pointer centered">
+                <div
+                    className="nav-logo-wrapper cursor-pointer centered"
+                    onClick={() => navigate("/")}
+                >
                     <button
                         className={`hamburger ${drawer && "active"}`}
                         onClick={() => setDrawer((prev) => !prev)}

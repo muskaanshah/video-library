@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CreateNewPlaylistModal } from "../../components/AddToPlaylistModal/CreateNewPlaylistModal";
 import { Loader } from "../../components/Loader/Loader";
 import { useVideo, useTheme } from "../../context";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { getPlaylists, clearPlaylists } from "../../services";
 import { PlaylistTile } from "./components/PlaylistTile";
 import "./playlist.css";
@@ -13,6 +14,9 @@ function Playlist() {
     const clearPlaylist = () => {
         clearPlaylists(videoState, videoDispatch, setLoader);
     };
+    const modalRef = useRef();
+    const toggleRef = useRef();
+    useOnClickOutside(modalRef, toggleRef, () => setPlaylistModal(false));
     useEffect(() => {
         getPlaylists(videoDispatch, setLoader);
     }, [videoDispatch, setLoader]);
@@ -40,11 +44,15 @@ function Playlist() {
                         <div
                             className="new-playlist-div"
                             onClick={() => setPlaylistModal(true)}
+                            ref={toggleRef}
                         >
                             + New playlist
                         </div>
                         {playlistModal && (
-                            <CreateNewPlaylistModal setPlaylistModal={setPlaylistModal} />
+                            <CreateNewPlaylistModal
+                                setPlaylistModal={setPlaylistModal}
+                                modalRef={modalRef}
+                            />
                         )}
                     </div>
                 </>

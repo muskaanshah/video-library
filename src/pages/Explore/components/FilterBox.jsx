@@ -2,10 +2,10 @@ import { useVideo } from "../../../context";
 import { ACTION_TYPE } from "../../../utils";
 import "../explore.css";
 
-function FilterBox({ categories, setFilterModal }) {
+function FilterBox({ categories, setFilterModal, modalRef }) {
     const { videoState, videoDispatch } = useVideo();
     return (
-        <div className="filterbox-wrapper">
+        <div className="filterbox-wrapper" ref={modalRef}>
             <div className="filterbox borderradius-1 p-1">
                 <div className="filterbox-header">
                     <h2 className="my-0-5">Filter By</h2>

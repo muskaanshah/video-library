@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { useTheme, useVideo } from "../../context";
@@ -14,6 +14,7 @@ import {
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 import "./singlevideo.css";
 import { Loader } from "../../components/Loader/Loader";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
@@ -60,6 +61,10 @@ function SingleVideo() {
     const addToHistoryHandler = () => {
         if (token) addToHistory(video, videoDispatch);
     };
+
+    const toggleRef = useRef();
+    const playlistRef = useRef();
+    useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
 
     useEffect(() => {
         getIndividualVideo(videoId, videoDispatch, setLoader);
@@ -143,7 +148,10 @@ function SingleVideo() {
                                     SHARE
                                 </button> */}
                                 </div>
-                                <button className="btn btn-more-singleproduct">
+                                <button
+                                    className="btn btn-more-singleproduct"
+                                    ref={toggleRef}
+                                >
                                     <span className="material-icons-round">
                                         more_vert
                                     </span>
@@ -178,7 +186,11 @@ function SingleVideo() {
                 </div>
             )}
             {playlistModal && (
-                <AddToPlaylistModal setPlaylistModal={setPlaylistModal} video={video} />
+                <AddToPlaylistModal
+                    setPlaylistModal={setPlaylistModal}
+                    video={video}
+                    playlistRef={playlistRef}
+                />
             )}
         </div>
     );

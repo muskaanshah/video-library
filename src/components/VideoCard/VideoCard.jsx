@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateDate, calculateViews } from "../../utils";
 import "../videocard.css";
 import { VideoCardModal } from "./VideoCardModal";
 import { AddToPlaylistModal } from "../AddToPlaylistModal/AddToPlaylistModal";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 function VideoCard({ video, playlistId = "", isPlaylist = false }) {
     const {
@@ -18,6 +19,11 @@ function VideoCard({ video, playlistId = "", isPlaylist = false }) {
     } = video;
     const [openModal, setOpenModal] = useState(false);
     const [playlistModal, setPlaylistModal] = useState(false);
+    const modalRef = useRef();
+    const toggleRef = useRef();
+    const playlistRef = useRef();
+    useOnClickOutside(modalRef, toggleRef, () => setOpenModal(false));
+    useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
     const navigate = useNavigate();
     return (
         <>
@@ -45,6 +51,7 @@ function VideoCard({ video, playlistId = "", isPlaylist = false }) {
                         </p>
                     </div>
                     <button
+                        ref={toggleRef}
                         className="btn btn-more"
                         onClick={(e) => {
                             e.stopPropagation();
@@ -60,12 +67,14 @@ function VideoCard({ video, playlistId = "", isPlaylist = false }) {
                             setPlaylistModal={setPlaylistModal}
                             isPlaylist={isPlaylist}
                             playlistId={playlistId}
+                            modalRef={modalRef}
                         />
                     )}
                     {playlistModal && (
                         <AddToPlaylistModal
                             setPlaylistModal={setPlaylistModal}
                             video={video}
+                            playlistRef={playlistRef}
                         />
                     )}
                 </div>

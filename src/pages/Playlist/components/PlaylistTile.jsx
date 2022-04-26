@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 import { PlaylistModal } from "./PlaylistModal";
 
 function PlaylistTile({ playlist }) {
     const [playlistModal, setPlaylistModal] = useState(false);
     const navigate = useNavigate();
+    const modalRef = useRef();
+    const toggleRef = useRef();
+    useOnClickOutside(modalRef, toggleRef, () => setPlaylistModal(false));
     return (
         <div
             className="playlist-tile color-white"
@@ -35,11 +39,12 @@ function PlaylistTile({ playlist }) {
                         e.stopPropagation();
                         setPlaylistModal((prev) => !prev);
                     }}
+                    ref={toggleRef}
                 >
                     <span className="material-icons-round">more_vert</span>
                 </button>
             </div>
-            {playlistModal && <PlaylistModal playlist={playlist} />}
+            {playlistModal && <PlaylistModal playlist={playlist} modalRef={modalRef} />}
         </div>
     );
 }

@@ -6,7 +6,7 @@ import {
     removeVideoFromHistory,
 } from "../../../services";
 
-function HistoryVideoModal({ video, setOpenModal, setPlaylistModal }) {
+function HistoryVideoModal({ video, setOpenModal, setPlaylistModal, modalRef }) {
     const { videoState, videoDispatch } = useVideo();
     const { alertDispatch } = useTheme();
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
@@ -29,6 +29,7 @@ function HistoryVideoModal({ video, setOpenModal, setPlaylistModal }) {
         <div
             className="bg-grey-dark videocard-modal py-0-5 videocard-modal-horizontal"
             onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
         >
             <p className="videocard-modal-action my-0" onClick={removeHistoryHandler}>
                 <span className="material-icons-outlined">delete</span>

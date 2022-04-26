@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { HistoryVideoModal } from "../../pages/History/components/HistoryVideoModal";
 import { calculateDate, calculateViews } from "../../utils";
 import { AddToPlaylistModal } from "../AddToPlaylistModal/AddToPlaylistModal";
@@ -18,6 +19,11 @@ function VideoCardHorizontal({ video }) {
     } = video;
     const [openModal, setOpenModal] = useState(false);
     const [playlistModal, setPlaylistModal] = useState(false);
+    const modalRef = useRef();
+    const toggleRef = useRef();
+    const playlistRef = useRef();
+    useOnClickOutside(modalRef, toggleRef, () => setOpenModal(false));
+    useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
     const navigate = useNavigate();
     return (
         <>
@@ -49,6 +55,7 @@ function VideoCardHorizontal({ video }) {
                                 e.stopPropagation();
                                 setOpenModal((prev) => !prev);
                             }}
+                            ref={toggleRef}
                         >
                             <span className="material-icons-round">more_vert</span>
                         </button>
@@ -60,12 +67,14 @@ function VideoCardHorizontal({ video }) {
                         video={video}
                         setOpenModal={setOpenModal}
                         setPlaylistModal={setPlaylistModal}
+                        modalRef={modalRef}
                     />
                 )}
                 {playlistModal && (
                     <AddToPlaylistModal
                         setPlaylistModal={setPlaylistModal}
                         video={video}
+                        playlistRef={playlistRef}
                     />
                 )}
             </div>

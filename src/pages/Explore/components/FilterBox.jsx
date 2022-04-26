@@ -32,7 +32,7 @@ function FilterBox({ categories, setFilterModal, modalRef }) {
                                     <input
                                         type="checkbox"
                                         value={item}
-                                        onClick={() =>
+                                        onChange={() =>
                                             videoDispatch({
                                                 type: ACTION_TYPE.TIME,
                                                 payload: { value: item },
@@ -59,7 +59,7 @@ function FilterBox({ categories, setFilterModal, modalRef }) {
                                     type="radio"
                                     name="upload-time"
                                     value={item}
-                                    onClick={() =>
+                                    onChange={() =>
                                         videoDispatch({
                                             type: ACTION_TYPE.SORT_WAY,
                                             payload: { value: item },
@@ -83,7 +83,7 @@ function FilterBox({ categories, setFilterModal, modalRef }) {
                                     checked={videoState.categories.includes(
                                         item.categoryName
                                     )}
-                                    onClick={() =>
+                                    onChange={() =>
                                         videoDispatch({
                                             type: ACTION_TYPE.CATEGORIES,
                                             payload: { value: item.categoryName },

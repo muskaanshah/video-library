@@ -61,4 +61,24 @@ const removeVideoFromHistory = async (video, videoDispatch) => {
     }
 };
 
-export { addToHistory, getHistory, removeVideoFromHistory };
+const clearHistory = async (videoState, videoDispatch) => {
+    let historyData;
+    for await (const video of videoState.history) {
+        try {
+            const res = await axios.delete(`/api/user/history/${video._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            if (res.status === 200) historyData = res.data.history;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    videoDispatch({
+        type: ACTION_TYPE.ADD_HISTORY,
+        payload: { value: historyData },
+    });
+};
+
+export { addToHistory, getHistory, removeVideoFromHistory, clearHistory };

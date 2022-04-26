@@ -5,9 +5,15 @@ export {
     addToWatchLater,
     getWatchLater,
     removeFromWatchLater,
+    clearWatchLater,
 } from "./watchLaterServices";
-export { addToLikes, getLikes, removeLikes } from "./likeServices";
-export { addToHistory, getHistory, removeVideoFromHistory } from "./historyServices";
+export { addToLikes, getLikes, removeLikes, clearLikedVideos } from "./likeServices";
+export {
+    addToHistory,
+    getHistory,
+    removeVideoFromHistory,
+    clearHistory,
+} from "./historyServices";
 export {
     createPlaylist,
     getPlaylists,

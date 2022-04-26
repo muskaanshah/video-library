@@ -26,11 +26,6 @@
 	padding: 5px;
 	border-radius: 50%;
 	background-color: transparent;
-	visibility: hidden;
-}
-
-.video-card:hover .btn-more, .video-card-horizontal .btn-more  {
-	visibility: visible;
 }
 
 .video-details-header {
@@ -116,5 +111,11 @@
 	.videocard-modal-horizontal {
 		top: 2.5rem;
 		left: 34rem;
+	}
+	.btn-more {
+		visibility: hidden;
+	}
+	.video-card:hover .btn-more, .video-card-horizontal .btn-more  {
+		visibility: visible;
 	}
 }

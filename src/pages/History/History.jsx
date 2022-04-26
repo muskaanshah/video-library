@@ -2,11 +2,15 @@ import { useEffect } from "react";
 import { NoVideosToShow } from "../../components/NoVideosToShow/NoVideosToShow";
 import { VideoCardHorizontal } from "../../components/VideoCardHorizontal/VideoCardHorizontal";
 import { useVideo } from "../../context";
-import { getHistory } from "../../services";
+import { clearHistory, getHistory } from "../../services";
 
 function History() {
     const { videoState, videoDispatch } = useVideo();
-    console.log(videoState.history);
+
+    const clearHistoryHandler = () => {
+        clearHistory(videoState, videoDispatch);
+    };
+
     useEffect(() => {
         getHistory(videoDispatch);
     }, [videoDispatch]);
@@ -14,7 +18,15 @@ function History() {
         <div className="container-body color-white p-1">
             {videoState.history.length > 0 ? (
                 <>
-                    <h2 className="page-heading">History</h2>
+                    <div className="page-heading-wrapper">
+                        <h2 className="page-heading">History</h2>
+                        <span
+                            className="text-underline cursor-pointer fs-0-9"
+                            onClick={clearHistoryHandler}
+                        >
+                            Clear history
+                        </span>
+                    </div>
                     <div className="videocard-display mt-1-5">
                         {videoState.history.map((video) => (
                             <VideoCardHorizontal video={video} />

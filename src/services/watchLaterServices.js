@@ -59,4 +59,24 @@ const removeFromWatchLater = async (video, videoDispatch) => {
     }
 };
 
-export { addToWatchLater, getWatchLater, removeFromWatchLater };
+const clearWatchLater = async (videoState, videoDispatch) => {
+    let watchLaterData;
+    for await (const video of videoState.watchLater) {
+        try {
+            const res = await axios.delete(`/api/user/watchlater/${video._id}`, {
+                headers: {
+                    authorization: localStorage.getItem("encodedToken"),
+                },
+            });
+            if (res.status === 200) watchLaterData = res.data.watchlater;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    videoDispatch({
+        type: ACTION_TYPE.ADD_WATCH_LATER,
+        payload: { value: watchLaterData },
+    });
+};
+
+export { addToWatchLater, getWatchLater, removeFromWatchLater, clearWatchLater };

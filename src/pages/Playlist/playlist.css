@@ -57,3 +57,14 @@
 	background-color: var(--grey-dark-opacity);
 	cursor: pointer;
 }
+
+.new-playlist-div {
+	border: 1px var(--white) dashed;
+	width: var(--videotile-width);
+	height: 9rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--white);
+	cursor: pointer;
+}

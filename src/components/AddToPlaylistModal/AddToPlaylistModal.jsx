@@ -30,7 +30,7 @@ function AddToPlaylistModal({ setPlaylistModal, video }) {
     }, [videoDispatch]);
     return (
         <div className="addtoplaylist-modal-wrapper" onClick={(e) => e.stopPropagation()}>
-            <div className="addtoplaylist-modal py-0-5">
+            <div className="addtoplaylist-modal py-0-5 color-white">
                 {videoState.playlists?.map((playlist) => (
                     <p
                         className="videocard-modal-action my-0"

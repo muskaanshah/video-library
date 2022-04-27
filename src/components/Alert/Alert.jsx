@@ -27,7 +27,7 @@ function Alert() {
         if (active) {
             setTimeout(() => {
                 alertDispatch({ type: "DEACTIVATE_ALERT" });
-            }, 2000);
+            }, 2500);
         }
     }, [active, alertDispatch]);
     return (

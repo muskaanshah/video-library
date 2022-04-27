@@ -18,8 +18,8 @@ function Playlist() {
     const toggleRef = useRef();
     useOnClickOutside(modalRef, toggleRef, () => setPlaylistModal(false));
     useEffect(() => {
-        getPlaylists(videoDispatch, setLoader);
-    }, [videoDispatch, setLoader]);
+        getPlaylists(videoDispatch);
+    }, [videoDispatch]);
     return (
         <div className="container-body p-1 color-white">
             {loader ? (

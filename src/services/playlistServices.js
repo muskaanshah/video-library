@@ -25,15 +25,13 @@ const createPlaylist = async (title, videoDispatch) => {
     }
 };
 
-const getPlaylists = async (videoDispatch, setLoader) => {
-    setLoader(true);
+const getPlaylists = async (videoDispatch) => {
     try {
         const res = await axios.get("/api/user/playlists", {
             headers: {
                 authorization: localStorage.getItem("encodedToken"),
             },
         });
-        setLoader(false);
         videoDispatch({
             type: ACTION_TYPE.ADD_PLAYLIST,
             payload: { value: res.data.playlists },
@@ -70,13 +68,22 @@ const addToPlaylist = async (video, playlistId, videoDispatch, alertDispatch) =>
             });
         }
     } catch (err) {
-        alertDispatch({
-            type: ACTION_TYPE.ACTIVATE_ALERT,
-            payload: {
-                alertType: "error",
-                alertMsg: err.message,
-            },
-        });
+        if (err.response.status === 409)
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "error",
+                    alertMsg: "Video already added in playlist",
+                },
+            });
+        else
+            alertDispatch({
+                type: ACTION_TYPE.ACTIVATE_ALERT,
+                payload: {
+                    alertType: "error",
+                    alertMsg: err.message,
+                },
+            });
     }
 };
 

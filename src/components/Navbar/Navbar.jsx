@@ -31,10 +31,7 @@ function Navbar() {
     return (
         <>
             <div className="navbar bg-grey-dark">
-                <div
-                    className="nav-logo-wrapper cursor-pointer centered"
-                    onClick={() => navigate("/")}
-                >
+                <div className="nav-logo-wrapper cursor-pointer centered">
                     <button
                         className={`hamburger ${drawer && "active"}`}
                         onClick={() => setDrawer((prev) => !prev)}
@@ -47,8 +44,14 @@ function Navbar() {
                         className="nav-logo-img mx-1"
                         alt="logo"
                         src="https://res.cloudinary.com/ecommerce-muskaan/image/upload/v1647541606/e-commerce/dice-logo_sbyevn.png"
+                        onClick={() => navigate("/")}
                     />
-                    <span className="ls-2 color-primary fw-700 fs-2">BOARDFLIX</span>
+                    <span
+                        className="ls-2 color-primary fw-700 fs-2 cursor-pointer"
+                        onClick={() => navigate("/")}
+                    >
+                        BOARDFLIX
+                    </span>
                 </div>
                 <span className="search">
                     <input

@@ -22,7 +22,7 @@ function HistoryVideoModal({ video, setOpenModal, setPlaylistModal, modalRef }) 
     };
     const removeHistoryHandler = (e) => {
         e.stopPropagation();
-        removeVideoFromHistory(video, videoDispatch, alertDispatch);
+        removeVideoFromHistory(video, videoDispatch);
         setOpenModal(false);
     };
     return (

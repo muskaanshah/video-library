@@ -43,7 +43,7 @@ const getHistory = async (videoDispatch, setLoader) => {
     }
 };
 
-const removeVideoFromHistory = async (video, videoDispatch, alertDispatch) => {
+const removeVideoFromHistory = async (video, videoDispatch) => {
     try {
         const res = await axios.delete(`/api/user/history/${video._id}`, {
             headers: {
@@ -55,22 +55,9 @@ const removeVideoFromHistory = async (video, videoDispatch, alertDispatch) => {
                 type: ACTION_TYPE.ADD_HISTORY,
                 payload: { value: res.data.history },
             });
-            alertDispatch({
-                type: ACTION_TYPE.ACTIVATE_ALERT,
-                payload: {
-                    alertType: "success",
-                    alertMsg: "Removed from history",
-                },
-            });
         }
     } catch (err) {
-        alertDispatch({
-            type: ACTION_TYPE.DEACTIVATE_ALERT,
-            payload: {
-                alertType: "error",
-                alertMsg: err.message,
-            },
-        });
+        console.error(err.message);
     }
 };
 

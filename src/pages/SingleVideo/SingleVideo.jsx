@@ -10,12 +10,12 @@ import {
     removeFromWatchLater,
     addToHistory,
     getIndividualVideo,
+    removeVideoFromHistory,
 } from "../../services";
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 import "./singlevideo.css";
 import { Loader } from "../../components/Loader/Loader";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { VideoCardModal } from "../../components/VideoCard/VideoCardModal";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
@@ -59,8 +59,16 @@ function SingleVideo() {
         } else navigate("/login");
     };
 
-    const addToHistoryHandler = () => {
-        if (token) addToHistory(video, videoDispatch);
+    const addToHistoryHandler = async () => {
+        if (token) {
+            const isInHistory = videoState.history.find((vid) => vid._id === video._id);
+            if (isInHistory) {
+                await removeVideoFromHistory(video, videoDispatch);
+                addToHistory(video, videoDispatch);
+            } else {
+                addToHistory(video, videoDispatch);
+            }
+        }
     };
 
     const toggleRef = useRef();

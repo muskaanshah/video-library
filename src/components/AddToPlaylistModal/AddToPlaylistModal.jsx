@@ -34,16 +34,34 @@ function AddToPlaylistModal({ setPlaylistModal, video, playlistRef }) {
     return (
         <div className="addtoplaylist-modal-wrapper" onClick={(e) => e.stopPropagation()}>
             <div className="addtoplaylist-modal py-0-5 color-white" ref={playlistRef}>
-                {videoState.playlists?.map((playlist) => (
-                    <p
-                        className="videocard-modal-action my-0"
-                        onClick={() => addToPlaylistHandler(playlist._id)}
-                        key={playlist._id}
-                    >
-                        <span className="material-icons-outlined">playlist_add</span>
-                        {playlist.title}
-                    </p>
-                ))}
+                <p className="videocard-modal-action my-0">Save to</p>
+                {videoState.playlists?.map((playlist) => {
+                    const isVideoInplaylist = playlist.videos?.find(
+                        (vid) => vid._id === video._id
+                    );
+                    return (
+                        <p
+                            className={`videocard-modal-action my-0 ${
+                                isVideoInplaylist
+                                    ? "text-light cursor-disabled"
+                                    : "cursor-pointer"
+                            }`}
+                            onClick={() => addToPlaylistHandler(playlist._id)}
+                            key={playlist._id}
+                        >
+                            {isVideoInplaylist ? (
+                                <span className="material-icons-outlined">
+                                    playlist_add_check
+                                </span>
+                            ) : (
+                                <span className="material-icons-outlined">
+                                    playlist_add
+                                </span>
+                            )}
+                            {playlist.title}
+                        </p>
+                    );
+                })}
                 {addPlaylist && (
                     <input
                         type="text"

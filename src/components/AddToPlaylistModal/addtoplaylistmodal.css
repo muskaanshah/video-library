@@ -39,3 +39,7 @@
 .playlist-modal-close > .material-icons-outlined {
 	font-size: 0.9rem;
 }
+
+.cursor-disabled {
+	cursor: not-allowed;
+}

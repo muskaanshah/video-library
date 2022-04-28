@@ -28,6 +28,14 @@
 	color: var(--white);
 }
 
+.singlevideo-icon-wrapper > div {
+	display: flex;
+}
+
+.action-names {
+	display: none;
+}
+
 .btn-action {
 	display: flex;
 	gap: 4px;
@@ -45,19 +53,15 @@
 	gap: 0.5rem;
 }
 
-.singlevideo-icon-wrapper > div {
-	display: none;
-}
-
 .btn-more-singleproduct {
 	color: var(--white);
 }
 
 @media only screen and (min-width: 650px) {
-	.singlevideo-icon-wrapper > div {
-		display: flex;
-	}
 	.btn-more-singleproduct {
 		display: none;
+	}
+	.action-names {
+		display: inline-block;
 	}
 }

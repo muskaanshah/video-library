@@ -15,6 +15,7 @@ import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPla
 import "./singlevideo.css";
 import { Loader } from "../../components/Loader/Loader";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import { VideoCardModal } from "../../components/VideoCard/VideoCardModal";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
@@ -123,14 +124,18 @@ function SingleVideo() {
                                                 <span className="material-icons-round">
                                                     watch_later
                                                 </span>
-                                                <span>REMOVE FROM WATCH LATER</span>
+                                                <span className="action-names">
+                                                    REMOVE FROM WATCH LATER
+                                                </span>
                                             </>
                                         ) : (
                                             <>
                                                 <span className="material-icons-outlined">
                                                     watch_later
                                                 </span>
-                                                <span>WATCH LATER</span>
+                                                <span className="action-names">
+                                                    WATCH LATER
+                                                </span>
                                             </>
                                         )}
                                     </button>
@@ -141,21 +146,13 @@ function SingleVideo() {
                                         <span className="material-icons-outlined">
                                             playlist_add
                                         </span>
-                                        SAVE
+                                        <span className="action-names">SAVE</span>
                                     </button>
                                     {/* <button className="btn btn-action">
                                     <span className="material-icons-outlined">share</span>
                                     SHARE
                                 </button> */}
                                 </div>
-                                <button
-                                    className="btn btn-more-singleproduct"
-                                    ref={toggleRef}
-                                >
-                                    <span className="material-icons-round">
-                                        more_vert
-                                    </span>
-                                </button>
                             </div>
                         </div>
                         <div className="divider-black bg-white mt-1"></div>

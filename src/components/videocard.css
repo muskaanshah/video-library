@@ -92,8 +92,8 @@
 }
 
 .video-card:hover,
-.video-card-horizontal:hover,
-.videocard-modal-action:hover {
+.video-card-horizontal,
+.videocard-modal-action {
 	cursor: pointer;
 }
 

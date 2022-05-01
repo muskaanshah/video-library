@@ -39,9 +39,7 @@ function SingleVideo() {
         channelLink,
         comments,
     } = video;
-    console.log("comments", comments);
     const [commentsState, setCommentsState] = useState(comments || []);
-    console.log("commentSTate", commentsState);
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
     const likeHandler = () => {
         if (token) {

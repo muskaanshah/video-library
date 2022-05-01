@@ -25,24 +25,26 @@ function InputComment({ setCommentsState, commentsState }) {
         setInputValue("");
     };
     return (
-        <div className="add-comment mb-2">
-            <span className="borderradius-full avatar-default-sm bg-primary" alt="dp">
-                {user.firstName[0]}
-            </span>
-            <input
-                type="text"
-                placeholder="Add a comment"
-                className="input-comment color-white fs-1"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => {
-                    if (e.key === "Enter") addCommentHandler();
-                }}
-            />
+        <div className="add-comment-wrapper">
+            <div className="add-comment">
+                <span className="borderradius-full avatar-default-sm bg-primary" alt="dp">
+                    {user.firstName[0]}
+                </span>
+                <input
+                    type="text"
+                    placeholder="Add a comment"
+                    className="input-comment color-white fs-1"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={(e) => {
+                        if (e.key === "Enter") addCommentHandler();
+                    }}
+                />
+            </div>
             <div
                 className={`${
                     inputValue.length > 0 ? "visibility-shown" : "visibility-hidden"
-                } centered`}
+                } comment-button-wrapper`}
             >
                 <button
                     className="btn bg-transparent text-underline color-white"

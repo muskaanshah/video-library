@@ -39,9 +39,9 @@ function SingleVideo() {
         channelLink,
         comments,
     } = video;
-
+    console.log("comments", comments);
     const [commentsState, setCommentsState] = useState(comments || []);
-
+    console.log("commentSTate", commentsState);
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
     const likeHandler = () => {
         if (token) {
@@ -80,7 +80,14 @@ function SingleVideo() {
     useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
 
     useEffect(() => {
-        getIndividualVideo(videoId, videoDispatch, setLoader);
+        (async () => {
+            const { comments } = await getIndividualVideo(
+                videoId,
+                videoDispatch,
+                setLoader
+            );
+            if (comments && comments.length > 0) setCommentsState(comments);
+        })();
     }, [videoId, videoDispatch, setLoader]);
     return (
         <div className="container-body color-white">
@@ -198,7 +205,7 @@ function SingleVideo() {
                                 setCommentsState={setCommentsState}
                                 commentsState={commentsState}
                             />
-                            {commentsState.map((comment) => (
+                            {[...commentsState].reverse()?.map((comment) => (
                                 <div className="comment my-1" key={comment._userName}>
                                     <span
                                         className="borderradius-full avatar-default-sm default-theme color-white"

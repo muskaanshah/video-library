@@ -15,7 +15,7 @@ function InputComment({ setCommentsState, commentsState }) {
         const newState = [
             ...commentsState,
             {
-                userName: user.firstName + user.lastName,
+                userName: `${user.firstName} ${user.lastName}`,
                 comment: inputValue,
                 commentDate: getDateInDesiredFormat(),
                 color: "#f5cb5c",

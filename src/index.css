@@ -116,12 +116,16 @@ body {
 
 .page-heading {
     color: var(--white);
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .page-heading-wrapper {
     display: flex;
     align-items: baseline;
     gap: 2rem;
+    border-left: 3px solid var(--primary);
+    padding-left: 1rem;
 }
 
 @media only screen and (min-width: 750px) {

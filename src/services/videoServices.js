@@ -24,6 +24,7 @@ const getIndividualVideo = async (videoId, videoDispatch, setLoader) => {
             type: ACTION_TYPE.SINGLE_VIDEO,
             payload: { value: res.data.video },
         });
+        return res.data.video;
     } catch (err) {
         console.error(err.message);
     }

@@ -24,7 +24,16 @@ function History() {
                     {videoState.history.length > 0 ? (
                         <>
                             <div className="page-heading-wrapper">
-                                <h2 className="page-heading">History</h2>
+                                <div>
+                                    <h2 className="page-heading">History</h2>
+                                    <span className="fs-0-8">
+                                        {`${videoState.history.length} ${
+                                            videoState.history.length === 1
+                                                ? "video"
+                                                : "videos"
+                                        }`}
+                                    </span>
+                                </div>
                                 <span
                                     className="text-underline cursor-pointer fs-0-9"
                                     onClick={clearHistoryHandler}

@@ -16,6 +16,7 @@ import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPla
 import "./singlevideo.css";
 import { Loader } from "../../components/Loader/Loader";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import { InputComment } from "./components/InputComment";
 
 function SingleVideo() {
     const [playlistModal, setPlaylistModal] = useState(false);
@@ -36,8 +37,9 @@ function SingleVideo() {
         subscribers,
         description,
         channelLink,
+        comments,
     } = video;
-
+    const [commentsState, setCommentsState] = useState(comments || []);
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === _id);
     const likeHandler = () => {
         if (token) {
@@ -76,7 +78,14 @@ function SingleVideo() {
     useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
 
     useEffect(() => {
-        getIndividualVideo(videoId, videoDispatch, setLoader);
+        (async () => {
+            const { comments } = await getIndividualVideo(
+                videoId,
+                videoDispatch,
+                setLoader
+            );
+            if (comments && comments.length > 0) setCommentsState(comments);
+        })();
     }, [videoId, videoDispatch, setLoader]);
     return (
         <div className="container-body color-white">
@@ -186,6 +195,39 @@ function SingleVideo() {
                                 </p>
                                 <p className="mt-1 width-80">{description}</p>
                             </div>
+                        </div>
+                        <div className="divider-black bg-white my-1"></div>
+                        <div className="comments-section">
+                            <h3>Comments</h3>
+                            <InputComment
+                                setCommentsState={setCommentsState}
+                                commentsState={commentsState}
+                            />
+                            {[...commentsState].reverse()?.map((comment) => (
+                                <div className="comment my-1" key={comment._userName}>
+                                    <span
+                                        className="borderradius-full avatar-default-sm default-theme color-white"
+                                        style={{ backgroundColor: comment.color }}
+                                        alt="dp"
+                                    >
+                                        {comment.userName[0]}
+                                    </span>
+                                    <div>
+                                        <p
+                                            className="my-0"
+                                            style={{
+                                                color: comment.color,
+                                            }}
+                                        >
+                                            {comment.userName}
+                                        </p>
+                                        <p className="my-0-5">{comment.comment}</p>
+                                        <p className="text-light fs-0-8 my-0">
+                                            {comment.commentDate}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

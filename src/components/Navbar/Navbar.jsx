@@ -9,7 +9,7 @@ import { ACTION_TYPE } from "../../utils";
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const { theme, toggleThemeHandler } = useTheme();
-    const { token } = useAuth();
+    const { token, user } = useAuth();
     const { videoState, videoDispatch } = useVideo();
     const navigate = useNavigate();
     const location = useLocation();
@@ -92,7 +92,7 @@ function Navbar() {
                     {token ? (
                         <Link to="/user" className="text-none">
                             <span className="avatar-default-sm borderradius-full bg-primary color-black mx-1 ">
-                                AB
+                                {user?.firstName?.charAt(0)}
                             </span>
                         </Link>
                     ) : (

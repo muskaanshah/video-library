@@ -1,67 +1,95 @@
 .iframe-video {
-	aspect-ratio: 1.777;
+    aspect-ratio: 1.777;
 }
 
 .singlevideo-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	text-align: left;
-	width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    width: 75%;
 }
 
 .singlevideo-viewcount-wrapper {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .singlevideo-viewcount {
-	flex-grow: 1;
+    flex-grow: 1;
 }
 
 .singlevideo-icon-wrapper {
-	display: flex;
+    display: flex;
 }
 
 .singlevideo-icon-wrapper button {
-	background-color: transparent;
-	color: var(--white);
+    background-color: transparent;
+    color: var(--white);
 }
 
 .singlevideo-icon-wrapper > div {
-	display: flex;
+    display: flex;
 }
 
 .action-names {
-	display: none;
+    display: none;
 }
 
 .btn-action {
-	display: flex;
-	gap: 4px;
-	align-items: center;
+    display: flex;
+    gap: 4px;
+    align-items: center;
 }
 
 .divider-black {
-	width: 100%;
+    width: 100%;
 }
 
 .channel-details {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	gap: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
 .btn-more-singleproduct {
-	color: var(--white);
+    color: var(--white);
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.add-comment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-comment {
+    border: 0;
+    border-bottom: 2px solid var(--white);
+    background-color: transparent;
+    outline: 0;
+    font-family: inherit;
+	box-sizing: border-box;
+	flex-grow: 1;
+}
+
+.comment-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 @media only screen and (min-width: 650px) {
-	.btn-more-singleproduct {
-		display: none;
-	}
-	.action-names {
-		display: inline-block;
-	}
+    .btn-more-singleproduct {
+        display: none;
+    }
+    .action-names {
+        display: inline-block;
+    }
 }

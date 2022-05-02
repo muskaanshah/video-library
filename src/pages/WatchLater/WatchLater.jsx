@@ -23,7 +23,16 @@ function WatchLater() {
                     {videoState.watchLater.length > 0 ? (
                         <>
                             <div className="page-heading-wrapper">
-                                <h2 className="page-heading">Watch Later</h2>
+                                <div>
+                                    <h2 className="page-heading">Watch Later</h2>
+                                    <span className="fs-0-8">
+                                        {`${videoState.watchLater.length} ${
+                                            videoState.watchLater.length === 1
+                                                ? "video"
+                                                : "videos"
+                                        }`}
+                                    </span>
+                                </div>
                                 <span
                                     className="text-underline cursor-pointer fs-0-9"
                                     onClick={clearWatchLaterHandler}

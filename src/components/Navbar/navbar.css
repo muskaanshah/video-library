@@ -1,140 +1,165 @@
 .navbar {
-	height: var(--navbar-height);
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-	margin: 0;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0;
 }
 
 .avatar-default-sm {
-	width: max(2.5rem, 24px);
-	height: auto;
-	aspect-ratio: 1;
-	font-size: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    width: max(2.5rem, 24px);
+    height: auto;
+    aspect-ratio: 1;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-logo-img {
-	display: none;
+    display: none;
 }
 
 .search {
-	background-color: var(--grey-dark-opacity);
-	border-radius: 0.25rem;
+    background-color: var(--grey-dark-opacity);
+    border-radius: 0.25rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 12rem;
+}
+
+.search-wrapper {
 	display: flex;
-	align-items: center;
-	position: absolute;
-	left:0;
-	right:0;
-	margin: auto;
-	width: 12rem;
+    align-items: center;
+	position: relative
 }
 
 .btn-search > .material-icons-outlined {
-	font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 .input-search {
-	margin-bottom: 0;
-	padding: 0.5rem 1rem;
-	outline: none;
-	border: none;
-	color: var(--white);
-	font-family: inherit;
-	background-color: inherit;
-	border-radius: 0.25rem;
+    margin-bottom: 0;
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    color: var(--white);
+    font-family: inherit;
+    background-color: inherit;
+    border-radius: 0.25rem;
+    width: 100%;
 }
 
 .visibility-shown {
-	visibility: visible;
+    visibility: visible;
 }
 
 .visibility-hidden {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .input-search::placeholder {
-	color: var(--white);
-	font-size: 1rem;
+    color: var(--white);
+    font-size: 1rem;
 }
 
 .avatar-default-sm:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .hamburger {
-	background-color: transparent;
-	border: 0;
-	outline: 0;
-	cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
 }
 
 .hamburger .ham-line {
-	display: block;
-	width: 20px;
-	height: 3px;
-	background-color: var(--white);
-	margin-block: 4px;
-	border-radius: 4px;
-	transition: transform 0.5s, opacity .25s;
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: var(--white);
+    margin-block: 4px;
+    border-radius: 4px;
+    transition: transform 0.5s, opacity 0.25s;
 }
 
-.hamburger.active .ham-line:nth-child(1){
-	transform: translateY(7px) rotate(45deg);
+.hamburger.active .ham-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
 }
 
-.hamburger.active .ham-line:nth-child(2){
-	opacity: 0;
+.hamburger.active .ham-line:nth-child(2) {
+    opacity: 0;
 }
 
-.hamburger.active .ham-line:nth-child(3){
-	transform: translateY(-7px) rotate(-45deg);
+.hamburger.active .ham-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 .navbar > .centered .material-icons-outlined {
-	font-size: 2rem;
-	color: var(--white);
+    font-size: 2rem;
+    color: var(--white);
 }
 
 .nav-logo-wrapper {
-	gap: 0;
+    gap: 0;
 }
 
 .nav-logo-wrapper > span {
-	display: none;
+    display: none;
+}
+
+.search-list {
+    position: absolute;
+    top: 2rem;
+	width: 12rem;
+}
+
+.search-item {
+    padding: 0.25rem 0.5rem;
+    margin: 0;
+    background-color: var(--grey-dark);
+    color: var(--white);
+    border-bottom: 0.5px solid var(--grey);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+	line-height: 2;
 }
 
 @media only screen and (min-width: 350px) {
-	.nav-logo-img {
-		display:inline;
-	}
+    .nav-logo-img {
+        display: inline;
+    }
 }
 
 @media only screen and (min-width: 550px) {
-	.search {
-		width: 23rem;
-	}
+    .search, .search-list {
+        width: 23rem;
+    }
 }
 
 @media only screen and (min-width: 650px) {
-	.nav-logo-wrapper > span {
-		display: inline;
-	}
+    .nav-logo-wrapper > span {
+        display: inline;
+    }
 }
 
-
 @media only screen and (min-width: 750px) {
-	.hamburger {
-		display: none;
-	}
-	.search {
-		width: 25rem;
-	}
+    .hamburger {
+        display: none;
+    }
+    .search, .search-list {
+        width: 25rem;
+    }
 }

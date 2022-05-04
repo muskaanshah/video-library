@@ -5,6 +5,7 @@ import { Drawer } from "../Drawer/Drawer";
 import { avatar } from "../../assets";
 import "./navbar.css";
 import { ACTION_TYPE } from "../../utils";
+import { SearchList } from "./SearchList";
 
 function Navbar() {
     const [drawer, setDrawer] = useState(false);
@@ -16,6 +17,10 @@ function Navbar() {
     const searchHandler = () => {
         videoDispatch({ type: ACTION_TYPE.SEARCH_VIDEOS });
         navigate("/explore");
+        videoDispatch({
+            type: "OPEN_CLOSE_SEARCH_MODAL",
+            payload: { value: false },
+        });
     };
 
     useEffect(() => {
@@ -54,31 +59,39 @@ function Navbar() {
                     </span>
                 </div>
                 <span className="search">
-                    <input
-                        type="text"
-                        className="input-text input-search"
-                        placeholder="Search"
-                        value={videoState.searchText}
-                        onChange={(e) =>
-                            videoDispatch({
-                                type: ACTION_TYPE.SEARCH_TEXT,
-                                payload: { value: e.target.value },
-                            })
-                        }
-                        onKeyPress={(e) => {
-                            if (e.key === "Enter") searchHandler();
-                        }}
-                    />
-                    <button
-                        className={`btn btn-search bg-transparent cursor-pointer color-white p-0 mr-0-5 ${
-                            videoState.searchText.length > 0
-                                ? "visibility-shown"
-                                : "visibility-hidden"
-                        }`}
-                        onClick={searchHandler}
-                    >
-                        <span className="material-icons-outlined">search</span>
-                    </button>
+                    <div className="search-wrapper">
+                        <input
+                            type="text"
+                            className="input-text input-search"
+                            placeholder="Search"
+                            value={videoState.searchText}
+                            onChange={(e) => {
+                                videoDispatch({
+                                    type: ACTION_TYPE.SEARCH_TEXT,
+                                    payload: { value: e.target.value },
+                                });
+                                videoDispatch({
+                                    type: "OPEN_CLOSE_SEARCH_MODAL",
+                                    payload: { value: true },
+                                });
+                            }}
+                            onKeyPress={(e) => {
+                                if (e.key === "Enter") searchHandler();
+                            }}
+                        />
+                        <button
+                            className={`btn btn-search bg-transparent cursor-pointer color-white p-0 mr-0-5 ${
+                                videoState.searchText.length > 0
+                                    ? "visibility-shown"
+                                    : "visibility-hidden"
+                            }`}
+                            onClick={searchHandler}
+                        >
+                            <span className="material-icons-outlined">search</span>
+                        </button>
+                        {(videoState.searchModal ||
+                            videoState.searchText.length === 0) && <SearchList />}
+                    </div>
                 </span>
                 <div className="centered">
                     <button

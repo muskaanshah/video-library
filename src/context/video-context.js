@@ -18,6 +18,7 @@ const initialState = {
     playlists: [],
     playlist: {},
     searchText: "",
+    searchModal: false,
 };
 
 const videoReducer = (state, action) => {
@@ -59,6 +60,11 @@ const videoReducer = (state, action) => {
             return { ...state, playlist: action.payload.value };
         case ACTION_TYPE.SINGLE_VIDEO:
             return { ...state, singleVideo: action.payload.value };
+        case "OPEN_CLOSE_SEARCH_MODAL":
+            return {
+                ...state,
+                searchModal: action.payload.value,
+            };
         case ACTION_TYPE.CLEAR_ALL:
             return {
                 ...state,
@@ -66,6 +72,7 @@ const videoReducer = (state, action) => {
                 categories: [],
                 time: [],
                 sortWay: "",
+                searchText: "",
             };
         case ACTION_TYPE.USER_LOGOUT:
             return {

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useVideo } from "../../context";
 import { itemListCalculation } from "../../utils/ItemListCalculation";
+import { Highlight } from "./Highlight";
 
 function SearchList() {
     const { videoState } = useVideo();
@@ -15,7 +16,12 @@ function SearchList() {
                             to={`/explore/${item._id}`}
                             key={item._id}
                         >
-                            <p className="search-item fs-0-9">{item.title}</p>
+                            <p className="search-item fs-0-9">
+                                <Highlight
+                                    text={item.title}
+                                    highlight={videoState.searchText}
+                                />
+                            </p>
                         </Link>
                     ))}
         </div>

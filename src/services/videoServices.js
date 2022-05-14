@@ -30,4 +30,13 @@ const getIndividualVideo = async (videoId, videoDispatch, setLoader) => {
     }
 };
 
-export { getVideo, getIndividualVideo };
+const addComment = async (videoId, comments, setCommentsState) => {
+    try {
+        const res = await axios.post(`/api/video/${videoId}`, { comments });
+        setCommentsState(res.data.video.comments);
+    } catch (err) {
+        console.error(err.message);
+    }
+};
+
+export { getVideo, getIndividualVideo, addComment };

@@ -158,7 +158,10 @@ function SingleVideo() {
                                     </button>
                                     <button
                                         className="btn btn-action"
-                                        onClick={() => setPlaylistModal(true)}
+                                        onClick={() => {
+                                            if (token) setPlaylistModal(true);
+                                            else navigate("/login");
+                                        }}
                                     >
                                         <span className="material-icons-outlined">
                                             playlist_add
@@ -199,10 +202,13 @@ function SingleVideo() {
                         <div className="divider-black bg-white my-1"></div>
                         <div className="comments-section">
                             <h3>Comments</h3>
-                            <InputComment
-                                setCommentsState={setCommentsState}
-                                commentsState={commentsState}
-                            />
+                            {token && (
+                                <InputComment
+                                    setCommentsState={setCommentsState}
+                                    commentsState={commentsState}
+                                    videoId={_id}
+                                />
+                            )}
                             {[...commentsState].reverse()?.map((comment) => (
                                 <div className="comment my-1" key={comment._userName}>
                                     <span

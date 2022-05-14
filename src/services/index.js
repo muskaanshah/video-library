@@ -1,6 +1,6 @@
 export { loginUser, signUpUser } from "./authServices";
 export { getCategory } from "./categoryServices";
-export { getVideo, getIndividualVideo } from "./videoServices";
+export { getVideo, getIndividualVideo, addComment } from "./videoServices";
 export {
     addToWatchLater,
     getWatchLater,

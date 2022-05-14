@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "../../../context";
+import { addComment } from "../../../services";
 
-function InputComment({ setCommentsState, commentsState }) {
+function InputComment({ setCommentsState, commentsState, videoId }) {
     const [inputValue, setInputValue] = useState("");
     const { user } = useAuth();
     const getDateInDesiredFormat = () => {
@@ -21,7 +22,8 @@ function InputComment({ setCommentsState, commentsState }) {
                 color: "#f5cb5c",
             },
         ];
-        setCommentsState(newState);
+        addComment(videoId, newState, setCommentsState);
+        // setCommentsState(newState);
         setInputValue("");
     };
     return (

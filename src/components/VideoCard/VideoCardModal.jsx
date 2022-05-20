@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme, useVideo } from "../../context";
 import {
     addToWatchLater,
@@ -20,6 +20,7 @@ function VideoCardModal({
     const isInLikes = videoState.likedVideos.find((vid) => vid._id === video._id);
     const isInWatchLater = videoState.watchLater.find((vid) => vid._id === video._id);
     const token = localStorage.getItem("encodedToken");
+    const location = useLocation();
     const navigate = useNavigate();
     const watchLaterHandler = (e) => {
         if (token) {
@@ -28,7 +29,7 @@ function VideoCardModal({
             } else {
                 addToWatchLater(video, videoDispatch, alertDispatch);
             }
-        } else navigate("/login");
+        } else navigate("/login", { state: { from: location.pathname }, replace: true });
         setOpenModal(false);
     };
     return (
@@ -69,7 +70,8 @@ function VideoCardModal({
                 <p
                     className="videocard-modal-action my-0"
                     onClick={(e) => {
-                        setPlaylistModal(true);
+                        if (token) setPlaylistModal(true);
+                        else navigate("/login");
                         setOpenModal(false);
                     }}
                 >

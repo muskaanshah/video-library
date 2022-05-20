@@ -5,12 +5,11 @@ import "./userprofile.css";
 
 function UserProfile() {
     const { user, setToken, setUser } = useAuth();
-    const { videoDispatch, videoState } = useVideo();
+    const { videoDispatch } = useVideo();
     const { alertDispatch } = useTheme();
     const navigate = useNavigate();
     const userLogoutHandler = () => {
         videoDispatch({ type: ACTION_TYPE.USER_LOGOUT });
-        console.log({ videoState });
         localStorage.removeItem("encodedToken");
         localStorage.removeItem("user");
         setToken("");

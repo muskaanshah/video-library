@@ -11,7 +11,7 @@ const loginUser = async (
     location,
     alertDispatch
 ) => {
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from || "/";
     try {
         const res = await axios.post("/api/auth/login", {
             email,
@@ -49,7 +49,7 @@ const signUpUser = async (
     location,
     alertDispatch
 ) => {
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from || "/";
     try {
         const res = await axios.post("/api/auth/signup", {
             email,

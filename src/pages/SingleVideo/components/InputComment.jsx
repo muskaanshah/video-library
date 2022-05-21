@@ -45,7 +45,9 @@ function InputComment({ setCommentsState, commentsState, videoId }) {
             </div>
             <div
                 className={`${
-                    inputValue.length > 0 ? "visibility-shown" : "visibility-hidden"
+                    inputValue.trim().length > 0
+                        ? "visibility-shown"
+                        : "visibility-hidden"
                 } comment-button-wrapper`}
             >
                 <button

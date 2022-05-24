@@ -28,11 +28,15 @@ $ npm start
 - Fully Responsive
 
 ## Built with
-
 - React JS
 - React Context API + useReducer
 - React Router v6
 - Vanilla CSS integrated with Rhythm UI
+
+## Demo video
+
+https://user-images.githubusercontent.com/67731665/170029823-270322c6-1b6b-419c-a486-578ad113f2a4.mp4
+
 
 ## Resources -
 - [Google Icons](https://fonts.google.com/)

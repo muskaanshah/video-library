@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { useTheme, useVideo } from "../../context";
-import { calculateDate, calculateLikes, calculateViews } from "../../utils";
+import { ACTION_TYPE, calculateDate, calculateLikes, calculateViews } from "../../utils";
 import {
   addToWatchLater,
   addToLikes,
@@ -74,6 +74,17 @@ function SingleVideo() {
     }
   };
 
+  const copyLinkHandler = () => {
+    navigator.clipboard.writeText(`https://boardflix.netlify.app/explore/${_id}`);
+    alertDispatch({
+      type: ACTION_TYPE.ACTIVATE_ALERT,
+      payload: {
+        alertType: "success",
+        alertMsg: "Copied link to clipboard",
+      },
+    });
+  };
+
   const toggleRef = useRef();
   const playlistRef = useRef();
   useOnClickOutside(playlistRef, toggleRef, () => setPlaylistModal(false));
@@ -105,7 +116,7 @@ function SingleVideo() {
           />
           <div className="singlevideo-info mx-auto">
             <h2 className="mb-0">{title}</h2>
-            <div className="singlevideo-viewcount-wrapper">
+            <div className="singlevideo-viewcount-wrapper my-1">
               <p className="my-0 text-light singlevideo-viewcount">
                 {calculateViews(views)} views • {calculateDate(dateOfUpload)} ago
               </p>
@@ -151,10 +162,10 @@ function SingleVideo() {
                     <span className="material-icons-outlined">playlist_add</span>
                     <span className="action-names">SAVE</span>
                   </button>
-                  {/* <button className="btn btn-action">
-                                    <span className="material-icons-outlined">share</span>
-                                    SHARE
-                                </button> */}
+                  <button className="btn btn-action" onClick={copyLinkHandler}>
+                    <span className="material-icons-outlined">content_copy</span>
+                    <span className="action-names">SHARE</span>
+                  </button>
                 </div>
               </div>
             </div>

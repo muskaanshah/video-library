@@ -6,6 +6,7 @@ import {
   removeFromWatchLater,
   removeLikes,
 } from "../../services";
+import { ACTION_TYPE } from "../../utils";
 
 function VideoCardModal({
   video,
@@ -32,6 +33,18 @@ function VideoCardModal({
     } else navigate("/login", { state: { from: location.pathname }, replace: true });
     setOpenModal(false);
   };
+  const copyLinkHandler = () => {
+    navigator.clipboard.writeText(`https://boardflix.netlify.app/explore/${video._id}`);
+    alertDispatch({
+      type: ACTION_TYPE.ACTIVATE_ALERT,
+      payload: {
+        alertType: "success",
+        alertMsg: "Copied link to clipboard",
+      },
+    });
+    setOpenModal(false);
+  };
+
   return (
     <div
       className="bg-grey-dark videocard-modal py-0-5"
@@ -87,10 +100,10 @@ function VideoCardModal({
           <span>REMOVE FROM LIKED</span>
         </p>
       )}
-      {/* <p className="videocard-modal-action my-0">
-				<span className="material-icons-outlined">share</span>
-				<span>SHARE</span>
-			</p> */}
+      <p className="videocard-modal-action my-0" onClick={copyLinkHandler}>
+        <span className="material-icons-outlined">content_copy</span>
+        <span>SHARE</span>
+      </p>
     </div>
   );
 }
